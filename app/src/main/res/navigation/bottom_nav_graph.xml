@@ -3,23 +3,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/bottom_nav_graph"
-    app:startDestination="@id/home_1">
+    app:startDestination="@id/home">
 
     <fragment
-        android:id="@+id/home_1"
-        android:name="jp.gr.java.conf.tmproject.dojoandroid2022.ui.main.MainFragment"
+        android:id="@+id/home"
+        android:name="jp.gr.java.conf.tmproject.dojoandroid2022.ui.home.HomeFragment"
         android:label=""
-        tools:layout="@layout/main_fragment"/>
+        tools:layout="@layout/home_fragment"/>
 
     <fragment
-        android:id="@+id/home_2"
-        android:name="jp.gr.java.conf.tmproject.dojoandroid2022.ui.main.MainFragment"
+        android:id="@+id/road_map"
+        android:name="jp.gr.java.conf.tmproject.dojoandroid2022.ui.roadmap.RoadMapFragment"
         android:label=""
-        tools:layout="@layout/main_fragment" />
+        tools:layout="@layout/roadmap_fragment" />
 
     <fragment
-        android:id="@+id/home_3"
-        android:name="jp.gr.java.conf.tmproject.dojoandroid2022.ui.main.MainFragment"
+        android:id="@+id/skill"
+        android:name="jp.gr.java.conf.tmproject.dojoandroid2022.ui.skill.SkillFragment"
         android:label=""
-        tools:layout="@layout/main_fragment" />
+        tools:layout="@layout/skill_fragment" />
 </navigation>
