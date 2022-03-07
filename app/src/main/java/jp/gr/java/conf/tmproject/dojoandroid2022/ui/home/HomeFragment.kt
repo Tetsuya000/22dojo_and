@@ -13,7 +13,8 @@ class HomeFragment : Fragment(R.layout.home_fragment) {
 
     override fun onViewCreated(
         view: View,
-        savedInstanceState: Bundle?) {
+        savedInstanceState: Bundle?
+    ) {
         super.onViewCreated(view, savedInstanceState)
 
         _binding = HomeFragmentBinding.bind(view)
