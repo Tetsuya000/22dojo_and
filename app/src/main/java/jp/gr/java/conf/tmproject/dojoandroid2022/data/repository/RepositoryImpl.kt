@@ -1,6 +1,15 @@
 package jp.gr.java.conf.tmproject.dojoandroid2022.data.repository
 
 import jp.gr.java.conf.tmproject.dojoandroid2022.domain.repository.Repository
+import jp.gr.java.conf.tmproject.dojoandroid2022.domain.source.LocalDataSource
+import jp.gr.java.conf.tmproject.dojoandroid2022.domain.source.RemoteDataSource
 import javax.inject.Inject
 
-class RepositoryImpl @Inject constructor() : Repository
+class RepositoryImpl @Inject constructor(
+    private val localDataSource: LocalDataSource,
+    private val remoteDataSource: RemoteDataSource) : Repository {
+
+    override fun saveCharacterName(characterName: String) = localDataSource.saveCharacterName(characterName)
+
+    override fun loadCharacterName(): String = localDataSource.loadCharacterName()
+}

@@ -1,3 +1,7 @@
 <resources>
+    <!-- App -->
     <string name="app_name">DojoAndroid2022</string>
+
+    <!-- "Character -->
+    <string name="character_name">Andotchi</string>
 </resources>

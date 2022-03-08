@@ -1,4 +1,4 @@
-package jp.gr.java.conf.tmproject.dojoandroid2022.presentation.ui.di.repository
+package jp.gr.java.conf.tmproject.dojoandroid2022.presentation.di.repository
 
 import dagger.Binds
 import dagger.Module
