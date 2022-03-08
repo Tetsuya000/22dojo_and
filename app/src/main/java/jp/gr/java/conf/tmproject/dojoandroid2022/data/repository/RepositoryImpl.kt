@@ -19,7 +19,7 @@ class RepositoryImpl @Inject constructor(
     private val remoteDataSource: RemoteDataSource
 ) : Repository {
 
-    fun parseRodeMap(): RoadMapModel = Json.decodeFromString(getJsonData())
+    override fun parseRodeMap(): RoadMapModel = Json.decodeFromString(getJsonData())
 
     private fun getJsonData(): String {
         val assetManager = context.resources.assets
