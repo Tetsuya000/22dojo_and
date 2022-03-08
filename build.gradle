@@ -10,6 +10,9 @@ buildscript {
         // Navigation
         classpath "androidx.navigation:navigation-safe-args-gradle-plugin:2.5.0-alpha03"
 
+        // Kotlin Serialization
+        classpath "org.jetbrains.kotlin:kotlin-serialization:1.6.10"
+
         // Hilt
         classpath 'com.google.dagger:hilt-android-gradle-plugin:2.41'
     }
