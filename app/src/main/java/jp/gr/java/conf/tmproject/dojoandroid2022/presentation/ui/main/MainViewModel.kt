@@ -7,7 +7,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
-    private val repository: Repository) : ViewModel() {
+    private val repository: Repository
+) : ViewModel() {
 
     fun saveCharacterName(characterName: String) = repository.saveCharacterName(characterName)
 
