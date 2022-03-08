@@ -1,4 +1,4 @@
-package jp.gr.java.conf.tmproject.dojoandroid2022.presentation.ui.main
+package jp.gr.java.conf.tmproject.dojoandroid2022.presentation.ui.home
 
 import android.os.Bundle
 import android.view.View
@@ -6,14 +6,14 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import dagger.hilt.android.AndroidEntryPoint
 import jp.gr.java.conf.tmproject.dojoandroid2022.R
-import jp.gr.java.conf.tmproject.dojoandroid2022.databinding.MainFragmentBinding
+import jp.gr.java.conf.tmproject.dojoandroid2022.databinding.HomeFragmentBinding
 
 @AndroidEntryPoint
-class MainFragment : Fragment(R.layout.main_fragment) {
+class HomeFragment : Fragment(R.layout.home_fragment) {
 
-    private var _binding: MainFragmentBinding? = null
+    private var _binding: HomeFragmentBinding? = null
     private val binding get() = _binding!!
-    private val viewModel: MainViewModel by viewModels()
+    private val viewModel: HomeViewModel by viewModels()
 
     override fun onViewCreated(
         view: View,
@@ -21,7 +21,7 @@ class MainFragment : Fragment(R.layout.main_fragment) {
     ) {
         super.onViewCreated(view, savedInstanceState)
 
-        _binding = MainFragmentBinding.bind(view)
+        _binding = HomeFragmentBinding.bind(view)
     }
 
     override fun onDestroyView() {

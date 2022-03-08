@@ -6,12 +6,12 @@
         android:title="Home" />
 
     <item
-        android:id="@+id/road_map"
+        android:id="@+id/road_map_1"
         android:icon="@drawable/ic_skill_up"
         android:title="RoadMap" />
 
     <item
-        android:id="@+id/skill"
+        android:id="@+id/road_map_2"
         android:icon="@drawable/ic_skill_up"
-        android:title="Skill" />
+        android:title="RoadMap" />
 </menu>
