@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DojoAndroid2022">
         <activity
-            android:name=".MainActivity"
+            android:name="jp.gr.java.conf.tmproject.dojoandroid2022.presentation.ui.main.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

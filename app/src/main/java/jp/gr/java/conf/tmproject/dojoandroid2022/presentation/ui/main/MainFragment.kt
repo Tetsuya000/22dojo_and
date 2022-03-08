@@ -1,4 +1,4 @@
-package jp.gr.java.conf.tmproject.dojoandroid2022.ui.main
+package jp.gr.java.conf.tmproject.dojoandroid2022.presentation.ui.main
 
 import android.os.Bundle
 import android.view.View
@@ -19,6 +19,7 @@ class MainFragment : Fragment(R.layout.main_fragment) {
         super.onViewCreated(view, savedInstanceState)
 
         _binding = MainFragmentBinding.bind(view)
+
         binding.fab.setOnClickListener {
             val action = MainFragmentDirections.actionMainToRoadmap()
             findNavController().navigate(action)
