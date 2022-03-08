@@ -7,9 +7,9 @@
 
     <fragment
         android:id="@+id/home"
-        android:name="jp.gr.java.conf.tmproject.dojoandroid2022.presentation.ui.main.MainFragment"
+        android:name="jp.gr.java.conf.tmproject.dojoandroid2022.presentation.ui.home.HomeFragment"
         android:label=""
-        tools:layout="@layout/main_fragment"/>
+        tools:layout="@layout/home_fragment"/>
     <fragment
         android:id="@+id/roadMap_1"
         android:name="jp.gr.java.conf.tmproject.dojoandroid2022.presentation.ui.rodemap.RoadMapFragment"
