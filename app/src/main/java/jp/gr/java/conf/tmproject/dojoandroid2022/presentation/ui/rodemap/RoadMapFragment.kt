@@ -1,4 +1,4 @@
-package jp.gr.java.conf.tmproject.dojoandroid2022.ui.rodemap
+package jp.gr.java.conf.tmproject.dojoandroid2022.presentation.ui.rodemap
 
 import android.os.Bundle
 import android.view.View

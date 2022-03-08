@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/mainFragment"
-        android:name="jp.gr.java.conf.tmproject.dojoandroid2022.ui.main.MainFragment"
+        android:name="jp.gr.java.conf.tmproject.dojoandroid2022.presentation.ui.main.MainFragment"
         android:label=""
         tools:layout="@layout/main_fragment">
         <action
@@ -17,7 +17,7 @@
 
     <fragment
         android:id="@+id/roadMapFragment"
-        android:name="jp.gr.java.conf.tmproject.dojoandroid2022.ui.rodemap.RoadMapFragment"
+        android:name="jp.gr.java.conf.tmproject.dojoandroid2022.presentation.ui.rodemap.RoadMapFragment"
         android:label=""
         tools:layout="@layout/roadmap_fragment" />
 </navigation>
