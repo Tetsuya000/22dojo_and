@@ -4,8 +4,8 @@ import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import jp.gr.java.conf.tmproject.dojoandroid2022.data.source.remote.RemoteDataSource
 import jp.gr.java.conf.tmproject.dojoandroid2022.data.source.remote.RemoteDataSourceImpl
-import jp.gr.java.conf.tmproject.dojoandroid2022.domain.source.RemoteDataSource
 import javax.inject.Singleton
 
 @Module
