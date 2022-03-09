@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/section_graph"
+    app:startDestination="@id/section">
+
+    <fragment
+        android:id="@+id/section"
+        android:name="jp.gr.java.conf.tmproject.dojoandroid2022.presentation.ui.rodemap.section.RoadmapSectionFragment"
+        android:label=""
+        tools:layout="@layout/roadmap_section_fragment" />
+</navigation>
