@@ -5,6 +5,7 @@ plugins {
     id 'androidx.navigation.safeargs.kotlin'
     id 'dagger.hilt.android.plugin'
     id 'kotlinx-serialization'
+    id 'kotlin-parcelize'
 }
 
 android {
@@ -57,6 +58,12 @@ dependencies {
     // Navigation
     implementation 'androidx.navigation:navigation-fragment-ktx:2.5.0-alpha03'
     implementation 'androidx.navigation:navigation-ui-ktx:2.5.0-alpha03'
+
+    // Epoxy
+    def epoxy_version = "5.0.0-beta03"
+    implementation "com.airbnb.android:epoxy:$epoxy_version"
+    implementation "com.airbnb.android:epoxy-databinding:${epoxy_version}"
+    kapt "com.airbnb.android:epoxy-processor:$epoxy_version"
 
     // Hilt
     def hilt_version = '2.41'

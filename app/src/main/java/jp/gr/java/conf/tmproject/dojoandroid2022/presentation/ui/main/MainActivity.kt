@@ -2,13 +2,27 @@ package jp.gr.java.conf.tmproject.dojoandroid2022.presentation.ui.main
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.NavigationUI.setupWithNavController
 import dagger.hilt.android.AndroidEntryPoint
 import jp.gr.java.conf.tmproject.dojoandroid2022.R
+import jp.gr.java.conf.tmproject.dojoandroid2022.databinding.MainActivityBinding
 
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity(R.layout.main_activity) {
+class MainActivity : AppCompatActivity() {
+
+    private val binding: MainActivityBinding by lazy { MainActivityBinding.inflate(layoutInflater) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        setContentView(binding.root)
+        setupWithNavController()
+    }
+
+    private fun setupWithNavController() {
+        val navHost = supportFragmentManager.findFragmentById(R.id.nav_host_main) as NavHostFragment
+        val navController = navHost.navController
+        setupWithNavController(binding.bottomNav, navController)
     }
 }

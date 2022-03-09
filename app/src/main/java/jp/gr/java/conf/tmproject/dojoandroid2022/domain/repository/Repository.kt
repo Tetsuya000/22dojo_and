@@ -1,6 +1,6 @@
 package jp.gr.java.conf.tmproject.dojoandroid2022.domain.repository
 
-import jp.gr.java.conf.tmproject.dojoandroid2022.domain.repository.model.RoadMapModel
+import jp.gr.java.conf.tmproject.dojoandroid2022.domain.model.RoadMapModel
 
 interface Repository {
     fun parseRodeMap(): RoadMapModel
