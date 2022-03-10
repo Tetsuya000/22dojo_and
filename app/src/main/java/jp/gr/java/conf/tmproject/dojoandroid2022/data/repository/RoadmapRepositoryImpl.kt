@@ -30,5 +30,7 @@ class RoadmapRepositoryImpl @Inject constructor(
 
     override fun deleteNode(nodeId: Int) = roadmapLocalDataSource.deleteNode(nodeId)
 
+    override fun getMasteryNodeId(): List<String> = roadmapLocalDataSource.getMasteryNodeId()
+
     override fun checkNodeMastery(targetNodeId: Int): Boolean = roadmapLocalDataSource.checkNodeMastery(targetNodeId)
 }

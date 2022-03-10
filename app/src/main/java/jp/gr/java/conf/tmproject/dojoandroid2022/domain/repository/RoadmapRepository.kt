@@ -6,5 +6,6 @@ interface RoadmapRepository {
     fun parseRodeMap(): RoadMapModel
     fun saveNode(nodeId: Int)
     fun deleteNode(nodeId: Int)
+    fun getMasteryNodeId(): List<String>
     fun checkNodeMastery(targetNodeId: Int): Boolean
 }
