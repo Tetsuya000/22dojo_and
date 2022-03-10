@@ -31,7 +31,7 @@
 
     <fragment
         android:id="@+id/setting"
-        android:name="jp.gr.java.conf.tmproject.dojoandroid2022.presentation.ui.rodemap.path.RoadmapPathFragment"
+        android:name="jp.gr.java.conf.tmproject.dojoandroid2022.presentation.ui.setting.SettingFragment"
         android:label=""
-        tools:layout="@layout/roadmap_path_fragment" />
+        tools:layout="@layout/setting_fragment" />
 </navigation>
