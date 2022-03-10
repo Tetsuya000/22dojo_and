@@ -5,19 +5,18 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import jp.gr.java.conf.tmproject.dojoandroid2022.R
 import jp.gr.java.conf.tmproject.dojoandroid2022.databinding.RoadmapPathFragmentBinding
-import jp.gr.java.conf.tmproject.dojoandroid2022.domain.model.Path
+import jp.gr.java.conf.tmproject.dojoandroid2022.domain.model.Section
 
 @AndroidEntryPoint
 class RoadmapPathFragment : Fragment(R.layout.roadmap_path_fragment) {
 
     private var _binding: RoadmapPathFragmentBinding? = null
     private val binding get() = _binding!!
-    private val pathViewModel: RoadmapPathViewModel by viewModels()
+    private val viewModel: RoadmapPathViewModel by viewModels()
 
     override fun onViewCreated(
         view: View,
@@ -30,21 +29,20 @@ class RoadmapPathFragment : Fragment(R.layout.roadmap_path_fragment) {
     }
 
     private fun setUpRecyclerView() {
-        val headerCustomViewController = RoadmapPathController(object : RoadmapPathController.SelectListener {
-            override fun onSelected(path: Path) {
-                println(path.title)
-                val action = RoadmapPathFragmentDirections.navigatePathToSection(path)
+        val roadmapPathController = RoadmapPathController(object : RoadmapPathController.SelectListener {
+            override fun onSelected(sections: List<Section>) {
+                val action = RoadmapPathFragmentDirections.navigatePathToSection(sections.toTypedArray())
                 findNavController().navigate(action)
             }
         })
 
         binding.recyclerView.apply {
-            this.adapter = headerCustomViewController.adapter
-            this.layoutManager = GridLayoutManager(context, 2, LinearLayoutManager.VERTICAL, false)
+            this.adapter = roadmapPathController.adapter
+            this.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         }
 
-        val paths = pathViewModel.parseRodeMap().paths
-        headerCustomViewController.setData(paths, true)
+        val paths = viewModel.parseRodeMap().paths
+        roadmapPathController.setData(paths, true)
     }
 
     override fun onDestroyView() {
