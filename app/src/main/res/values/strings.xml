@@ -2,6 +2,9 @@
     <!-- App -->
     <string name="app_name">DojoAndroid2022</string>
 
+    <!-- "Hint -->
+    <string name="hint_character_name">Character name</string>
+
     <!-- "Character -->
     <string name="character_name">Andotchi</string>
 
@@ -9,6 +12,9 @@
     <string name="license"> The Android robot is reproduced or modified from work created and shared by Google and used according to terms described in the Creative Commons 3.0 Attribution License.</string>
 
     <!-- "Setting -->
-    <string name="header_character_edit">-Character Edit-</string>
+    <string name="header_edit_character">-Edit Character-</string>
     <string name="header_license">-License-</string>
+
+    <!-- "Error -->
+    <string name="error_empty">Not entered</string>
 </resources>

@@ -1,0 +1,55 @@
+package jp.gr.java.conf.tmproject.dojoandroid2022.presentation.ui.dialog
+
+import android.app.AlertDialog
+import android.app.Dialog
+import android.os.Bundle
+import android.view.LayoutInflater
+import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.activityViewModels
+import dagger.hilt.android.AndroidEntryPoint
+import jp.gr.java.conf.tmproject.dojoandroid2022.R
+import jp.gr.java.conf.tmproject.dojoandroid2022.databinding.EditCharacterDialogBinding
+import jp.gr.java.conf.tmproject.dojoandroid2022.presentation.ui.setting.SettingViewModel
+
+@AndroidEntryPoint
+class EditCharacterDialog : DialogFragment() {
+
+    private var _binding: EditCharacterDialogBinding? = null
+    private val binding get() = _binding!!
+    val viewModel: SettingViewModel by activityViewModels()
+
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        _binding = EditCharacterDialogBinding.inflate(LayoutInflater.from(requireContext()))
+        binding.also {
+            it.viewModel = viewModel
+            it.lifecycleOwner = this
+        }
+
+        binding.buttonPositive.setOnClickListener {
+            val newCharacterName = binding.editCharacterName.text.toString()
+            val isBlank = validationCharacterName(newCharacterName)
+            if (isBlank) return@setOnClickListener
+
+            viewModel.saveCharacterName(newCharacterName)
+            dismiss()
+        }
+
+        binding.buttonNegative.setOnClickListener {
+            dismiss()
+        }
+
+        return AlertDialog.Builder(requireContext(), R.style.CustomAlertDialog).setView(binding.root).create()
+    }
+
+    private fun validationCharacterName(newCharacterName: String): Boolean {
+        val isBlank = newCharacterName == ""
+        if (isBlank) binding.textInputLayout.error = getString(R.string.error_empty)
+        return isBlank
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+
+        _binding = null
+    }
+}

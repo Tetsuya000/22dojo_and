@@ -2,10 +2,11 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/nav_graph"
+    android:id="@+id/bottom_nav_graph"
     app:startDestination="@id/home">
 
     <include app:graph="@navigation/section_graph" />
+    <include app:graph="@navigation/edit_character_dialog_graph" />
 
     <fragment
         android:id="@+id/home"
@@ -33,5 +34,11 @@
         android:id="@+id/setting"
         android:name="jp.gr.java.conf.tmproject.dojoandroid2022.presentation.ui.setting.SettingFragment"
         android:label=""
-        tools:layout="@layout/setting_fragment" />
+        tools:layout="@layout/setting_fragment" >
+
+        <action
+            android:id="@+id/navigate_setting_to_edit_character_dialog"
+            app:destination="@id/edit_character_dialog_graph">
+        </action>
+    </fragment>
 </navigation>
