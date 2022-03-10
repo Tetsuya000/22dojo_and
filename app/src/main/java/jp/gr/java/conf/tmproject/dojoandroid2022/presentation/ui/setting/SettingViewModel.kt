@@ -13,7 +13,20 @@ class SettingViewModel @Inject constructor(
 
     val characterName: MutableStateFlow<String> = MutableStateFlow("")
 
+    /**
+     * 名前編集に双方向データバインディングを使用すると、「画面に表示している現在の名前」が同時に描き変わるため、
+     * 新しい名前はボタン押下時に代入する
+     */
+    fun saveCharacterName(newCharacterName: String) {
+        characterRepository.saveCharacterName(newCharacterName)
+        characterName.value = newCharacterName
+    }
+
     fun loadCharacterName() {
         characterName.value = characterRepository.loadCharacterName()
+    }
+
+    init {
+        loadCharacterName()
     }
 }
