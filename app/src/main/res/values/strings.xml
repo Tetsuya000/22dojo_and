@@ -17,4 +17,5 @@
 
     <!-- "Error -->
     <string name="error_empty">Not entered</string>
+    <string name="error_over">Please input %1$d characters or less</string>
 </resources>
