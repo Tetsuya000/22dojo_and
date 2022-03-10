@@ -2,7 +2,6 @@ package jp.gr.java.conf.tmproject.dojoandroid2022.data.source.local
 
 import android.content.Context
 import dagger.hilt.android.qualifiers.ApplicationContext
-import jp.gr.java.conf.tmproject.dojoandroid2022.data.source.local.UserSetting.PREF_USER_SETTINGS_NAME
 import javax.inject.Inject
 
 class RoadmapLocalDataSourceImpl @Inject constructor(
@@ -10,12 +9,12 @@ class RoadmapLocalDataSourceImpl @Inject constructor(
     private val context: Context
 ) : RoadmapLocalDataSource {
 
-    private val pref = context.getSharedPreferences(PREF_USER_SETTINGS_NAME, Context.MODE_PRIVATE)
+    private val pref = context.getSharedPreferences(PREF_NODE_DATA, Context.MODE_PRIVATE)
     private val editor = pref.edit()
 
     override fun saveNode(nodeId: Int) {
         editor
-            .putBoolean(nodeId.toString(), true)
+            .putBoolean(nodeId.toString(), false)
             .commit()
     }
 
@@ -25,5 +24,20 @@ class RoadmapLocalDataSourceImpl @Inject constructor(
             .commit()
     }
 
+    override fun getMasteryNodeId(): List<String> {
+        val masteryNodeMap = pref.all.filter {
+            it.value == true
+        }
+        val masteryNodeIdList = mutableListOf<String>()
+        masteryNodeMap.forEach {
+            masteryNodeIdList.add(it.key)
+        }
+        return masteryNodeIdList
+    }
+
     override fun checkNodeMastery(targetNodeId: Int): Boolean = pref.getBoolean(targetNodeId.toString(), false)
+
+    companion object {
+        const val PREF_NODE_DATA = "node_data"
+    }
 }

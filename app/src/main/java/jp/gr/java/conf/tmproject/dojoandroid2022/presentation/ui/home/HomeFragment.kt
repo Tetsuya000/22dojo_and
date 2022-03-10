@@ -22,6 +22,10 @@ class HomeFragment : Fragment(R.layout.home_fragment) {
         super.onViewCreated(view, savedInstanceState)
 
         _binding = HomeFragmentBinding.bind(view)
+
+        binding.imageCharacter.setOnClickListener {
+            viewModel.saveCharacterName("")
+        }
     }
 
     override fun onDestroyView() {

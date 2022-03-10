@@ -22,7 +22,8 @@ class RoadmapNodeFragment : Fragment(R.layout.roadmap_node_fragment) {
 
     override fun onViewCreated(
         view: View,
-        savedInstanceState: Bundle?) {
+        savedInstanceState: Bundle?
+    ) {
         super.onViewCreated(view, savedInstanceState)
 
         _binding = RoadmapNodeFragmentBinding.bind(view)
@@ -33,7 +34,8 @@ class RoadmapNodeFragment : Fragment(R.layout.roadmap_node_fragment) {
         val roadmapNodeController = RoadmapNodeController(object : RoadmapNodeController.SelectListener {
             override fun onSelected(
                 selectedNode: Node,
-                childNodes: List<Node>) {
+                childNodes: List<Node>
+            ) {
 
                 if (childNodes.isEmpty()) return saveNode(selectedNode)
                 val action = RoadmapNodeFragmentDirections.navigateNodeToChildNodes(childNodes.toTypedArray())
@@ -54,8 +56,7 @@ class RoadmapNodeFragment : Fragment(R.layout.roadmap_node_fragment) {
         val isMastery = viewModel.checkNodeMastery(selectedNode.id)
         if (isMastery) {
             viewModel.deleteNode(selectedNode.id)
-        }
-        else {
+        } else {
             viewModel.saveNode(selectedNode.id)
         }
     }
