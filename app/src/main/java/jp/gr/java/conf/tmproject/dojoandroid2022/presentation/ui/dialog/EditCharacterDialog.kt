@@ -27,8 +27,9 @@ class EditCharacterDialog : DialogFragment() {
 
         binding.buttonPositive.setOnClickListener {
             val newCharacterName = binding.editCharacterName.text.toString()
-            val isBlank = validationCharacterName(newCharacterName)
-            if (isBlank) return@setOnClickListener
+            val isBlank = checkBlankCharacterName(newCharacterName)
+            val isOver = checkOverCharacterName(newCharacterName)
+            if (isBlank || isOver) return@setOnClickListener
 
             viewModel.saveCharacterName(newCharacterName)
             dismiss()
@@ -41,10 +42,16 @@ class EditCharacterDialog : DialogFragment() {
         return AlertDialog.Builder(requireContext(), R.style.CustomAlertDialog).setView(binding.root).create()
     }
 
-    private fun validationCharacterName(newCharacterName: String): Boolean {
+    private fun checkBlankCharacterName(newCharacterName: String): Boolean {
         val isBlank = newCharacterName == ""
         if (isBlank) binding.textInputLayout.error = getString(R.string.error_empty)
         return isBlank
+    }
+
+    private fun checkOverCharacterName(newCharacterName: String): Boolean {
+        val isOver = newCharacterName.length > 10
+        if (isOver) binding.textInputLayout.error = getString(R.string.error_over, 10)
+        return isOver
     }
 
     override fun onDestroyView() {
