@@ -5,6 +5,9 @@
 
     <data>
 
+        <variable
+            name="viewModel"
+            type="jp.gr.java.conf.tmproject.dojoandroid2022.presentation.ui.home.HomeViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -13,25 +16,32 @@
         android:background="@drawable/bg_01">
 
         <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline_vertical_40"
+            android:id="@+id/guideline_vertical_30"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.3" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_horizontal_20"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.4" />
+            app:layout_constraintGuide_percent="0.20" />
 
         <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline_vertical_65"
+            android:id="@+id/guideline_horizontal_65"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.65" />
 
         <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline_vertical_70"
+            android:id="@+id/guideline_horizontal_75"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.7" />
+            app:layout_constraintGuide_percent="0.75" />
 
         <ImageView
             android:id="@+id/image_character"
@@ -43,46 +53,72 @@
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/character_01" />
 
-        <TextView
-            android:id="@+id/level"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:gravity="center|end"
-            android:text="Lv"
-            android:textColor="@color/black"
-            android:textSize="25sp"
-            app:layout_constraintBottom_toTopOf="@+id/guideline_vertical_40"
-            app:layout_constraintEnd_toStartOf="@+id/text_level"
+        <androidx.cardview.widget.CardView
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            app:cardCornerRadius="100dp"
+            app:cardUseCompatPadding="true"
+            app:layout_constraintBottom_toBottomOf="@id/guideline_horizontal_20"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_vertical_30"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/text_level"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:gravity="center|start"
-            android:text="1"
-            android:textColor="@color/black"
-            android:textSize="25sp"
-            app:layout_constraintBottom_toTopOf="@+id/guideline_vertical_40"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/level"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="1" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/text_character_name"
+                <TextView
+                    android:id="@+id/level"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Level"
+                    android:textSize="20sp"
+                    app:layout_constraintBottom_toTopOf="@+id/text_level"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_chainStyle="packed" />
+
+                <TextView
+                    android:id="@+id/text_level"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@{viewModel.characterLevel}"
+                    android:textSize="20sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/level"
+                    app:layout_constraintVertical_chainStyle="packed"
+                    tools:text="1" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:textSize="25sp"
-            tools:text="Andotchi"
-            app:layout_constraintBottom_toBottomOf="@id/guideline_vertical_70"
+            app:cardCornerRadius="10dp"
+            app:cardUseCompatPadding="true"
+            app:layout_constraintBottom_toTopOf="@+id/guideline_horizontal_75"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/guideline_vertical_65" />
+            app:layout_constraintTop_toTopOf="@+id/guideline_horizontal_65">
+
+            <TextView
+                android:id="@+id/text_character_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="5dp"
+                android:text="@{viewModel.characterName}"
+                android:textSize="20sp"
+                tools:text="Andotchi" />
+        </androidx.cardview.widget.CardView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
