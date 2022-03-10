@@ -24,8 +24,8 @@
             app:destination="@id/section_graph">
 
             <argument
-                android:name="Path"
-                app:argType="jp.gr.java.conf.tmproject.dojoandroid2022.domain.model.Path" />
+                android:name="sections"
+                app:argType="jp.gr.java.conf.tmproject.dojoandroid2022.domain.model.Section[]" />
         </action>
     </fragment>
 

@@ -1,27 +1,27 @@
-package jp.gr.java.conf.tmproject.dojoandroid2022.presentation.ui.rodemap.path
+package jp.gr.java.conf.tmproject.dojoandroid2022.presentation.ui.rodemap.section
 
 import android.view.View
 import com.airbnb.epoxy.Typed2EpoxyController
-import jp.gr.java.conf.tmproject.dojoandroid2022.domain.model.Path
+import jp.gr.java.conf.tmproject.dojoandroid2022.domain.model.Node
 import jp.gr.java.conf.tmproject.dojoandroid2022.domain.model.Section
 import jp.gr.java.conf.tmproject.dojoandroid2022.itemRoadmap
 
-class RoadmapPathController(
+class RoadmapSectionController(
     private val selectListener: SelectListener
-) : Typed2EpoxyController<List<Path>, Boolean>() {
+) : Typed2EpoxyController<List<Section>, Boolean>() {
 
     override fun buildModels(
-        paths: List<Path>,
+        sections: List<Section>,
         loadingMore: Boolean
     ) {
 
-        paths.forEach { path ->
+        sections.forEach { section ->
             itemRoadmap {
-                id(path.id)
-                title(path.title)
+                id(section.id)
+                title(section.title)
                 onClickListener(
                     View.OnClickListener {
-                        this@RoadmapPathController.selectListener.onSelected(path.sections)
+                        this@RoadmapSectionController.selectListener.onSelected(section.nodes)
                     }
                 )
             }
@@ -29,6 +29,6 @@ class RoadmapPathController(
     }
 
     interface SelectListener {
-        fun onSelected(sections: List<Section>)
+        fun onSelected(nodes: List<Node>)
     }
 }
