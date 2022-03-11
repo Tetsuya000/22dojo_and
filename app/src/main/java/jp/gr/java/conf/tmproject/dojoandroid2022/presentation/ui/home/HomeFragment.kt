@@ -4,9 +4,12 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import dagger.hilt.android.AndroidEntryPoint
 import jp.gr.java.conf.tmproject.dojoandroid2022.R
 import jp.gr.java.conf.tmproject.dojoandroid2022.databinding.HomeFragmentBinding
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class HomeFragment : Fragment(R.layout.home_fragment) {
@@ -25,6 +28,39 @@ class HomeFragment : Fragment(R.layout.home_fragment) {
         binding.also {
             it.viewModel = viewModel
             it.lifecycleOwner = this
+        }
+
+        observeCharacterLevel()
+    }
+
+    private fun observeCharacterLevel() = lifecycleScope.launch {
+        viewModel.characterLevel.collect { characterLevel ->
+            when (characterLevel.toInt() / 5) {
+                0 -> {
+                    binding.background.setBackgroundResource(R.drawable.bg_01)
+                    binding.imageCharacter.setImageResource(R.drawable.character_01)
+                }
+                1 -> {
+                    binding.background.setBackgroundResource(R.drawable.bg_02)
+                    binding.imageCharacter.setImageResource(R.drawable.character_02)
+                }
+                2 -> {
+                    binding.background.setBackgroundResource(R.drawable.bg_03)
+                    binding.imageCharacter.setImageResource(R.drawable.character_03)
+                }
+                3 -> {
+                    binding.background.setBackgroundResource(R.drawable.bg_04)
+                    binding.imageCharacter.setImageResource(R.drawable.character_04)
+                }
+                4 -> {
+                    binding.background.setBackgroundResource(R.drawable.bg_05)
+                    binding.imageCharacter.setImageResource(R.drawable.character_05)
+                }
+                else -> {
+                    binding.background.setBackgroundResource(R.drawable.bg_05)
+                    binding.imageCharacter.setImageResource(R.drawable.character_05)
+                }
+            }
         }
     }
 
