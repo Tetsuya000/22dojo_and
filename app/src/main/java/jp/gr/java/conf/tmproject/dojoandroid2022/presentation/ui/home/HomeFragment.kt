@@ -66,8 +66,7 @@ class HomeFragment : Fragment(R.layout.home_fragment) {
     override fun onResume() {
         super.onResume()
 
-//        viewModel.loadCharacterName()
-//        viewModel.loadCharacterLevel()
+        viewModel.loadCharacterName()
     }
 
     override fun onDestroyView() {

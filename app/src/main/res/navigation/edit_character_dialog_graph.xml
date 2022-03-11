@@ -7,8 +7,8 @@
 
     <dialog
         android:id="@+id/edit_character_dialog"
-        android:name="jp.gr.java.conf.tmproject.dojoandroid2022.presentation.ui.dialog.EditCharacterDialog"
+        android:name="jp.gr.java.conf.tmproject.dojoandroid2022.presentation.ui.dialog.EditCharacterDialogFragment"
         android:label=""
-        tools:layout="@layout/edit_character_dialog" >
+        tools:layout="@layout/edit_character_dialog_fragment" >
     </dialog>
 </navigation>

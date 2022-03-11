@@ -26,20 +26,15 @@ class HomeViewModel @Inject constructor(
         characterName.value = characterRepository.loadCharacterName()
     }
 
-    fun loadCharacterLevel() {
-        characterLevel.value = getCharacterLevelUseCase.getCharacterLevel().toString()
-    }
-
     private fun loadAllNode() = viewModelScope.launch(Dispatchers.IO) {
-        roadmapRepository.loadAllNode().collect {
-            it.forEach {
-//                println(it.title)
-            }
-            characterLevel.value = ((it.size / 2) + 1).toString()
+        roadmapRepository.loadAllNode().collect { nodes ->
+            val level = getCharacterLevelUseCase.getCharacterLevel(nodes.size).toString()
+            characterLevel.value = level
         }
     }
 
     init {
+        loadCharacterName()
         loadAllNode()
     }
 }
