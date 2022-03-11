@@ -7,17 +7,18 @@ import jp.gr.java.conf.tmproject.dojoandroid2022.itemRoadmap
 
 class RoadmapNodeController(
     private val selectListener: SelectListener
-) : Typed2EpoxyController<List<Node>, Boolean>() {
+) : Typed2EpoxyController<List<Node>, List<Int>>() {
 
     override fun buildModels(
-        nodes: List<Node>,
-        loadingMore: Boolean
+        allNodeList: List<Node>,
+        masterNodeIdList: List<Int>
     ) {
 
-        nodes.forEach { node ->
+        allNodeList.forEach { node ->
+            val isMaster = masterNodeIdList.contains(node.id)
             itemRoadmap {
-
                 id(node.id)
+                isMaster(isMaster)
                 title(node.title)
                 onClickListener(
                     View.OnClickListener {
@@ -29,6 +30,9 @@ class RoadmapNodeController(
     }
 
     interface SelectListener {
-        fun onSelected(selectedNode: Node, childNodes: List<Node>)
+        fun onSelected(
+            selectedNode: Node,
+            childNodes: List<Node>
+        )
     }
 }

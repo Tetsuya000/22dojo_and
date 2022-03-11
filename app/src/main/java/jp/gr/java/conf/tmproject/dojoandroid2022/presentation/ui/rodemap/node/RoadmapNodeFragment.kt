@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -11,6 +12,8 @@ import dagger.hilt.android.AndroidEntryPoint
 import jp.gr.java.conf.tmproject.dojoandroid2022.R
 import jp.gr.java.conf.tmproject.dojoandroid2022.databinding.RoadmapNodeFragmentBinding
 import jp.gr.java.conf.tmproject.dojoandroid2022.domain.model.Node
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class RoadmapNodeFragment : Fragment(R.layout.roadmap_node_fragment) {
@@ -48,8 +51,19 @@ class RoadmapNodeFragment : Fragment(R.layout.roadmap_node_fragment) {
             this.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         }
 
-        val nodes = navArgs.nodes?.toList()
-        roadmapNodeController.setData(nodes, true)
+        val allNodeList = navArgs.nodes?.toList()
+
+        val masterNodeList = viewModel.masterNodeList.value
+        val masterNodeIdList = mutableListOf<Int>()
+        masterNodeList.forEach { node ->
+            masterNodeIdList.add(node.id)
+        }
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.masterNodeList.collect { nodeList ->
+                roadmapNodeController.setData(allNodeList, nodeList.map { it.id })
+            }
+        }
     }
 
     private fun saveNode(selectedNode: Node) {
