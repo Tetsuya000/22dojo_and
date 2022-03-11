@@ -27,4 +27,8 @@ class HomeViewModel @Inject constructor(
     fun loadCharacterLevel() {
         characterLevel.value = getCharacterLevelUseCase.getCharacterLevel().toString()
     }
+
+    init {
+        loadCharacterLevel()
+    }
 }
