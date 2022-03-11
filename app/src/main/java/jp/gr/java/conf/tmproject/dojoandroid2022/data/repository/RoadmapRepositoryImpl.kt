@@ -3,8 +3,10 @@ package jp.gr.java.conf.tmproject.dojoandroid2022.data.repository
 import android.content.Context
 import dagger.hilt.android.qualifiers.ApplicationContext
 import jp.gr.java.conf.tmproject.dojoandroid2022.data.source.local.RoadmapLocalDataSource
+import jp.gr.java.conf.tmproject.dojoandroid2022.domain.model.Node
 import jp.gr.java.conf.tmproject.dojoandroid2022.domain.model.RoadMapModel
 import jp.gr.java.conf.tmproject.dojoandroid2022.domain.repository.RoadmapRepository
+import kotlinx.coroutines.flow.Flow
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 import java.io.BufferedReader
@@ -26,11 +28,9 @@ class RoadmapRepositoryImpl @Inject constructor(
         return Json.decodeFromString(jsonData)
     }
 
-    override fun saveNode(nodeId: Int) = roadmapLocalDataSource.saveNode(nodeId)
+    override suspend fun saveNode(node: Node) = roadmapLocalDataSource.saveNode(node)
 
-    override fun deleteNode(nodeId: Int) = roadmapLocalDataSource.deleteNode(nodeId)
+    override suspend fun deleteNode(node: Node) = roadmapLocalDataSource.deleteNode(node)
 
-    override fun getMasteryNodeId(): List<String> = roadmapLocalDataSource.getMasteryNodeId()
-
-    override fun checkNodeMastery(targetNodeId: Int): Boolean = roadmapLocalDataSource.checkNodeMastery(targetNodeId)
+    override suspend fun loadAllNode(): Flow<List<Node>> = roadmapLocalDataSource.loadAllNode()
 }

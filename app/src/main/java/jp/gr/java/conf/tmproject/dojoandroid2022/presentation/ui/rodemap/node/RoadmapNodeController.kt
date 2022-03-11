@@ -16,6 +16,7 @@ class RoadmapNodeController(
 
         nodes.forEach { node ->
             itemRoadmap {
+
                 id(node.id)
                 title(node.title)
                 onClickListener(

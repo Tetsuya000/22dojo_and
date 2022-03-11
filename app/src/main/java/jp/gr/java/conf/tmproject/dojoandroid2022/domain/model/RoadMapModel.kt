@@ -1,6 +1,7 @@
 package jp.gr.java.conf.tmproject.dojoandroid2022.domain.model
 
 import android.os.Parcelable
+import jp.gr.java.conf.tmproject.dojoandroid2022.data.entity.NodeEntity
 import kotlinx.parcelize.Parcelize
 import kotlinx.serialization.Serializable
 
@@ -35,4 +36,8 @@ data class Node(
     val isJetpack: Boolean,
     val priority: Int,
     val childNodes: List<Node>? = null
-) : Parcelable
+) : Parcelable {
+
+    fun toEntity(): NodeEntity =
+        NodeEntity(id = id, title = title, isJetpack = isJetpack, priority = priority)
+}

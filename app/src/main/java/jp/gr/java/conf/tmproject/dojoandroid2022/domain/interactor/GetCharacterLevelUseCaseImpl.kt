@@ -8,7 +8,8 @@ class GetCharacterLevelUseCaseImpl @Inject constructor(
 ) : GetCharacterLevelUseCase {
 
     override fun getCharacterLevel(): Int {
-        val masteryNodeId = roadmapRepository.getMasteryNodeId()
-        return (masteryNodeId.size / 2) + 1
+//        val nodes = roadmapRepository.loadAllNode()
+//        return (nodes .size / 2) + 1
+        return 1
     }
 }
