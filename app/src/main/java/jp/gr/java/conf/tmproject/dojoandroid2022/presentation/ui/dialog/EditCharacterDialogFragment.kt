@@ -8,18 +8,18 @@ import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
 import dagger.hilt.android.AndroidEntryPoint
 import jp.gr.java.conf.tmproject.dojoandroid2022.R
-import jp.gr.java.conf.tmproject.dojoandroid2022.databinding.EditCharacterDialogBinding
+import jp.gr.java.conf.tmproject.dojoandroid2022.databinding.EditCharacterDialogFragmentBinding
 import jp.gr.java.conf.tmproject.dojoandroid2022.presentation.ui.setting.SettingViewModel
 
 @AndroidEntryPoint
-class EditCharacterDialog : DialogFragment() {
+class EditCharacterDialogFragment : DialogFragment() {
 
-    private var _binding: EditCharacterDialogBinding? = null
+    private var _binding: EditCharacterDialogFragmentBinding? = null
     private val binding get() = _binding!!
     val viewModel: SettingViewModel by activityViewModels()
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        _binding = EditCharacterDialogBinding.inflate(LayoutInflater.from(requireContext()))
+        _binding = EditCharacterDialogFragmentBinding.inflate(LayoutInflater.from(requireContext()))
         binding.also {
             it.viewModel = viewModel
             it.lifecycleOwner = this

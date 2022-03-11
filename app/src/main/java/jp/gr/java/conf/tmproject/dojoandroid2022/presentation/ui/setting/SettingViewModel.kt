@@ -22,7 +22,7 @@ class SettingViewModel @Inject constructor(
         characterName.value = newCharacterName
     }
 
-    fun loadCharacterName() {
+    private fun loadCharacterName() {
         characterName.value = characterRepository.loadCharacterName()
     }
 
