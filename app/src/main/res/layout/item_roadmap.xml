@@ -8,6 +8,10 @@
         <import type="android.view.View" />
 
         <variable
+            name="isMaster"
+            type="Boolean" />
+
+        <variable
             name="title"
             type="String" />
 
@@ -23,6 +27,7 @@
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="80dp"
+            app:cardBackgroundColor="@{isMaster? @color/snackbar_error_background:@color/teal_700}"
             app:cardCornerRadius="10dp"
             app:cardUseCompatPadding="true"
             app:layout_constraintBottom_toBottomOf="parent"

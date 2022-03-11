@@ -6,6 +6,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import jp.gr.java.conf.tmproject.dojoandroid2022.domain.model.Node
 import jp.gr.java.conf.tmproject.dojoandroid2022.domain.repository.RoadmapRepository
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -15,7 +16,8 @@ class RoadmapNodeViewModel @Inject constructor(
     private val roadmapRepository: RoadmapRepository
 ) : ViewModel() {
 
-    private val nodes: MutableStateFlow<List<Node>> = MutableStateFlow(emptyList())
+    private val _masterNodeList: MutableStateFlow<List<Node>> = MutableStateFlow(emptyList())
+    val masterNodeList: StateFlow<List<Node>> = _masterNodeList
 
     fun saveNode(node: Node) = viewModelScope.launch {
         roadmapRepository.saveNode(node)
@@ -27,13 +29,12 @@ class RoadmapNodeViewModel @Inject constructor(
 
     private fun loadAllNode() = viewModelScope.launch {
         roadmapRepository.loadAllNode().collect {
-            nodes.value = it
+            _masterNodeList.value = it
         }
     }
 
     fun checkMaster(selectedNodeId: Int): Boolean {
-        val selectedNode = nodes.value.filter { node -> node.id == selectedNodeId }
-        println(nodes.value)
+        val selectedNode = masterNodeList.value.filter { node -> node.id == selectedNodeId }
         return selectedNode.isNotEmpty()
     }
 
