@@ -1,8 +1,10 @@
 package jp.gr.java.conf.tmproject.dojoandroid2022.data.source.local
 
+import jp.gr.java.conf.tmproject.dojoandroid2022.domain.model.Node
+import kotlinx.coroutines.flow.Flow
+
 interface RoadmapLocalDataSource {
-    fun saveNode(nodeId: Int)
-    fun deleteNode(nodeId: Int)
-    fun getMasteryNodeId(): List<String>
-    fun checkNodeMastery(targetNodeId: Int): Boolean
+    suspend fun saveNode(node: Node)
+    suspend fun deleteNode(node: Node)
+    suspend fun loadAllNode(): Flow<List<Node>>
 }

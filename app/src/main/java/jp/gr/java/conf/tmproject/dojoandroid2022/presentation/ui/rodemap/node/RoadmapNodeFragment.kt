@@ -53,11 +53,11 @@ class RoadmapNodeFragment : Fragment(R.layout.roadmap_node_fragment) {
     }
 
     private fun saveNode(selectedNode: Node) {
-        val isMastery = viewModel.checkNodeMastery(selectedNode.id)
+        val isMastery = viewModel.checkMaster(selectedNode.id)
         if (isMastery) {
-            viewModel.deleteNode(selectedNode.id)
+            viewModel.deleteNode(selectedNode)
         } else {
-            viewModel.saveNode(selectedNode.id)
+            viewModel.saveNode(selectedNode)
         }
     }
 

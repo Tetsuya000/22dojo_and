@@ -59,8 +59,14 @@ dependencies {
     implementation 'androidx.navigation:navigation-fragment-ktx:2.5.0-alpha03'
     implementation 'androidx.navigation:navigation-ui-ktx:2.5.0-alpha03'
 
+    // Room
+    def room_version = "2.5.0-alpha01"
+    implementation "androidx.room:room-runtime:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
+    implementation "androidx.room:room-ktx:$room_version"
+
     // Epoxy
-    def epoxy_version = "5.0.0-beta03"
+    def epoxy_version = "4.6.3"
     implementation "com.airbnb.android:epoxy:$epoxy_version"
     implementation "com.airbnb.android:epoxy-databinding:${epoxy_version}"
     kapt "com.airbnb.android:epoxy-processor:$epoxy_version"

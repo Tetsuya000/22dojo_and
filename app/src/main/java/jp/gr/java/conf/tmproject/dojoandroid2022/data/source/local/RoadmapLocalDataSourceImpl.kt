@@ -1,42 +1,28 @@
 package jp.gr.java.conf.tmproject.dojoandroid2022.data.source.local
 
-import android.content.Context
-import dagger.hilt.android.qualifiers.ApplicationContext
+import jp.gr.java.conf.tmproject.dojoandroid2022.data.source.local.db.NodeDao
+import jp.gr.java.conf.tmproject.dojoandroid2022.domain.model.Node
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 class RoadmapLocalDataSourceImpl @Inject constructor(
-    @ApplicationContext
-    private val context: Context
+    private val dao: NodeDao
 ) : RoadmapLocalDataSource {
 
-    private val pref = context.getSharedPreferences(PREF_NODE_DATA, Context.MODE_PRIVATE)
-    private val editor = pref.edit()
-
-    override fun saveNode(nodeId: Int) {
-        editor.putBoolean(nodeId.toString(), true).commit()
+    override suspend fun saveNode(node: Node) {
+        dao.insert(node.toEntity())
     }
 
-    override fun deleteNode(nodeId: Int) {
-        editor.putBoolean(nodeId.toString(), false).commit()
+    override suspend fun deleteNode(node: Node) {
+        dao.delete(node.toEntity())
     }
 
-    override fun getMasteryNodeId(): List<String> {
-        val masteryNodeMap = pref.all.filter {
-            it.value == true
+    override suspend fun loadAllNode(): Flow<List<Node>> {
+        return dao.loadAllNode().map { nodes ->
+            nodes.map { entity ->
+                entity.toDomain()
+            }
         }
-
-        val masteryNodeIdList = mutableListOf<String>()
-        masteryNodeMap.forEach {
-            masteryNodeIdList.add(it.key)
-        }
-        return masteryNodeIdList
-    }
-
-    override fun checkNodeMastery(targetNodeId: Int): Boolean {
-        return pref.getBoolean(targetNodeId.toString(), false)
-    }
-
-    companion object {
-        const val PREF_NODE_DATA = "node_data"
     }
 }

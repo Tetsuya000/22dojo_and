@@ -9,7 +9,6 @@ import dagger.hilt.android.AndroidEntryPoint
 import jp.gr.java.conf.tmproject.dojoandroid2022.R
 import jp.gr.java.conf.tmproject.dojoandroid2022.databinding.HomeFragmentBinding
 import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class HomeFragment : Fragment(R.layout.home_fragment) {
@@ -33,7 +32,7 @@ class HomeFragment : Fragment(R.layout.home_fragment) {
         observeCharacterLevel()
     }
 
-    private fun observeCharacterLevel() = lifecycleScope.launch {
+    private fun observeCharacterLevel() = lifecycleScope.launchWhenStarted {
         viewModel.characterLevel.collect { characterLevel ->
             when (characterLevel.toInt() / 5) {
                 0 -> {
@@ -67,8 +66,8 @@ class HomeFragment : Fragment(R.layout.home_fragment) {
     override fun onResume() {
         super.onResume()
 
-        viewModel.loadCharacterName()
-        viewModel.loadCharacterLevel()
+//        viewModel.loadCharacterName()
+//        viewModel.loadCharacterLevel()
     }
 
     override fun onDestroyView() {
