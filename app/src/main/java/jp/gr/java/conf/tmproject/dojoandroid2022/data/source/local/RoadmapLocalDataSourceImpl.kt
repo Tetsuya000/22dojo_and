@@ -36,8 +36,8 @@ class RoadmapLocalDataSourceImpl @Inject constructor(
         dao.delete(node.toEntity())
     }
 
-    override fun loadAllNode(): Flow<List<Node>> {
-        return dao.loadAllNode().map { nodes ->
+    override fun loadMasterNode(): Flow<List<Node>> {
+        return dao.loadMasterNode().map { nodes ->
             nodes.map { entity ->
                 entity.toDomain()
             }

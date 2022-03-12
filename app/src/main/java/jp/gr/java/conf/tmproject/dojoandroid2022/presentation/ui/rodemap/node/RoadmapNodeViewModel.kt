@@ -27,18 +27,20 @@ class RoadmapNodeViewModel @Inject constructor(
         roadmapRepository.deleteNode(node)
     }
 
-    private fun loadAllNode() = viewModelScope.launch {
-        roadmapRepository.loadAllNode().collect {
+    private fun loadMasterNode() = viewModelScope.launch {
+        roadmapRepository.loadMasterNode().collect {
             _masterNodeList.value = it
         }
     }
 
-    fun checkMaster(selectedNodeId: Int): Boolean {
-        val selectedNode = masterNodeList.value.filter { node -> node.id == selectedNodeId }
-        return selectedNode.isNotEmpty()
+    /**
+     * 「選択したノード」が「習得済みノードリスト」に存在するか
+     */
+    fun isMaster(selectedNodeId: Int): Boolean {
+        return masterNodeList.value.any { node -> node.id == selectedNodeId }
     }
 
     init {
-        loadAllNode()
+        loadMasterNode()
     }
 }
