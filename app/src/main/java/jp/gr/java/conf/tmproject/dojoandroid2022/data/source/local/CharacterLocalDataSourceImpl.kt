@@ -1,35 +1,39 @@
 package jp.gr.java.conf.tmproject.dojoandroid2022.data.source.local
 
 import android.content.Context
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.core.edit
+import androidx.datastore.preferences.core.emptyPreferences
+import androidx.datastore.preferences.core.stringPreferencesKey
 import dagger.hilt.android.qualifiers.ApplicationContext
 import jp.gr.java.conf.tmproject.dojoandroid2022.R
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.map
+import java.io.IOException
 import javax.inject.Inject
 
 class CharacterLocalDataSourceImpl @Inject constructor(
     @ApplicationContext
-    private val context: Context
+    private val context: Context,
+    private val dataStore: DataStore<Preferences>
 ) : CharacterLocalDataSource {
 
-    private val pref = context.getSharedPreferences(PREF_CHARACTER_DATA, Context.MODE_PRIVATE)
-    private val editor = pref.edit()
-
-    override fun saveCharacterName(characterName: String) {
-        editor
-            .putString(CharacterPrefKey.CHARACTER_NAME.name, characterName)
-            .commit()
+    override suspend fun saveCharacterName(characterName: String) {
+        dataStore.edit { settings -> settings[CHARACTER_NAME] = characterName }
     }
 
-    override fun loadCharacterName(): String {
-        return pref
-            .getString(CharacterPrefKey.CHARACTER_NAME.name, context.getString(R.string.character_name))
-            .toString()
+    override fun loadCharacterName(): Flow<String> {
+        return dataStore.data.catch { exception ->
+            if (exception is IOException) return@catch emit(emptyPreferences())
+            throw exception
+        }.map { preferences ->
+            preferences[CHARACTER_NAME] ?: context.getString(R.string.character_name)
+        }
     }
 
     companion object {
-        const val PREF_CHARACTER_DATA = "character_data"
-    }
-
-    private enum class CharacterPrefKey {
-        CHARACTER_NAME
+        private val CHARACTER_NAME = stringPreferencesKey("character_name")
     }
 }

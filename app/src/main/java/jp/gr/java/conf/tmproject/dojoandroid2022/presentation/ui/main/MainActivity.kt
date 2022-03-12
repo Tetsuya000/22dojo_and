@@ -17,10 +17,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         setContentView(binding.root)
-        setupWithNavController()
+        setUpNavController()
     }
 
-    private fun setupWithNavController() {
+    private fun setUpNavController() {
         val navHost = supportFragmentManager.findFragmentById(R.id.nav_host_main) as NavHostFragment
         val navController = navHost.navController
         setupWithNavController(binding.bottomNav, navController)
