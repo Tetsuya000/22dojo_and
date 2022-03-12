@@ -42,7 +42,7 @@ class RoadmapPathFragment : Fragment(R.layout.roadmap_path_fragment) {
         }
 
         val paths = viewModel.parseRodeMap().paths
-        roadmapPathController.setData(paths, true)
+        roadmapPathController.setData(paths)
     }
 
     override fun onDestroyView() {

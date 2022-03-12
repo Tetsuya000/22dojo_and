@@ -44,17 +44,8 @@ class RoadmapSectionFragment : Fragment(R.layout.roadmap_section_fragment) {
         }
 
         val sections = navArgs.sections.toList()
-        roadmapSectionController.setData(sections, true)
+        roadmapSectionController.setData(sections)
     }
-
-//    private fun changeMastery(path: Path){
-//        val isMastery = pathViewModel.checkNodeMastery(path.id)
-//        if (isMastery) {
-//            pathViewModel.deleteNode(path.id)
-//        } else {
-//            pathViewModel.saveNode(path.id)
-//        }
-//    }
 
     override fun onDestroyView() {
         super.onDestroyView()

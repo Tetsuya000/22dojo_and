@@ -17,7 +17,7 @@ object RoomModule {
 
     @Provides
     @Singleton
-    fun provideLocationInfoDatabase(
+    fun provideNodeDatabase(
         @ApplicationContext
         context: Context
     ): NodeDatabase = synchronized(this) {
@@ -28,5 +28,5 @@ object RoomModule {
 
     @Provides
     @Singleton
-    fun provideLocationInfoDao(db: NodeDatabase): NodeDao = db.nodeDao()
+    fun provideNodeDao(db: NodeDatabase): NodeDao = db.nodeDao()
 }
