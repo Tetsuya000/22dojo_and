@@ -28,7 +28,7 @@ class HomeViewModel @Inject constructor(
     }
 
     private fun loadAllNode() = viewModelScope.launch {
-        roadmapRepository.loadAllNode().collect { nodes ->
+        roadmapRepository.loadMasterNode().collect { nodes ->
             val level = getCharacterLevelUseCase.getCharacterLevel(nodes.size).toString()
             characterLevel.value = level
         }

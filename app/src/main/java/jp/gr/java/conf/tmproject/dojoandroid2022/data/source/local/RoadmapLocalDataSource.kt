@@ -8,5 +8,5 @@ interface RoadmapLocalDataSource {
     fun parseRodeMap(): RoadMapModel
     suspend fun saveNode(node: Node)
     suspend fun deleteNode(node: Node)
-    fun loadAllNode(): Flow<List<Node>>
+    fun loadMasterNode(): Flow<List<Node>>
 }

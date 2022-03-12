@@ -4,7 +4,9 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -51,24 +53,19 @@ class RoadmapNodeFragment : Fragment(R.layout.roadmap_node_fragment) {
             this.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         }
 
-        val allNodeList = navArgs.nodes?.toList()
-
-        val masterNodeList = viewModel.masterNodeList.value
-        val masterNodeIdList = mutableListOf<Int>()
-        masterNodeList.forEach { node ->
-            masterNodeIdList.add(node.id)
-        }
-
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.masterNodeList.collect { nodeList ->
-                roadmapNodeController.setData(allNodeList, nodeList.map { it.id })
+        val screenNodeList = navArgs.nodes?.toList()
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.masterNodeList.collect { masterNodeList ->
+                    roadmapNodeController.setData(screenNodeList, masterNodeList.map { it.id })
+                }
             }
         }
     }
 
     private fun saveNode(selectedNode: Node) {
-        val isMastery = viewModel.checkMaster(selectedNode.id)
-        if (isMastery) {
+        val isMaster = viewModel.isMaster(selectedNode.id)
+        if (isMaster) {
             viewModel.deleteNode(selectedNode)
         } else {
             viewModel.saveNode(selectedNode)

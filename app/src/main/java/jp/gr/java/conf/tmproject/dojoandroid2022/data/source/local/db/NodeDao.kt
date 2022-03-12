@@ -17,5 +17,5 @@ interface NodeDao {
     suspend fun delete(NodeEntity: NodeEntity)
 
     @Query("SELECT * FROM node_table")
-    fun loadAllNode(): Flow<List<NodeEntity>>
+    fun loadMasterNode(): Flow<List<NodeEntity>>
 }
