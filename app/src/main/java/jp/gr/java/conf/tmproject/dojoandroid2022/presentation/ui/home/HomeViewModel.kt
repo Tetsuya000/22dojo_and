@@ -21,8 +21,10 @@ class HomeViewModel @Inject constructor(
     val characterName: MutableStateFlow<String> = MutableStateFlow("")
     val characterLevel: MutableStateFlow<String> = MutableStateFlow("1")
 
-    fun loadCharacterName() {
-        characterName.value = characterRepository.loadCharacterName()
+    private fun loadCharacterName() = viewModelScope.launch {
+        characterRepository.loadCharacterName().collect { name ->
+            characterName.value = name
+        }
     }
 
     private fun loadAllNode() = viewModelScope.launch {
