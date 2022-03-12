@@ -8,5 +8,5 @@ interface RoadmapRepository {
     fun parseRodeMap(): RoadMapModel
     suspend fun saveNode(node: Node)
     suspend fun deleteNode(node: Node)
-    suspend fun loadAllNode(): Flow<List<Node>>
+    fun loadAllNode(): Flow<List<Node>>
 }

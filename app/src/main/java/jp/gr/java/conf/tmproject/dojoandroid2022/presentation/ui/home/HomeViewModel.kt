@@ -6,7 +6,6 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import jp.gr.java.conf.tmproject.dojoandroid2022.domain.interactor.GetCharacterLevelUseCase
 import jp.gr.java.conf.tmproject.dojoandroid2022.domain.repository.CharacterRepository
 import jp.gr.java.conf.tmproject.dojoandroid2022.domain.repository.RoadmapRepository
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -26,7 +25,7 @@ class HomeViewModel @Inject constructor(
         characterName.value = characterRepository.loadCharacterName()
     }
 
-    private fun loadAllNode() = viewModelScope.launch(Dispatchers.IO) {
+    private fun loadAllNode() = viewModelScope.launch {
         roadmapRepository.loadAllNode().collect { nodes ->
             val level = getCharacterLevelUseCase.getCharacterLevel(nodes.size).toString()
             characterLevel.value = level

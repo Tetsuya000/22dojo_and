@@ -1,18 +1,17 @@
 package jp.gr.java.conf.tmproject.dojoandroid2022.presentation.ui.rodemap.section
 
 import android.view.View
-import com.airbnb.epoxy.Typed2EpoxyController
+import com.airbnb.epoxy.TypedEpoxyController
 import jp.gr.java.conf.tmproject.dojoandroid2022.domain.model.Node
 import jp.gr.java.conf.tmproject.dojoandroid2022.domain.model.Section
 import jp.gr.java.conf.tmproject.dojoandroid2022.itemRoadmap
 
 class RoadmapSectionController(
     private val selectListener: SelectListener
-) : Typed2EpoxyController<List<Section>, Boolean>() {
+) : TypedEpoxyController<List<Section>>() {
 
     override fun buildModels(
-        sections: List<Section>,
-        loadingMore: Boolean
+        sections: List<Section>
     ) {
 
         sections.forEach { section ->

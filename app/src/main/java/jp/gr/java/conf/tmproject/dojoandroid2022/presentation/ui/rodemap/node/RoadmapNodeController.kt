@@ -13,7 +13,6 @@ class RoadmapNodeController(
         allNodeList: List<Node>,
         masterNodeIdList: List<Int>
     ) {
-
         allNodeList.forEach { node ->
             val isMaster = masterNodeIdList.contains(node.id)
             itemRoadmap {
