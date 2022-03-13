@@ -19,11 +19,9 @@ object RoomModule {
     @Singleton
     fun provideNodeDatabase(
         @ApplicationContext
-        context: Context
-    ): NodeDatabase = synchronized(this) {
+        context: Context): NodeDatabase = synchronized(this) {
         Room.databaseBuilder(
-            context.applicationContext, NodeDatabase::class.java, "node.db"
-        ).build()
+            context.applicationContext, NodeDatabase::class.java, "node.db").build()
     }
 
     @Provides

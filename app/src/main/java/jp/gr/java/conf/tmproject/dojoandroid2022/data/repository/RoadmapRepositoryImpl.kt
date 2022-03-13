@@ -8,8 +8,7 @@ import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class RoadmapRepositoryImpl @Inject constructor(
-    private val roadmapLocalDataSource: RoadmapLocalDataSource
-) : RoadmapRepository {
+    private val roadmapLocalDataSource: RoadmapLocalDataSource) : RoadmapRepository {
 
     override fun parseRodeMap(): RoadMapModel = roadmapLocalDataSource.parseRodeMap()
 

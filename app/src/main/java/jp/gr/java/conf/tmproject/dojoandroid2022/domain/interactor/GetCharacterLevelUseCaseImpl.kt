@@ -1,10 +1,17 @@
 package jp.gr.java.conf.tmproject.dojoandroid2022.domain.interactor
 
+import jp.gr.java.conf.tmproject.dojoandroid2022.domain.repository.RoadmapRepository
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 class GetCharacterLevelUseCaseImpl @Inject constructor(
-//    private val roadmapRepository: RoadmapRepository
-) : GetCharacterLevelUseCase {
+    private val roadmapRepository: RoadmapRepository) : GetCharacterLevelUseCase {
 
-    override fun getCharacterLevel(masterNodeSize: Int): Int = (masterNodeSize / 2) + 1
+    override fun getCharacterLevel(): Flow<Int> {
+        val specificationNumber = 2
+        return roadmapRepository.loadMasterNode().map { masterNode ->
+            (masterNode.size / specificationNumber) + 1
+        }
+    }
 }

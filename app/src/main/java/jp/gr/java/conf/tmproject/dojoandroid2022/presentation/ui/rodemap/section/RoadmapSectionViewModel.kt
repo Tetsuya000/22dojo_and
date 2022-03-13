@@ -7,5 +7,4 @@ import javax.inject.Inject
 
 @HiltViewModel
 class RoadmapSectionViewModel @Inject constructor(
-    private val roadmapRepository: RoadmapRepository
-) : ViewModel()
+    private val roadmapRepository: RoadmapRepository) : ViewModel()
