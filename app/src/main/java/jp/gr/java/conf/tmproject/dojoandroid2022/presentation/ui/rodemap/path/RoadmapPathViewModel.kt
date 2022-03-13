@@ -7,8 +7,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class RoadmapPathViewModel @Inject constructor(
-    private val roadmapRepository: RoadmapRepository
-) : ViewModel() {
+    private val roadmapRepository: RoadmapRepository) : ViewModel() {
 
     fun parseRodeMap() = roadmapRepository.parseRodeMap()
 }

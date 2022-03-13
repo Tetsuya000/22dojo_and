@@ -22,8 +22,7 @@ class HomeFragment : Fragment(R.layout.home_fragment) {
 
     override fun onViewCreated(
         view: View,
-        savedInstanceState: Bundle?
-    ) {
+        savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         _binding = HomeFragmentBinding.bind(view)
@@ -37,33 +36,37 @@ class HomeFragment : Fragment(R.layout.home_fragment) {
 
     private fun observeCharacterLevel() = lifecycleScope.launch {
         repeatOnLifecycle(Lifecycle.State.STARTED) {
-            viewModel.characterLevel.collect { characterLevel ->
-                when (characterLevel.toInt() / 5) {
-                    0 -> {
-                        binding.background.setBackgroundResource(R.drawable.bg_01)
-                        binding.imageCharacter.setImageResource(R.drawable.character_01)
-                    }
-                    1 -> {
-                        binding.background.setBackgroundResource(R.drawable.bg_02)
-                        binding.imageCharacter.setImageResource(R.drawable.character_02)
-                    }
-                    2 -> {
-                        binding.background.setBackgroundResource(R.drawable.bg_03)
-                        binding.imageCharacter.setImageResource(R.drawable.character_03)
-                    }
-                    3 -> {
-                        binding.background.setBackgroundResource(R.drawable.bg_04)
-                        binding.imageCharacter.setImageResource(R.drawable.character_04)
-                    }
-                    4 -> {
-                        binding.background.setBackgroundResource(R.drawable.bg_05)
-                        binding.imageCharacter.setImageResource(R.drawable.character_05)
-                    }
-                    else -> {
-                        binding.background.setBackgroundResource(R.drawable.bg_05)
-                        binding.imageCharacter.setImageResource(R.drawable.character_05)
-                    }
-                }
+            viewModel.characterLevel.collect { level ->
+                changeCharacterAndBackground(level.toInt())
+            }
+        }
+    }
+
+    private fun changeCharacterAndBackground(level: Int) {
+        when (level / 5) {
+            0    -> {
+                binding.background.setBackgroundResource(R.drawable.bg_01)
+                binding.imageCharacter.setImageResource(R.drawable.character_01)
+            }
+            1    -> {
+                binding.background.setBackgroundResource(R.drawable.bg_02)
+                binding.imageCharacter.setImageResource(R.drawable.character_02)
+            }
+            2    -> {
+                binding.background.setBackgroundResource(R.drawable.bg_03)
+                binding.imageCharacter.setImageResource(R.drawable.character_03)
+            }
+            3    -> {
+                binding.background.setBackgroundResource(R.drawable.bg_04)
+                binding.imageCharacter.setImageResource(R.drawable.character_04)
+            }
+            4    -> {
+                binding.background.setBackgroundResource(R.drawable.bg_05)
+                binding.imageCharacter.setImageResource(R.drawable.character_05)
+            }
+            else -> {
+                binding.background.setBackgroundResource(R.drawable.bg_05)
+                binding.imageCharacter.setImageResource(R.drawable.character_05)
             }
         }
     }

@@ -6,10 +6,10 @@ import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class CharacterRepositoryImpl @Inject constructor(
-    private val characterLocalDataSource: CharacterLocalDataSource
-) : CharacterRepository {
+    private val characterLocalDataSource: CharacterLocalDataSource) : CharacterRepository {
 
-    override suspend fun saveCharacterName(characterName: String) = characterLocalDataSource.saveCharacterName(characterName)
+    override suspend fun saveCharacterName(characterName: String) =
+        characterLocalDataSource.saveCharacterName(characterName)
 
     override fun loadCharacterName(): Flow<String> = characterLocalDataSource.loadCharacterName()
 }

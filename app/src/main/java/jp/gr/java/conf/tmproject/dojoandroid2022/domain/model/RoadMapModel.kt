@@ -8,16 +8,14 @@ import kotlinx.serialization.Serializable
 @Serializable
 @Parcelize
 data class RoadMapModel(
-    val paths: List<Path>
-) : Parcelable
+    val paths: List<Path>) : Parcelable
 
 @Serializable
 @Parcelize
 data class Path(
     val id: Int,
     val title: String,
-    val sections: List<Section>
-) : Parcelable
+    val sections: List<Section>) : Parcelable
 
 @Serializable
 @Parcelize
@@ -25,8 +23,7 @@ data class Section(
     val id: Int,
     val title: String,
     val isJetpack: Boolean,
-    val nodes: List<Node>
-) : Parcelable
+    val nodes: List<Node>) : Parcelable
 
 @Serializable
 @Parcelize
@@ -35,8 +32,7 @@ data class Node(
     val title: String,
     val isJetpack: Boolean,
     val priority: Int,
-    val childNodes: List<Node>? = null
-) : Parcelable {
+    val childNodes: List<Node>? = null) : Parcelable {
 
     fun toEntity(): NodeEntity =
         NodeEntity(id = id, title = title, isJetpack = isJetpack, priority = priority)

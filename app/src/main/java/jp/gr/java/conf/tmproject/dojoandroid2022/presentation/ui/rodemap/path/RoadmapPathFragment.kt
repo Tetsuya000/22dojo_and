@@ -20,8 +20,7 @@ class RoadmapPathFragment : Fragment(R.layout.roadmap_path_fragment) {
 
     override fun onViewCreated(
         view: View,
-        savedInstanceState: Bundle?
-    ) {
+        savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         _binding = RoadmapPathFragmentBinding.bind(view)
