@@ -18,7 +18,8 @@ class SettingFragment : Fragment(R.layout.setting_fragment) {
 
     override fun onViewCreated(
         view: View,
-        savedInstanceState: Bundle?) {
+        savedInstanceState: Bundle?
+    ) {
         super.onViewCreated(view, savedInstanceState)
 
         _binding = SettingFragmentBinding.bind(view)

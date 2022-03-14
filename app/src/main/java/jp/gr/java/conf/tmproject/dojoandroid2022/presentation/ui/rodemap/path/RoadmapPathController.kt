@@ -7,18 +7,22 @@ import jp.gr.java.conf.tmproject.dojoandroid2022.domain.model.Section
 import jp.gr.java.conf.tmproject.dojoandroid2022.itemRoadmap
 
 class RoadmapPathController(
-    private val selectListener: SelectListener) : TypedEpoxyController<List<Path>>() {
+    private val selectListener: SelectListener
+) : TypedEpoxyController<List<Path>>() {
 
     override fun buildModels(
-        paths: List<Path>) {
+        paths: List<Path>
+    ) {
 
         paths.forEach { path ->
             itemRoadmap {
                 id(path.id)
                 title(path.title)
-                onClickListener(View.OnClickListener {
-                    this@RoadmapPathController.selectListener.onSelected(path.sections)
-                })
+                onClickListener(
+                    View.OnClickListener {
+                        this@RoadmapPathController.selectListener.onSelected(path.sections)
+                    }
+                )
             }
         }
     }
