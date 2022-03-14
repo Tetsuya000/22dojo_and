@@ -23,6 +23,14 @@ class MainActivity : AppCompatActivity() {
     private fun setUpNavController() {
         val navHost = supportFragmentManager.findFragmentById(R.id.nav_host_main) as NavHostFragment
         val navController = navHost.navController
-        setupWithNavController(binding.bottomNav, navController)
+
+        val bottomNav = binding.bottomNav
+        setupWithNavController(bottomNav, navController)
+
+        // ボトムメニューを再選択したら、トップに遷移する
+        bottomNav.setOnItemReselectedListener { item ->
+            val reselectedDestinationId = item.itemId
+            navController.popBackStack(reselectedDestinationId, inclusive = false)
+        }
     }
 }

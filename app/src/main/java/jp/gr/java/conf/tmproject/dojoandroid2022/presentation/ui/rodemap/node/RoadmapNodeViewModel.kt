@@ -13,18 +13,11 @@ import javax.inject.Inject
 
 @HiltViewModel
 class RoadmapNodeViewModel @Inject constructor(
-    private val roadmapRepository: RoadmapRepository) : ViewModel() {
+    private val roadmapRepository: RoadmapRepository
+) : ViewModel() {
 
     private val _masterNodeList: MutableStateFlow<List<Node>> = MutableStateFlow(emptyList())
     val masterNodeList: StateFlow<List<Node>> = _masterNodeList
-
-    fun saveNode(node: Node) = viewModelScope.launch {
-        roadmapRepository.saveNode(node)
-    }
-
-    fun deleteNode(node: Node) = viewModelScope.launch {
-        roadmapRepository.deleteNode(node)
-    }
 
     private fun loadMasterNode() = viewModelScope.launch {
         roadmapRepository.loadMasterNode().collect {

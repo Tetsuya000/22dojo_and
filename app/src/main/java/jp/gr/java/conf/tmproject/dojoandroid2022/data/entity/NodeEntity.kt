@@ -12,8 +12,10 @@ data class NodeEntity(
     val title: String,
     @ColumnInfo(name = "is_jetpack")
     val isJetpack: Boolean,
-    val priority: Int) {
+    val priority: Int,
+    val memo: String
+) {
 
     fun toDomain(): Node =
-        Node(id = id, title = title, isJetpack = isJetpack, priority = priority, childNodes = null)
+        Node(id = id, title = title, isJetpack = isJetpack, priority = priority, childNodes = emptyList(), memo = memo)
 }
