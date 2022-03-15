@@ -22,7 +22,7 @@ class RoadmapNodeController(
                 onClickListener(
                     View.OnClickListener {
                         this@RoadmapNodeController.selectListener.onSelected(
-                            node, node.childNodes ?: emptyList()
+                            node, node.childNodes
                         )
                     }
                 )

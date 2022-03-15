@@ -9,14 +9,13 @@ import androidx.fragment.app.activityViewModels
 import dagger.hilt.android.AndroidEntryPoint
 import jp.gr.java.conf.tmproject.dojoandroid2022.R
 import jp.gr.java.conf.tmproject.dojoandroid2022.databinding.EditCharacterDialogFragmentBinding
-import jp.gr.java.conf.tmproject.dojoandroid2022.presentation.ui.setting.SettingViewModel
 
 @AndroidEntryPoint
 class EditCharacterDialogFragment : DialogFragment() {
 
     private var _binding: EditCharacterDialogFragmentBinding? = null
     private val binding get() = _binding!!
-    val viewModel: SettingViewModel by activityViewModels()
+    val viewModel: EditCharacterDialogViewModel by activityViewModels()
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         _binding = EditCharacterDialogFragmentBinding.inflate(LayoutInflater.from(requireContext()))

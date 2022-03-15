@@ -27,21 +27,19 @@ class RoadmapNodeFragment : Fragment(R.layout.roadmap_node_fragment) {
 
     override fun onViewCreated(
         view: View,
-        savedInstanceState: Bundle?
-    ) {
+        savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         _binding = RoadmapNodeFragmentBinding.bind(view)
         setUpRecyclerView()
+        observeUpdateLevel()
     }
 
     private fun setUpRecyclerView() {
         val roadmapNodeController = RoadmapNodeController(object : RoadmapNodeController.SelectListener {
             override fun onSelected(
                 selectedNode: Node,
-                childNodes: List<Node>
-            ) {
-
+                childNodes: List<Node>) {
                 // ChildNodesが存在しなければ、末端であると判定して、習得状態に応じて編集画面か詳細画面に遷移する
                 if (childNodes.isEmpty()) return navigateNodeEditOrDetail(selectedNode)
 
@@ -71,9 +69,23 @@ class RoadmapNodeFragment : Fragment(R.layout.roadmap_node_fragment) {
         if (isMaster) {
             val action = RoadmapNodeFragmentDirections.navigateChildNodesToDetail(selectedNode)
             findNavController().navigate(action)
-        } else {
+        }
+        else {
             val action = RoadmapNodeFragmentDirections.navigateChildNodesToEdit(selectedNode)
             findNavController().navigate(action)
+        }
+    }
+
+    private fun observeUpdateLevel() = lifecycleScope.launch {
+        repeatOnLifecycle(Lifecycle.State.STARTED) {
+            viewModel.currentCharacterLevel.collect { currentCharacterLevel ->
+                if (viewModel.isLevelInitialize) {
+                    val oldCharacterLevel = viewModel.oldCharacterLevel.value
+                    val action = RoadmapNodeFragmentDirections.navigateChildNodesToUpdateLevelDialog(
+                        oldCharacterLevel, currentCharacterLevel)
+                    findNavController().navigate(action)
+                }
+            }
         }
     }
 

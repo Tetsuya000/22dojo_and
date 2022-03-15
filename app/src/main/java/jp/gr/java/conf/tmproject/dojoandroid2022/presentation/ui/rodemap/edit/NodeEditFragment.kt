@@ -13,7 +13,6 @@ import dagger.hilt.android.AndroidEntryPoint
 import jp.gr.java.conf.tmproject.dojoandroid2022.R
 import jp.gr.java.conf.tmproject.dojoandroid2022.databinding.NodeEditFragmentBinding
 import jp.gr.java.conf.tmproject.dojoandroid2022.presentation.util.makeSnackbarError
-import jp.gr.java.conf.tmproject.dojoandroid2022.presentation.util.showToast
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
@@ -52,7 +51,6 @@ class NodeEditFragment : Fragment(R.layout.node_edit_fragment) {
     private fun observeSaveState() = lifecycleScope.launch {
         repeatOnLifecycle(Lifecycle.State.STARTED) {
             viewModel.isSaveSuccess.collect {
-                showToast(requireContext(), getString(R.string.success_save_node))
                 findNavController().popBackStack()
             }
         }
@@ -62,9 +60,7 @@ class NodeEditFragment : Fragment(R.layout.node_edit_fragment) {
         repeatOnLifecycle(Lifecycle.State.STARTED) {
             viewModel.isError.collect {
                 makeSnackbarError(
-                    requireContext(),
-                    binding.buttonSave,
-                    getString(R.string.error_failed_to_save)
+                    requireContext(), binding.buttonSave, getString(R.string.error_failed_to_save)
                 ).show()
             }
         }
