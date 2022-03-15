@@ -32,7 +32,7 @@
 
         <action
             android:id="@+id/navigate_childNodes_to_update_level_dialog"
-            app:destination="@id/update_level_dialog" >
+            app:destination="@id/update_level_dialog_graph" >
 
             <argument
                 android:name="oldLevel"
