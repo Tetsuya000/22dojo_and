@@ -1,8 +1,12 @@
 package jp.gr.java.conf.tmproject.dojoandroid2022.presentation.ui.rodemap.path
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import jp.gr.java.conf.tmproject.dojoandroid2022.domain.repository.RoadmapRepository
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @HiltViewModel
@@ -11,4 +15,18 @@ class RoadmapPathViewModel @Inject constructor(
 ) : ViewModel() {
 
     fun parseRodeMap() = roadmapRepository.parseRodeMap()
+
+    init {
+        viewModelScope.launch {
+            withContext(Dispatchers.IO) {
+                roadmapRepository.getRodeMap().also { response ->
+                    if (response.isSuccessful) {
+                        println(response.body())
+                    } else {
+                        val error = response.errorBody()!!.toString()
+                    }
+                }
+            }
+        }
+    }
 }

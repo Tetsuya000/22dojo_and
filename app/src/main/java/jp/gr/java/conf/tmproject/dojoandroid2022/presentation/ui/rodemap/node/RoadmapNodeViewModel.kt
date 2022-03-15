@@ -41,7 +41,6 @@ class RoadmapNodeViewModel @Inject constructor(
 
     private fun setCharacterLevel() = viewModelScope.launch {
         getCharacterLevelUseCase.getCharacterLevel().collect { level ->
-            println("あああああああ")
             if (isLevelInitialize) {
                 oldCharacterLevel.value = currentCharacterLevel.value
                 currentCharacterLevel.value = level
