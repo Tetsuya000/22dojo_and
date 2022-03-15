@@ -8,6 +8,10 @@
     <!-- "Hint -->
     <string name="hint_character_name">Character name</string>
 
+    <!-- "Dialog -->
+    <string name="text_level_up">Level Up</string>
+    <string name="text_level_down">Level Down</string>
+
     <!-- "Setting -->
     <string name="header_edit_character">-Edit Character-</string>
     <string name="header_license">-License-</string>

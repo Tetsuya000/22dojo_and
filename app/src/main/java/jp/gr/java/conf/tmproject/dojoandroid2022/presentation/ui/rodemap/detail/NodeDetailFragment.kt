@@ -13,7 +13,6 @@ import dagger.hilt.android.AndroidEntryPoint
 import jp.gr.java.conf.tmproject.dojoandroid2022.R
 import jp.gr.java.conf.tmproject.dojoandroid2022.databinding.NodeDetailFragmentBinding
 import jp.gr.java.conf.tmproject.dojoandroid2022.presentation.util.makeSnackbarError
-import jp.gr.java.conf.tmproject.dojoandroid2022.presentation.util.showToast
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
@@ -51,14 +50,13 @@ class NodeDetailFragment : Fragment(R.layout.node_detail_fragment) {
     }
 
     private fun observe() {
-        observeSaveState()
+        observeDeleteState()
         observeErrorState()
     }
 
-    private fun observeSaveState() = lifecycleScope.launch {
+    private fun observeDeleteState() = lifecycleScope.launch {
         repeatOnLifecycle(Lifecycle.State.STARTED) {
             viewModel.isDeleteSuccess.collect {
-                showToast(requireContext(), getString(R.string.success_delete_node))
                 findNavController().popBackStack()
             }
         }
