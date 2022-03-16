@@ -6,9 +6,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import jp.gr.java.conf.tmproject.dojoandroid2022.domain.interactor.GetCharacterLevelUseCase
 import jp.gr.java.conf.tmproject.dojoandroid2022.domain.model.Node
 import jp.gr.java.conf.tmproject.dojoandroid2022.domain.repository.RoadmapRepository
-import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -28,18 +26,22 @@ class RoadmapNodeViewModel @Inject constructor(
 
     private val oldCharacterLevel: MutableStateFlow<Int> = MutableStateFlow(-1)
 
-    fun isLevelInitialize(): Boolean = oldCharacterLevel.value != -1
-
-    fun clearLevelUp() {
-        _isLevelUp.value = null
-    }
     private fun updateCharacterLevel() = viewModelScope.launch {
         getCharacterLevelUseCase.getCharacterLevel().collect { latestCharacterLevel ->
-            if (oldCharacterLevel.value == latestCharacterLevel) return@collect
+            val isInitialize = oldCharacterLevel.value != -1
+            val noChangeLevel = oldCharacterLevel.value == latestCharacterLevel
+            if (!isInitialize || noChangeLevel) {
+                oldCharacterLevel.value = latestCharacterLevel
+                return@collect
+            }
 
             _isLevelUp.emit(oldCharacterLevel.value < latestCharacterLevel)
             oldCharacterLevel.value = latestCharacterLevel
         }
+    }
+
+    fun clearLevel() {
+        _isLevelUp.value = null
     }
 
     private fun loadMasterNode() = viewModelScope.launch {

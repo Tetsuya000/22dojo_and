@@ -101,6 +101,9 @@ dependencies {
     implementation "com.google.dagger:hilt-android:$hilt_version"
     kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
 
+    // Hilt Navigation
+    implementation "androidx.hilt:hilt-navigation-fragment:1.0.0"
+
     // Ktlint
     ktlint('com.pinterest:ktlint:0.43.0') {
         attributes {

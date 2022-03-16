@@ -1,14 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="CustomAlertDialog">
+    <style name="FullScreenAlertDialogTheme" parent="Theme.MaterialComponents.Dialog.Alert">
+        <item name="android:colorBackground">@android:color/transparent</item>
         <item name="android:windowBackground">@android:color/transparent</item>
-        <item name="android:windowMinWidthMajor">100%</item>
-        <item name="android:windowMinWidthMinor">100%</item>
-
-        <item name="android:backgroundDimEnabled">true</item>
-        <item name="android:colorBackground">?attr/colorBackgroundFloating</item>
-        <item name="android:windowCloseOnTouchOutside">true</item>
-
         <item name="android:windowIsFloating">true</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
     </style>
 </resources>

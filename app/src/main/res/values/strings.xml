@@ -2,28 +2,32 @@
     <!-- App -->
     <string name="app_name">DojoAndroid2022</string>
 
-    <!-- "Default Text -->
+    <!-- Default Text -->
     <string name="character_name">Andotchi</string>
 
-    <!-- "Hint -->
+    <!-- Snackbar -->
+    <string name="snackbar_text_level_up">Level Up</string>
+    <string name="snackbar_text_level_down">Level Down</string>
+
+    <!-- Hint -->
     <string name="hint_character_name">Character name</string>
 
-    <!-- "Dialog -->
-    <string name="text_level_up">Level Up</string>
-    <string name="text_level_down">Level Down</string>
+    <!-- Dialog -->
+    <string name="text_note">Leave a note</string>
+    <string name="text_master">Master</string>
 
-    <!-- "Setting -->
+    <!-- Setting -->
     <string name="header_edit_character">-Edit Character-</string>
     <string name="header_license">-License-</string>
 
-    <!-- "License -->
+    <!-- License -->
     <string name="license"> The Android robot is reproduced or modified from work created and shared by Google and used according to terms described in the Creative Commons 3.0 Attribution License.</string>
 
-    <!-- "Success -->
+    <!-- Success -->
     <string name="success_save_node">Node mastered</string>
     <string name="success_delete_node">Deleted mastered node</string>
 
-    <!-- "Error -->
+    <!-- Error -->
     <string name="error_empty">Not entered</string>
     <string name="error_over">Please input %1$d characters or less</string>
     <string name="error_failed_to_save">Failed to save</string>

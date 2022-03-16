@@ -2,12 +2,13 @@ package jp.gr.java.conf.tmproject.dojoandroid2022.presentation.ui.main
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.setValue
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI.setupWithNavController
 import dagger.hilt.android.AndroidEntryPoint
 import jp.gr.java.conf.tmproject.dojoandroid2022.R
 import jp.gr.java.conf.tmproject.dojoandroid2022.databinding.MainActivityBinding
-import jp.gr.java.conf.tmproject.dojoandroid2022.presentation.ui.dialog.EditMemoDialogFragment
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {

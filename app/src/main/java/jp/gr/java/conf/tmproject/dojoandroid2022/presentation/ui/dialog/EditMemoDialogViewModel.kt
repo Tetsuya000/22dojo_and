@@ -6,16 +6,14 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import jp.gr.java.conf.tmproject.dojoandroid2022.domain.model.Node
 import jp.gr.java.conf.tmproject.dojoandroid2022.domain.repository.RoadmapRepository
 import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
-import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class EditMemoDialogViewModel @Inject constructor(
     private val roadmapRepository: RoadmapRepository
-                                           ) : ViewModel() {
+) : ViewModel() {
 
     private val _isSaveSuccess: MutableSharedFlow<Boolean> = MutableSharedFlow()
     val isSaveSuccess: SharedFlow<Boolean> = _isSaveSuccess
@@ -24,10 +22,11 @@ class EditMemoDialogViewModel @Inject constructor(
     val isError: SharedFlow<Boolean> = _isError
 
     fun saveNode(
-        node: Node,
+        node: Node?,
         memo: String
-                ) = viewModelScope.launch {
+    ) = viewModelScope.launch {
 
+        if (node == null) return@launch
         runCatching {
             val editedNode = node.editMemo(memo)
             roadmapRepository.saveNode(editedNode)

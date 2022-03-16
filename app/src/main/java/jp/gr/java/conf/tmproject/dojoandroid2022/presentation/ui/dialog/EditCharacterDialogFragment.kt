@@ -5,7 +5,6 @@ import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import androidx.fragment.app.DialogFragment
-import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import dagger.hilt.android.AndroidEntryPoint
 import jp.gr.java.conf.tmproject.dojoandroid2022.R
@@ -42,7 +41,7 @@ class EditCharacterDialogFragment : DialogFragment() {
             dismiss()
         }
 
-        return AlertDialog.Builder(requireContext(), R.style.CustomAlertDialog).setView(binding.root).create()
+        return AlertDialog.Builder(requireContext(), R.style.FullScreenAlertDialogTheme).setView(binding.root).create()
     }
 
     private fun checkBlankCharacterName(newCharacterName: String): Boolean {
