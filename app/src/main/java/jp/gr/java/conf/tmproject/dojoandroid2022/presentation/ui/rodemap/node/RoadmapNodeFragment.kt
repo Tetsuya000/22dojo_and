@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
@@ -31,7 +30,8 @@ class RoadmapNodeFragment : Fragment(R.layout.roadmap_node_fragment) {
 
     override fun onViewCreated(
         view: View,
-        savedInstanceState: Bundle?) {
+        savedInstanceState: Bundle?
+    ) {
         super.onViewCreated(view, savedInstanceState)
 
         _binding = RoadmapNodeFragmentBinding.bind(view)
@@ -43,7 +43,8 @@ class RoadmapNodeFragment : Fragment(R.layout.roadmap_node_fragment) {
         val roadmapNodeController = RoadmapNodeController(object : RoadmapNodeController.SelectListener {
             override fun onSelected(
                 selectedNode: Node,
-                childNodes: List<Node>) {
+                childNodes: List<Node>
+            ) {
                 // ChildNodesが存在しなければ、末端であると判定して、習得状態に応じて編集画面か詳細画面に遷移する
                 if (childNodes.isEmpty()) return navigateNodeEditOrDetail(selectedNode)
 
@@ -73,8 +74,7 @@ class RoadmapNodeFragment : Fragment(R.layout.roadmap_node_fragment) {
         if (isMaster) {
             val action = RoadmapNodeFragmentDirections.navigateChildNodesToDetail(selectedNode)
             findNavController().navigate(action)
-        }
-        else {
+        } else {
             val action = RoadmapNodeFragmentDirections.navigateChildNodesToEdit(selectedNode)
             findNavController().navigate(action)
         }
@@ -86,8 +86,7 @@ class RoadmapNodeFragment : Fragment(R.layout.roadmap_node_fragment) {
 
             if (isLevelUp) {
                 makeSnackbar(requireContext(), binding.root, getString(R.string.text_level_up)).show()
-            }
-            else {
+            } else {
                 makeSnackbar(requireContext(), binding.root, getString(R.string.text_level_down)).show()
             }
         }

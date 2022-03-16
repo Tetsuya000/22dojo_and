@@ -9,14 +9,16 @@ import jp.gr.java.conf.tmproject.dojoandroid2022.R
 
 fun showToast(
     context: Context,
-    message: String) {
+    message: String
+) {
     Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
 }
 
 fun makeSnackbar(
     context: Context,
     view: View,
-    message: String): Snackbar = Snackbar.make(view, message, Snackbar.LENGTH_LONG)
+    message: String
+): Snackbar = Snackbar.make(view, message, Snackbar.LENGTH_LONG)
     .setAnimationMode(BaseTransientBottomBar.ANIMATION_MODE_SLIDE)
     .setTextColor(context.getColor(R.color.snackbar_text))
     .setBackgroundTint(context.getColor(R.color.snackbar_background))
@@ -24,7 +26,8 @@ fun makeSnackbar(
 fun makeSnackbarError(
     context: Context,
     view: View,
-    message: String): Snackbar = Snackbar.make(view, message, Snackbar.LENGTH_LONG)
+    message: String
+): Snackbar = Snackbar.make(view, message, Snackbar.LENGTH_LONG)
     .setAnimationMode(BaseTransientBottomBar.ANIMATION_MODE_SLIDE)
     .setTextColor(context.getColor(R.color.snackbar_error_text))
     .setBackgroundTint(context.getColor(R.color.snackbar_error_background))

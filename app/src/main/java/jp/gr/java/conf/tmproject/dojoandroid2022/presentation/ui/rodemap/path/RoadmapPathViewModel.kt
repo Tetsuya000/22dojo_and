@@ -9,7 +9,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class RoadmapPathViewModel @Inject constructor(
-    private val roadmapRepository: RoadmapRepository) : ViewModel() {
+    private val roadmapRepository: RoadmapRepository
+) : ViewModel() {
 
     fun parseRodeMap() = roadmapRepository.parseRodeMap()
 
@@ -18,8 +19,7 @@ class RoadmapPathViewModel @Inject constructor(
             roadmapRepository.getRodeMap().also { response ->
                 if (response.isSuccessful) {
                     println(response.body())
-                }
-                else {
+                } else {
                     val error = response.errorBody()!!.toString()
                 }
             }

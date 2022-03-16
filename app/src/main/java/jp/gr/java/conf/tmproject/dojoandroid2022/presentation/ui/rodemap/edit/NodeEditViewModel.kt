@@ -12,7 +12,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class NodeEditViewModel @Inject constructor(
-    private val roadmapRepository: RoadmapRepository) : ViewModel() {
+    private val roadmapRepository: RoadmapRepository
+) : ViewModel() {
 
     private val _isSaveSuccess: MutableSharedFlow<Boolean> = MutableSharedFlow()
     val isSaveSuccess: SharedFlow<Boolean> = _isSaveSuccess
@@ -22,7 +23,8 @@ class NodeEditViewModel @Inject constructor(
 
     fun saveNode(
         node: Node,
-        memo: String) = viewModelScope.launch {
+        memo: String
+    ) = viewModelScope.launch {
 
         runCatching {
             val editedNode = node.editMemo(memo)

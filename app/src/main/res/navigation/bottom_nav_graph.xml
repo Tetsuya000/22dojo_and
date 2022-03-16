@@ -5,7 +5,6 @@
     android:id="@+id/bottom_nav_graph"
     app:startDestination="@id/home">
 
-    <include app:graph="@navigation/section_graph" />
     <include app:graph="@navigation/edit_character_dialog_graph" />
 
     <fragment
@@ -15,20 +14,10 @@
         tools:layout="@layout/home_fragment" />
 
     <fragment
-        android:id="@+id/roadmap"
-        android:name="jp.gr.java.conf.tmproject.dojoandroid2022.presentation.ui.rodemap.path.RoadmapPathFragment"
+        android:id="@+id/roadmap_tab"
+        android:name="jp.gr.java.conf.tmproject.dojoandroid2022.presentation.ui.rodemap.tab.RoadmapTabFragment"
         android:label=""
-        tools:layout="@layout/roadmap_path_fragment">
-
-        <action
-            android:id="@+id/navigate_path_to_section"
-            app:destination="@id/section_graph">
-
-            <argument
-                android:name="sections"
-                app:argType="jp.gr.java.conf.tmproject.dojoandroid2022.domain.model.Section[]" />
-        </action>
-    </fragment>
+        tools:layout="@layout/roadmap_tab_fragment"/>
 
     <fragment
         android:id="@+id/setting"

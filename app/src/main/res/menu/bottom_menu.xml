@@ -6,7 +6,7 @@
         android:title="Home" />
 
     <item
-        android:id="@+id/roadmap"
+        android:id="@+id/roadmap_tab"
         android:icon="@drawable/ic_skill_up"
         android:title="Roadmap" />
 
