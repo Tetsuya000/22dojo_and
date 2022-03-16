@@ -10,6 +10,8 @@ import androidx.lifecycle.repeatOnLifecycle
 import dagger.hilt.android.AndroidEntryPoint
 import jp.gr.java.conf.tmproject.dojoandroid2022.R
 import jp.gr.java.conf.tmproject.dojoandroid2022.databinding.HomeFragmentBinding
+import jp.gr.java.conf.tmproject.dojoandroid2022.presentation.util.extension.collectWhenStarted
+import jp.gr.java.conf.tmproject.dojoandroid2022.presentation.util.makeSnackbar
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 

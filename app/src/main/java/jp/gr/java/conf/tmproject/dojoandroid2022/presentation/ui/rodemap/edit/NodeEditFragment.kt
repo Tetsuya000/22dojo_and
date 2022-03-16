@@ -12,7 +12,10 @@ import androidx.navigation.fragment.navArgs
 import dagger.hilt.android.AndroidEntryPoint
 import jp.gr.java.conf.tmproject.dojoandroid2022.R
 import jp.gr.java.conf.tmproject.dojoandroid2022.databinding.NodeEditFragmentBinding
+import jp.gr.java.conf.tmproject.dojoandroid2022.presentation.util.extension.collectWhenStarted
+import jp.gr.java.conf.tmproject.dojoandroid2022.presentation.util.makeSnackbar
 import jp.gr.java.conf.tmproject.dojoandroid2022.presentation.util.makeSnackbarError
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 

@@ -9,6 +9,9 @@
     <color name="white">#FFFFFFFF</color>
 
     <!-- Snackbar -->
+    <color name="snackbar_text">#eeeeee</color>
+    <color name="snackbar_background">#FF018786</color>
+
     <color name="snackbar_error_text">#eeeeee</color>
     <color name="snackbar_error_background">#e91e63</color>
 
