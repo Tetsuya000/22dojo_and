@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import dagger.hilt.android.AndroidEntryPoint
 import jp.gr.java.conf.tmproject.dojoandroid2022.R
 import jp.gr.java.conf.tmproject.dojoandroid2022.databinding.EditCharacterDialogFragmentBinding
@@ -16,7 +17,7 @@ class EditCharacterDialogFragment : DialogFragment() {
 
     private var _binding: EditCharacterDialogFragmentBinding? = null
     private val binding get() = _binding!!
-    val viewModel: EditCharacterDialogViewModel by activityViewModels()
+    val viewModel: EditCharacterDialogViewModel by viewModels()
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         _binding = EditCharacterDialogFragmentBinding.inflate(LayoutInflater.from(requireContext()))

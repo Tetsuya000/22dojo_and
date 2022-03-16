@@ -17,7 +17,7 @@ class RoadmapPathViewModel @Inject constructor(
 ) : ViewModel() {
 
     private val _loadState: MutableStateFlow<LoadState> = MutableStateFlow(LoadState.Nothing)
-    val loadState: MutableStateFlow<LoadState> = MutableStateFlow(LoadState.Nothing)
+    val loadState: MutableStateFlow<LoadState> = _loadState
 
     private val _roadMap: MutableStateFlow<Roadmap?> = MutableStateFlow(null)
     val roadMap: StateFlow<Roadmap?> = _roadMap

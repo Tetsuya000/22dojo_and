@@ -23,13 +23,16 @@ class RoadmapNodeViewModel @Inject constructor(
     private val _masterNodeList: MutableStateFlow<List<Node>> = MutableStateFlow(emptyList())
     val masterNodeList: StateFlow<List<Node>> = _masterNodeList
 
-    private val _isLevelUp: MutableSharedFlow<Boolean> = MutableSharedFlow()
-    val isLevelUp: SharedFlow<Boolean> = _isLevelUp
+    private val _isLevelUp: MutableStateFlow<Boolean?> = MutableStateFlow(null)
+    val isLevelUp: StateFlow<Boolean?> = _isLevelUp
 
     private val oldCharacterLevel: MutableStateFlow<Int> = MutableStateFlow(-1)
 
     fun isLevelInitialize(): Boolean = oldCharacterLevel.value != -1
 
+    fun clearLevelUp() {
+        _isLevelUp.value = null
+    }
     private fun updateCharacterLevel() = viewModelScope.launch {
         getCharacterLevelUseCase.getCharacterLevel().collect { latestCharacterLevel ->
             if (oldCharacterLevel.value == latestCharacterLevel) return@collect

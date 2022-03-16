@@ -70,7 +70,7 @@ class RoadmapPathFragment : Fragment(R.layout.roadmap_path_fragment) {
         when (state) {
             is LoadState.Nothing -> Unit
             is LoadState.Loading -> binding.progressBar.visible()
-            is LoadState.Done -> binding.progressBar.gone()
+            is LoadState.Done ->binding.progressBar.gone()
             is LoadState.Error -> {
                 binding.progressBar.gone()
                 makeSnackbarError(requireContext(), binding.root, "エラー")

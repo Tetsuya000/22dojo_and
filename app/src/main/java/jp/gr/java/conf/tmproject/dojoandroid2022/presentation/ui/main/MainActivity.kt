@@ -4,10 +4,10 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI.setupWithNavController
-import androidx.navigation.ui.setupWithNavController
 import dagger.hilt.android.AndroidEntryPoint
 import jp.gr.java.conf.tmproject.dojoandroid2022.R
 import jp.gr.java.conf.tmproject.dojoandroid2022.databinding.MainActivityBinding
+import jp.gr.java.conf.tmproject.dojoandroid2022.presentation.ui.dialog.EditMemoDialogFragment
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
