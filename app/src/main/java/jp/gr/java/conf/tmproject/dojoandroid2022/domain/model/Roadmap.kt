@@ -35,12 +35,9 @@ data class Node(
     val title: String,
     val isJetpack: Boolean,
     val priority: Int,
-    val childNodes: List<Node> = emptyList(),
-    val memo: String = ""
+    val childNodes: List<Node> = emptyList()
 ) : Parcelable {
 
-    fun editMemo(memo: String) = copy(memo = memo)
-
     fun toEntity(): NodeEntity =
-        NodeEntity(id = id, title = title, isJetpack = isJetpack, priority = priority, memo)
+        NodeEntity(id = id, title = title, isJetpack = isJetpack, priority = priority)
 }

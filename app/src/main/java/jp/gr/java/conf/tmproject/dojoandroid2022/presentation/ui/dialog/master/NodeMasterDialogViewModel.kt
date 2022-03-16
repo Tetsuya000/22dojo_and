@@ -1,4 +1,4 @@
-package jp.gr.java.conf.tmproject.dojoandroid2022.presentation.ui.dialog
+package jp.gr.java.conf.tmproject.dojoandroid2022.presentation.ui.dialog.master
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -11,7 +11,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class EditMemoDialogViewModel @Inject constructor(
+class NodeMasterDialogViewModel @Inject constructor(
     private val roadmapRepository: RoadmapRepository
 ) : ViewModel() {
 
@@ -22,14 +22,12 @@ class EditMemoDialogViewModel @Inject constructor(
     val isError: SharedFlow<Boolean> = _isError
 
     fun saveNode(
-        node: Node?,
-        memo: String
+        node: Node?
     ) = viewModelScope.launch {
-
         if (node == null) return@launch
+
         runCatching {
-            val editedNode = node.editMemo(memo)
-            roadmapRepository.saveNode(editedNode)
+            roadmapRepository.saveNode(node)
         }.onSuccess {
             _isSaveSuccess.emit(true)
         }.onFailure {

@@ -44,8 +44,8 @@ class RoadmapNodeViewModel @Inject constructor(
         _isLevelUp.value = null
     }
 
-    private fun loadMasterNode() = viewModelScope.launch {
-        roadmapRepository.loadMasterNode().collect { list ->
+    private fun loadAllNode() = viewModelScope.launch {
+        roadmapRepository.loadAllNode().collect { list ->
             _masterNodeList.value = list
         }
     }
@@ -59,6 +59,6 @@ class RoadmapNodeViewModel @Inject constructor(
 
     init {
         updateCharacterLevel()
-        loadMasterNode()
+        loadAllNode()
     }
 }

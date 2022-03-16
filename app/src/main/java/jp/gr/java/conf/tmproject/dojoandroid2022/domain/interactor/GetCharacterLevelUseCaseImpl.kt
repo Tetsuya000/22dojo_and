@@ -11,7 +11,7 @@ class GetCharacterLevelUseCaseImpl @Inject constructor(
 
     override fun getCharacterLevel(): Flow<Int> {
         val specificationNumber = 2
-        return roadmapRepository.loadMasterNode().map { masterNode ->
+        return roadmapRepository.loadAllNode().map { masterNode ->
             (masterNode.size / specificationNumber) + 1
         }
     }

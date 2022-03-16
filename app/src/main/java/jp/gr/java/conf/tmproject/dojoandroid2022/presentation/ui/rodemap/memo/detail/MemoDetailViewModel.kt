@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import jp.gr.java.conf.tmproject.dojoandroid2022.domain.model.Node
+import jp.gr.java.conf.tmproject.dojoandroid2022.domain.repository.MemoRepository
 import jp.gr.java.conf.tmproject.dojoandroid2022.domain.repository.RoadmapRepository
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -13,7 +14,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MemoDetailViewModel @Inject constructor(
-    private val roadmapRepository: RoadmapRepository
+    private val roadmapRepository: RoadmapRepository,
+    private val memoRepository: MemoRepository
 ) : ViewModel() {
 
     val memo: MutableStateFlow<String> = MutableStateFlow("")
@@ -25,12 +27,15 @@ class MemoDetailViewModel @Inject constructor(
     val isError: SharedFlow<Boolean> = _isError
 
     fun setSelectedNodeMemo(nodeId: Int) = viewModelScope.launch {
-        memo.value = roadmapRepository.loadSelectedNode(nodeId).toDomain().memo
+        memoRepository.loadMemoById(nodeId).forEach {
+            memo.value = it.memo
+        }
     }
 
     fun deleteNode(node: Node) = viewModelScope.launch {
         runCatching {
             roadmapRepository.deleteNode(node)
+            memoRepository.deleteMemo(node.id)
         }.onSuccess {
             _isDeleteSuccess.emit(true)
         }.onFailure {

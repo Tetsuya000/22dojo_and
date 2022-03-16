@@ -33,11 +33,11 @@ class RoadmapLocalDataSourceImpl @Inject constructor(
 
     override suspend fun deleteNode(node: Node) = nodeDao.delete(node.toEntity())
 
-    override fun loadMasterNode(): Flow<List<Node>> = nodeDao.loadMasterNode().map { nodes ->
+    override fun loadAllNode(): Flow<List<Node>> = nodeDao.loadAllNode().map { nodes ->
         nodes.map { entity ->
             entity.toDomain()
         }
     }
 
-    override suspend fun loadSelectedNode(nodeId: Int): NodeEntity = nodeDao.loadSelectedNode(nodeId)
+    override suspend fun loadNodeById(id: Int): NodeEntity = nodeDao.loadNodeById(id)
 }

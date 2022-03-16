@@ -1,4 +1,4 @@
-package jp.gr.java.conf.tmproject.dojoandroid2022.presentation.ui.dialog
+package jp.gr.java.conf.tmproject.dojoandroid2022.presentation.ui.dialog.character
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

@@ -13,6 +13,7 @@ import androidx.navigation.ui.setupWithNavController
 import dagger.hilt.android.AndroidEntryPoint
 import jp.gr.java.conf.tmproject.dojoandroid2022.R
 import jp.gr.java.conf.tmproject.dojoandroid2022.databinding.MemoDetailFragmentBinding
+import jp.gr.java.conf.tmproject.dojoandroid2022.presentation.ui.dialog.memo.EditMemoDialogFragment
 import jp.gr.java.conf.tmproject.dojoandroid2022.presentation.util.makeSnackbarError
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -39,8 +40,14 @@ class MemoDetailFragment : Fragment(R.layout.memo_detail_fragment) {
         viewModel.setSelectedNodeMemo(navArgs.node.id)
 
         binding.fabEdit.setOnClickListener {
-            val action = MemoDetailFragmentDirections.navigateDetailToEdit(navArgs.node)
-            findNavController().navigate(action)
+//            val action = MemoDetailFragmentDirections.navigateDetailToEdit(navArgs.node)
+//            findNavController().navigate(action)
+
+            val dialogFragment = EditMemoDialogFragment()
+            val args = Bundle()
+            args.putInt("nodeId", navArgs.node.id)
+            dialogFragment.arguments = args
+            dialogFragment.show(parentFragmentManager, "my_dialog")
         }
 
         binding.buttonDelete.setOnClickListener {

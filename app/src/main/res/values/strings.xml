@@ -14,7 +14,7 @@
 
     <!-- Dialog -->
     <string name="text_note">Leave a note</string>
-    <string name="text_master">Master</string>
+    <string name="text_acquire">Do you want to acquire?</string>
 
     <!-- Setting -->
     <string name="header_edit_character">-Edit Character-</string>

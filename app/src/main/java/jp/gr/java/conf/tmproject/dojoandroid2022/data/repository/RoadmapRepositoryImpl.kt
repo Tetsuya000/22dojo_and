@@ -20,8 +20,7 @@ class RoadmapRepositoryImpl @Inject constructor(
 
     override suspend fun deleteNode(node: Node) = roadmapLocalDataSource.deleteNode(node)
 
-    override fun loadMasterNode(): Flow<List<Node>> = roadmapLocalDataSource.loadMasterNode()
+    override fun loadAllNode(): Flow<List<Node>> = roadmapLocalDataSource.loadAllNode()
 
-    override suspend fun loadSelectedNode(nodeId: Int): NodeEntity =
-        roadmapLocalDataSource.loadSelectedNode(nodeId)
+    override suspend fun loadNodeById(id: Int): NodeEntity = roadmapLocalDataSource.loadNodeById(id)
 }

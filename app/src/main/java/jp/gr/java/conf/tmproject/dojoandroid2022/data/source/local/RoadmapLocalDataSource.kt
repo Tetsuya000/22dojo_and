@@ -9,6 +9,6 @@ interface RoadmapLocalDataSource {
     fun getRoadmap(): Roadmap
     suspend fun saveNode(node: Node)
     suspend fun deleteNode(node: Node)
-    fun loadMasterNode(): Flow<List<Node>>
-    suspend fun loadSelectedNode(nodeId: Int): NodeEntity
+    fun loadAllNode(): Flow<List<Node>>
+    suspend fun loadNodeById(id: Int): NodeEntity
 }

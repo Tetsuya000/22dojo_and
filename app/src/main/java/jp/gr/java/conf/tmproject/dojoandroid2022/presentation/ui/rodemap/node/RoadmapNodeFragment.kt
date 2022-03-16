@@ -15,7 +15,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import jp.gr.java.conf.tmproject.dojoandroid2022.R
 import jp.gr.java.conf.tmproject.dojoandroid2022.databinding.RoadmapNodeFragmentBinding
 import jp.gr.java.conf.tmproject.dojoandroid2022.domain.model.Node
-import jp.gr.java.conf.tmproject.dojoandroid2022.presentation.ui.dialog.EditMemoDialogFragment
+import jp.gr.java.conf.tmproject.dojoandroid2022.presentation.ui.dialog.master.NodeMasterDialogFragment
 import jp.gr.java.conf.tmproject.dojoandroid2022.presentation.util.extension.collectWhenStarted
 import jp.gr.java.conf.tmproject.dojoandroid2022.presentation.util.makeSnackbar
 import kotlinx.coroutines.flow.collect
@@ -89,7 +89,8 @@ class RoadmapNodeFragment : Fragment(R.layout.roadmap_node_fragment) {
 //            val action = RoadmapNodeFragmentDirections.navigateChildNodesToEdit(selectedNode)
 //            findNavController().navigate(action)
 
-            val dialogFragment = EditMemoDialogFragment()
+//    マスターするダイアログ
+            val dialogFragment = NodeMasterDialogFragment()
             val args = Bundle()
             args.putParcelable("node", selectedNode)
             dialogFragment.arguments = args

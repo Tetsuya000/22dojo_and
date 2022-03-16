@@ -6,6 +6,8 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import jp.gr.java.conf.tmproject.dojoandroid2022.data.source.local.CharacterLocalDataSource
 import jp.gr.java.conf.tmproject.dojoandroid2022.data.source.local.CharacterLocalDataSourceImpl
+import jp.gr.java.conf.tmproject.dojoandroid2022.data.source.local.MemoLocalDataSource
+import jp.gr.java.conf.tmproject.dojoandroid2022.data.source.local.MemoLocalDataSourceImpl
 import jp.gr.java.conf.tmproject.dojoandroid2022.data.source.local.RoadmapLocalDataSource
 import jp.gr.java.conf.tmproject.dojoandroid2022.data.source.local.RoadmapLocalDataSourceImpl
 import javax.inject.Singleton
@@ -21,4 +23,8 @@ abstract class LocalDataSourceModule {
     @Singleton
     @Binds
     abstract fun bindRoadmapLocalDataSource(impl: RoadmapLocalDataSourceImpl): RoadmapLocalDataSource
+
+    @Singleton
+    @Binds
+    abstract fun bindMemoLocalDataSource(impl: MemoLocalDataSourceImpl): MemoLocalDataSource
 }
