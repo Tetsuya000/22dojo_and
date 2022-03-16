@@ -8,8 +8,7 @@ import jp.gr.java.conf.tmproject.dojoandroid2022.domain.model.Memo
 data class MemoEntity(
     @PrimaryKey
     val id: Int = 0,
-    val memo: String = ""
-) {
+    val memo: String = "") {
 
     fun toDomain(): Memo = Memo(id = id, memo = memo)
 }

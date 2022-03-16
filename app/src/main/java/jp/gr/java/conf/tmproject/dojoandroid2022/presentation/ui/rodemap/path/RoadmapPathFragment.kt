@@ -7,6 +7,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.appbar.MaterialToolbar
 import dagger.hilt.android.AndroidEntryPoint
 import jp.gr.java.conf.tmproject.dojoandroid2022.R
 import jp.gr.java.conf.tmproject.dojoandroid2022.databinding.RoadmapPathFragmentBinding
@@ -27,8 +28,7 @@ class RoadmapPathFragment : Fragment(R.layout.roadmap_path_fragment) {
 
     override fun onViewCreated(
         view: View,
-        savedInstanceState: Bundle?
-    ) {
+        savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         _binding = RoadmapPathFragmentBinding.bind(view)
@@ -40,7 +40,21 @@ class RoadmapPathFragment : Fragment(R.layout.roadmap_path_fragment) {
 
     private fun setUpToolbar() {
         val toolbar = binding.includeToolbar.toolbar
+        toolbar.inflateMenu(R.menu.search_menu)
+        setUpMenuItemClickListener(toolbar)
         toolbar.setupWithNavController(findNavController())
+    }
+
+    private fun setUpMenuItemClickListener(toolbar: MaterialToolbar) = toolbar.setOnMenuItemClickListener {
+        when (it.itemId) {
+            R.id.item_search -> {
+                val action = RoadmapPathFragmentDirections.navigatePathToSearch()
+                findNavController().navigate(action)
+                true
+            }
+
+            else             -> false
+        }
     }
 
     private fun setUpRecyclerView() {
@@ -70,8 +84,8 @@ class RoadmapPathFragment : Fragment(R.layout.roadmap_path_fragment) {
         when (state) {
             is LoadState.Nothing -> Unit
             is LoadState.Loading -> binding.progressBar.visible()
-            is LoadState.Done -> binding.progressBar.gone()
-            is LoadState.Error -> {
+            is LoadState.Done    -> binding.progressBar.gone()
+            is LoadState.Error   -> {
                 binding.progressBar.gone()
                 makeSnackbarError(requireContext(), binding.root, "エラー")
             }

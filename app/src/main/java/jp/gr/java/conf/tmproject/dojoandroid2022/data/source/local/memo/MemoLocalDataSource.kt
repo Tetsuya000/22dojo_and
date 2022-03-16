@@ -1,4 +1,4 @@
-package jp.gr.java.conf.tmproject.dojoandroid2022.data.source.local
+package jp.gr.java.conf.tmproject.dojoandroid2022.data.source.local.memo
 
 import jp.gr.java.conf.tmproject.dojoandroid2022.domain.model.Memo
 

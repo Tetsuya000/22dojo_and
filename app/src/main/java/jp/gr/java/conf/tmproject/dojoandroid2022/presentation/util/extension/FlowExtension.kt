@@ -10,8 +10,7 @@ import kotlinx.coroutines.launch
 
 fun <T> Flow<T>.collectWhenStarted(
     lifecycleOwner: LifecycleOwner,
-    observer: (T) -> Unit
-) {
+    observer: (T) -> Unit) {
     lifecycleOwner.lifecycleScope.launch {
         lifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
             this@collectWhenStarted.collect {

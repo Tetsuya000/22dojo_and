@@ -44,8 +44,7 @@ class EditMemoDialogFragment : DialogFragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
+        savedInstanceState: Bundle?): View {
 
         nodeId = arguments!!.getInt("nodeId")
 
@@ -67,8 +66,7 @@ class EditMemoDialogFragment : DialogFragment() {
         Card(
             modifier = Modifier
                 .padding(16.dp)
-                .wrapContentSize()
-        ) {
+                .wrapContentSize()) {
             CardContent()
         }
     }
@@ -80,7 +78,7 @@ class EditMemoDialogFragment : DialogFragment() {
                 Modifier.padding(16.dp),
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally,
-            ) {
+                  ) {
 
                 CardTitle()
 
@@ -89,21 +87,18 @@ class EditMemoDialogFragment : DialogFragment() {
                     focusRequester.requestFocus()
                 }
                 var text by remember { mutableStateOf("") }
-                TextField(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(vertical = 4.dp)
-                        .focusRequester(focusRequester),
+                TextField(modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(vertical = 4.dp)
+                    .focusRequester(focusRequester),
                     shape = RoundedCornerShape(8.dp),
                     colors = TextFieldDefaults.textFieldColors(
                         focusedIndicatorColor = Transparent,
                         unfocusedIndicatorColor = Transparent,
-                        disabledIndicatorColor = Transparent
-                    ),
+                        disabledIndicatorColor = Transparent),
                     value = text,
                     onValueChange = { text = it },
-                    label = { Text("Memo") }
-                )
+                    label = { Text("Memo") })
 
                 SaveButton(text)
             }
@@ -124,7 +119,7 @@ class EditMemoDialogFragment : DialogFragment() {
             onClick = {
                 viewModel.saveMemo(nodeId, text)
             },
-        ) {
+              ) {
             Text("OK")
         }
     }

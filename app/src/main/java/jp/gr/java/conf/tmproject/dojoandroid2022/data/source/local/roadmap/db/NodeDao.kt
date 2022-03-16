@@ -1,4 +1,4 @@
-package jp.gr.java.conf.tmproject.dojoandroid2022.data.source.local.db
+package jp.gr.java.conf.tmproject.dojoandroid2022.data.source.local.roadmap.db
 
 import androidx.room.Dao
 import androidx.room.Delete

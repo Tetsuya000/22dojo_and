@@ -1,4 +1,4 @@
-package jp.gr.java.conf.tmproject.dojoandroid2022.data.source.remote.api
+package jp.gr.java.conf.tmproject.dojoandroid2022.data.source.remote.roadmap.api
 
 import jp.gr.java.conf.tmproject.dojoandroid2022.domain.model.Roadmap
 import retrofit2.Response

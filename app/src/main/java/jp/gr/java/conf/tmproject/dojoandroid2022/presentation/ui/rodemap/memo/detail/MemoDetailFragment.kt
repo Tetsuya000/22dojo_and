@@ -28,8 +28,7 @@ class MemoDetailFragment : Fragment(R.layout.memo_detail_fragment) {
 
     override fun onViewCreated(
         view: View,
-        savedInstanceState: Bundle?
-    ) {
+        savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = MemoDetailFragmentBinding.bind(view)
         binding.also {
@@ -80,8 +79,7 @@ class MemoDetailFragment : Fragment(R.layout.memo_detail_fragment) {
         repeatOnLifecycle(Lifecycle.State.STARTED) {
             viewModel.isError.collect {
                 makeSnackbarError(
-                    requireContext(), binding.buttonDelete, getString(R.string.error_failed_to_delete)
-                ).show()
+                    requireContext(), binding.buttonDelete, getString(R.string.error_failed_to_delete)).show()
             }
         }
     }

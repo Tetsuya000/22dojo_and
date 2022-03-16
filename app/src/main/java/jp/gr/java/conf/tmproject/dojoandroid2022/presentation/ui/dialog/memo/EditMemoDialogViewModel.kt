@@ -14,8 +14,7 @@ import javax.inject.Inject
 @HiltViewModel
 class EditMemoDialogViewModel @Inject constructor(
     private val roadmapRepository: RoadmapRepository,
-    private val memoRepository: MemoRepository
-) : ViewModel() {
+    private val memoRepository: MemoRepository) : ViewModel() {
 
     private val _isSaveSuccess: MutableSharedFlow<Boolean> = MutableSharedFlow()
     val isSaveSuccess: SharedFlow<Boolean> = _isSaveSuccess
@@ -25,8 +24,7 @@ class EditMemoDialogViewModel @Inject constructor(
 
     fun saveMemo(
         nodeId: Int,
-        memo: String
-    ) = viewModelScope.launch {
+        memo: String) = viewModelScope.launch {
         runCatching {
             memoRepository.saveMemo(Memo(nodeId, memo))
         }.onSuccess {

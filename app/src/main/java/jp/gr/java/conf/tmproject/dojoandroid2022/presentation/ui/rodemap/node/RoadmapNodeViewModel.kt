@@ -15,8 +15,7 @@ import javax.inject.Inject
 @HiltViewModel
 class RoadmapNodeViewModel @Inject constructor(
     private val roadmapRepository: RoadmapRepository,
-    private val getCharacterLevelUseCase: GetCharacterLevelUseCase
-) : ViewModel() {
+    private val getCharacterLevelUseCase: GetCharacterLevelUseCase) : ViewModel() {
 
     private val _masterNodeList: MutableStateFlow<List<Node>> = MutableStateFlow(emptyList())
     val masterNodeList: StateFlow<List<Node>> = _masterNodeList

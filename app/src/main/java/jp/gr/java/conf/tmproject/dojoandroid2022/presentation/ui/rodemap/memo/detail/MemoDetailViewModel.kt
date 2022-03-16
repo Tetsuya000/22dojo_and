@@ -15,8 +15,7 @@ import javax.inject.Inject
 @HiltViewModel
 class MemoDetailViewModel @Inject constructor(
     private val roadmapRepository: RoadmapRepository,
-    private val memoRepository: MemoRepository
-) : ViewModel() {
+    private val memoRepository: MemoRepository) : ViewModel() {
 
     val memo: MutableStateFlow<String> = MutableStateFlow("")
 

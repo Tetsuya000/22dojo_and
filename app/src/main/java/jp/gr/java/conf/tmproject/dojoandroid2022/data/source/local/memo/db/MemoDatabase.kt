@@ -1,4 +1,4 @@
-package jp.gr.java.conf.tmproject.dojoandroid2022.data.source.local.db
+package jp.gr.java.conf.tmproject.dojoandroid2022.data.source.local.memo.db
 
 import androidx.room.Database
 import androidx.room.RoomDatabase

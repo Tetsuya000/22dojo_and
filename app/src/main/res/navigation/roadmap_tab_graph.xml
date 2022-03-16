@@ -23,6 +23,10 @@
                 android:name="sections"
                 app:argType="jp.gr.java.conf.tmproject.dojoandroid2022.domain.model.Section[]" />
         </action>
+
+        <action
+            android:id="@+id/navigate_path_to_search"
+            app:destination="@id/search" />
     </fragment>
 
     <fragment
@@ -73,15 +77,7 @@
             app:enterAnim="@anim/nav_slide_enter"
             app:exitAnim="@anim/nav_slide_exit"
             app:popEnterAnim="@anim/nav_slide_pop_enter"
-            app:popExitAnim="@anim/nav_slide_pop_exit"/>
-
-        <action
-            android:id="@+id/navigate_childNodes_to_edit"
-            app:destination="@id/node_edit"
-            app:enterAnim="@anim/nav_up_enter"
-            app:exitAnim="@anim/nav_up_exit"
-            app:popEnterAnim="@anim/nav_up_pop_enter"
-            app:popExitAnim="@anim/nav_up_pop_exit"/>
+            app:popExitAnim="@anim/nav_slide_pop_exit" />
 
         <action
             android:id="@+id/navigate_childNodes_to_detail"
@@ -89,32 +85,23 @@
             app:enterAnim="@anim/nav_up_enter"
             app:exitAnim="@anim/nav_up_exit"
             app:popEnterAnim="@anim/nav_up_pop_enter"
-            app:popExitAnim="@anim/nav_up_pop_exit"/>
-    </fragment>
-
-    <fragment
-        android:id="@+id/node_edit"
-        android:name="jp.gr.java.conf.tmproject.dojoandroid2022.presentation.ui.rodemap.memo.edit.MemoEditFragment"
-        android:label=""
-        tools:layout="@layout/memo_edit_fragment" >
-
-        <argument
-            android:name="node"
-            app:argType="jp.gr.java.conf.tmproject.dojoandroid2022.domain.model.Node"/>
+            app:popExitAnim="@anim/nav_up_pop_exit" />
     </fragment>
 
     <fragment
         android:id="@+id/node_detail"
         android:name="jp.gr.java.conf.tmproject.dojoandroid2022.presentation.ui.rodemap.memo.detail.MemoDetailFragment"
         android:label=""
-        tools:layout="@layout/memo_detail_fragment" >
+        tools:layout="@layout/memo_detail_fragment">
 
         <argument
             android:name="node"
-            app:argType="jp.gr.java.conf.tmproject.dojoandroid2022.domain.model.Node"/>
-
-        <action
-            android:id="@+id/navigate_detail_to_edit"
-            app:destination="@id/node_edit" />
+            app:argType="jp.gr.java.conf.tmproject.dojoandroid2022.domain.model.Node" />
     </fragment>
+
+    <fragment
+        android:id="@+id/search"
+        android:name="jp.gr.java.conf.tmproject.dojoandroid2022.presentation.ui.search.SearchFragment"
+        android:label=""
+        tools:layout="@layout/search_fragment" />
 </navigation>

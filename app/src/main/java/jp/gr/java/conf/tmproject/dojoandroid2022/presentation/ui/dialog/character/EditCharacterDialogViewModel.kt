@@ -11,8 +11,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class EditCharacterDialogViewModel @Inject constructor(
-    private val characterRepository: CharacterRepository
-) : ViewModel() {
+    private val characterRepository: CharacterRepository) : ViewModel() {
 
     val characterName: MutableStateFlow<String> = MutableStateFlow("")
 

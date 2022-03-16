@@ -21,8 +21,7 @@ class RoadmapSectionFragment : Fragment(R.layout.roadmap_section_fragment) {
 
     override fun onViewCreated(
         view: View,
-        savedInstanceState: Bundle?
-    ) {
+        savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         _binding = RoadmapSectionFragmentBinding.bind(view)
@@ -36,13 +35,12 @@ class RoadmapSectionFragment : Fragment(R.layout.roadmap_section_fragment) {
     }
 
     private fun setUpRecyclerView() {
-        val roadmapSectionController =
-            RoadmapSectionController(object : RoadmapSectionController.SelectListener {
-                override fun onSelected(nodes: List<Node>) {
-                    val action = RoadmapSectionFragmentDirections.navigateSectionToNode(nodes.toTypedArray(), "Node")
-                    findNavController().navigate(action)
-                }
-            })
+        val roadmapSectionController = RoadmapSectionController(object : RoadmapSectionController.SelectListener {
+            override fun onSelected(nodes: List<Node>) {
+                val action = RoadmapSectionFragmentDirections.navigateSectionToNode(nodes.toTypedArray(), "Node")
+                findNavController().navigate(action)
+            }
+        })
 
         binding.recyclerView.apply {
             this.adapter = roadmapSectionController.adapter

@@ -11,6 +11,7 @@
 
     <!-- Hint -->
     <string name="hint_character_name">Character name</string>
+    <string name="hint_search">Search</string>
 
     <!-- Dialog -->
     <string name="text_note">Leave a note</string>

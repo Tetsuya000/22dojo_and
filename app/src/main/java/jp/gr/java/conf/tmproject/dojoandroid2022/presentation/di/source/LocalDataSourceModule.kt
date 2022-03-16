@@ -4,12 +4,12 @@ import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import jp.gr.java.conf.tmproject.dojoandroid2022.data.source.local.CharacterLocalDataSource
-import jp.gr.java.conf.tmproject.dojoandroid2022.data.source.local.CharacterLocalDataSourceImpl
-import jp.gr.java.conf.tmproject.dojoandroid2022.data.source.local.MemoLocalDataSource
-import jp.gr.java.conf.tmproject.dojoandroid2022.data.source.local.MemoLocalDataSourceImpl
-import jp.gr.java.conf.tmproject.dojoandroid2022.data.source.local.RoadmapLocalDataSource
-import jp.gr.java.conf.tmproject.dojoandroid2022.data.source.local.RoadmapLocalDataSourceImpl
+import jp.gr.java.conf.tmproject.dojoandroid2022.data.source.local.character.CharacterLocalDataSource
+import jp.gr.java.conf.tmproject.dojoandroid2022.data.source.local.character.CharacterLocalDataSourceImpl
+import jp.gr.java.conf.tmproject.dojoandroid2022.data.source.local.memo.MemoLocalDataSource
+import jp.gr.java.conf.tmproject.dojoandroid2022.data.source.local.memo.MemoLocalDataSourceImpl
+import jp.gr.java.conf.tmproject.dojoandroid2022.data.source.local.roadmap.RoadmapLocalDataSource
+import jp.gr.java.conf.tmproject.dojoandroid2022.data.source.local.roadmap.RoadmapLocalDataSourceImpl
 import javax.inject.Singleton
 
 @Module

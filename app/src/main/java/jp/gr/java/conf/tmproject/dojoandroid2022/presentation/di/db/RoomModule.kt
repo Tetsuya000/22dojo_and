@@ -7,10 +7,10 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
-import jp.gr.java.conf.tmproject.dojoandroid2022.data.source.local.db.MemoDao
-import jp.gr.java.conf.tmproject.dojoandroid2022.data.source.local.db.MemoDatabase
-import jp.gr.java.conf.tmproject.dojoandroid2022.data.source.local.db.NodeDao
-import jp.gr.java.conf.tmproject.dojoandroid2022.data.source.local.db.NodeDatabase
+import jp.gr.java.conf.tmproject.dojoandroid2022.data.source.local.memo.db.MemoDao
+import jp.gr.java.conf.tmproject.dojoandroid2022.data.source.local.memo.db.MemoDatabase
+import jp.gr.java.conf.tmproject.dojoandroid2022.data.source.local.roadmap.db.NodeDao
+import jp.gr.java.conf.tmproject.dojoandroid2022.data.source.local.roadmap.db.NodeDatabase
 import javax.inject.Singleton
 
 @Module
@@ -21,11 +21,9 @@ object RoomModule {
     @Singleton
     fun provideNodeDatabase(
         @ApplicationContext
-        context: Context
-    ): NodeDatabase = synchronized(this) {
+        context: Context): NodeDatabase = synchronized(this) {
         Room.databaseBuilder(
-            context.applicationContext, NodeDatabase::class.java, "node.db"
-        ).build()
+            context.applicationContext, NodeDatabase::class.java, "node.db").build()
     }
 
     @Provides
@@ -36,11 +34,9 @@ object RoomModule {
     @Singleton
     fun provideMemoDatabase(
         @ApplicationContext
-        context: Context
-    ): MemoDatabase = synchronized(this) {
+        context: Context): MemoDatabase = synchronized(this) {
         Room.databaseBuilder(
-            context.applicationContext, MemoDatabase::class.java, "memo.db"
-        ).build()
+            context.applicationContext, MemoDatabase::class.java, "memo.db").build()
     }
 
     @Provides

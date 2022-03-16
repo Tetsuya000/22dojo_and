@@ -13,8 +13,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class RoadmapPathViewModel @Inject constructor(
-    private val roadmapRepository: RoadmapRepository
-) : ViewModel() {
+    private val roadmapRepository: RoadmapRepository) : ViewModel() {
 
     private val _loadState: MutableStateFlow<LoadState> = MutableStateFlow(LoadState.Nothing)
     val loadState: MutableStateFlow<LoadState> = _loadState

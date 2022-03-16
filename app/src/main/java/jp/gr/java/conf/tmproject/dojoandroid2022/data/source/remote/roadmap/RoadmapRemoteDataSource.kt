@@ -1,4 +1,4 @@
-package jp.gr.java.conf.tmproject.dojoandroid2022.data.source.remote
+package jp.gr.java.conf.tmproject.dojoandroid2022.data.source.remote.roadmap
 
 import jp.gr.java.conf.tmproject.dojoandroid2022.domain.model.Roadmap
 

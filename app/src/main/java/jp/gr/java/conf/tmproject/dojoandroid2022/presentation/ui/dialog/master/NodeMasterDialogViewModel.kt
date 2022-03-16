@@ -12,8 +12,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class NodeMasterDialogViewModel @Inject constructor(
-    private val roadmapRepository: RoadmapRepository
-) : ViewModel() {
+    private val roadmapRepository: RoadmapRepository) : ViewModel() {
 
     private val _isSaveSuccess: MutableSharedFlow<Boolean> = MutableSharedFlow()
     val isSaveSuccess: SharedFlow<Boolean> = _isSaveSuccess
@@ -22,8 +21,7 @@ class NodeMasterDialogViewModel @Inject constructor(
     val isError: SharedFlow<Boolean> = _isError
 
     fun saveNode(
-        node: Node?
-    ) = viewModelScope.launch {
+        node: Node?) = viewModelScope.launch {
         if (node == null) return@launch
 
         runCatching {

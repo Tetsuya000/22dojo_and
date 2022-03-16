@@ -1,4 +1,4 @@
-package jp.gr.java.conf.tmproject.dojoandroid2022.data.source.local
+package jp.gr.java.conf.tmproject.dojoandroid2022.data.source.local.roadmap
 
 import jp.gr.java.conf.tmproject.dojoandroid2022.data.entity.NodeEntity
 import jp.gr.java.conf.tmproject.dojoandroid2022.domain.model.Node

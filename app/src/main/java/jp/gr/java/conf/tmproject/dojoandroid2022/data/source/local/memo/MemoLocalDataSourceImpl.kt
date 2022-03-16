@@ -1,12 +1,11 @@
-package jp.gr.java.conf.tmproject.dojoandroid2022.data.source.local
+package jp.gr.java.conf.tmproject.dojoandroid2022.data.source.local.memo
 
-import jp.gr.java.conf.tmproject.dojoandroid2022.data.source.local.db.MemoDao
+import jp.gr.java.conf.tmproject.dojoandroid2022.data.source.local.memo.db.MemoDao
 import jp.gr.java.conf.tmproject.dojoandroid2022.domain.model.Memo
 import javax.inject.Inject
 
 class MemoLocalDataSourceImpl @Inject constructor(
-    private val memoDao: MemoDao
-) : MemoLocalDataSource {
+    private val memoDao: MemoDao) : MemoLocalDataSource {
 
     override suspend fun saveMemo(memo: Memo) = memoDao.insert(memo.toEntity())
 

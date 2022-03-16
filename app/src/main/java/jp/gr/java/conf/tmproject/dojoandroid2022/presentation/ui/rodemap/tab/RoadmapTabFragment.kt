@@ -14,8 +14,7 @@ class RoadmapTabFragment : Fragment(R.layout.roadmap_tab_fragment) {
 
     override fun onViewCreated(
         view: View,
-        savedInstanceState: Bundle?
-    ) {
+        savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         _binding = RoadmapTabFragmentBinding.bind(view)

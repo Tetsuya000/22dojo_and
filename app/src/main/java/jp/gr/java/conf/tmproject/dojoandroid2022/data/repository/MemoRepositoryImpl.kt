@@ -1,13 +1,12 @@
 package jp.gr.java.conf.tmproject.dojoandroid2022.data.repository
 
-import jp.gr.java.conf.tmproject.dojoandroid2022.data.source.local.MemoLocalDataSource
+import jp.gr.java.conf.tmproject.dojoandroid2022.data.source.local.memo.MemoLocalDataSource
 import jp.gr.java.conf.tmproject.dojoandroid2022.domain.model.Memo
 import jp.gr.java.conf.tmproject.dojoandroid2022.domain.repository.MemoRepository
 import javax.inject.Inject
 
 class MemoRepositoryImpl @Inject constructor(
-    private val memoLocalDataSource: MemoLocalDataSource
-) : MemoRepository {
+    private val memoLocalDataSource: MemoLocalDataSource) : MemoRepository {
 
     override suspend fun saveMemo(memo: Memo) = memoLocalDataSource.saveMemo(memo)
 
