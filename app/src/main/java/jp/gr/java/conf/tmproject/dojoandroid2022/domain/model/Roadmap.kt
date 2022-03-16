@@ -7,7 +7,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 @Parcelize
-data class RoadMap(
+data class Roadmap(
     val paths: List<Path>
 ) : Parcelable
 

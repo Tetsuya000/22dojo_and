@@ -18,6 +18,7 @@ class RoadmapNodeController(
             itemRoadmap {
                 id(node.id)
                 isMaster(isMaster)
+                isEndNode(node.childNodes.isEmpty())
                 title(node.title)
                 onClickListener(
                     View.OnClickListener {

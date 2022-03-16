@@ -43,7 +43,7 @@ class SettingFragment : Fragment(R.layout.setting_fragment) {
         }
 
     private fun changeCharacterAndBackground(level: Int) {
-        when (20 / 5) {
+        when (level / 5) {
             0 -> {
                 binding.imageCharacter.setImageResource(R.drawable.character_01)
             }

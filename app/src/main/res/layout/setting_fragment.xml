@@ -44,6 +44,8 @@
             android:id="@+id/card_edit_character"
             android:layout_width="0dp"
             android:layout_height="100dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
             app:cardCornerRadius="10dp"
             app:cardUseCompatPadding="true"
             app:layout_constraintBottom_toTopOf="@+id/header_license"
@@ -65,7 +67,7 @@
                     app:layout_constraintEnd_toStartOf="@+id/text_character_name"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/character_05" />
+                    tools:srcCompat="@drawable/character_05" />
 
                 <TextView
                     android:id="@+id/text_character_name"

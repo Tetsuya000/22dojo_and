@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/path"
         android:name="jp.gr.java.conf.tmproject.dojoandroid2022.presentation.ui.rodemap.path.RoadmapPathFragment"
-        android:label=""
+        android:label="Roadmap"
         tools:layout="@layout/roadmap_path_fragment">
 
         <action
@@ -28,7 +28,7 @@
     <fragment
         android:id="@+id/section"
         android:name="jp.gr.java.conf.tmproject.dojoandroid2022.presentation.ui.rodemap.section.RoadmapSectionFragment"
-        android:label=""
+        android:label="Section"
         tools:layout="@layout/roadmap_section_fragment">
 
         <argument
@@ -46,19 +46,26 @@
             <argument
                 android:name="nodes"
                 app:argType="jp.gr.java.conf.tmproject.dojoandroid2022.domain.model.Node[]" />
+
+            <argument
+                android:name="label"
+                app:argType="string" />
         </action>
     </fragment>
 
     <fragment
         android:id="@+id/node"
         android:name="jp.gr.java.conf.tmproject.dojoandroid2022.presentation.ui.rodemap.node.RoadmapNodeFragment"
-        android:label=""
+        android:label="{label}"
         tools:layout="@layout/roadmap_node_fragment">
 
         <argument
             android:name="nodes"
-            app:argType="jp.gr.java.conf.tmproject.dojoandroid2022.domain.model.Node[]"
-            app:nullable="true" />
+            app:argType="jp.gr.java.conf.tmproject.dojoandroid2022.domain.model.Node[]" />
+
+        <argument
+            android:name="label"
+            app:argType="string" />
 
         <action
             android:id="@+id/navigate_node_to_childNodes"

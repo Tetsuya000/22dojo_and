@@ -5,7 +5,7 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import jp.gr.java.conf.tmproject.dojoandroid2022.data.entity.NodeEntity
 import jp.gr.java.conf.tmproject.dojoandroid2022.data.source.local.db.NodeDao
 import jp.gr.java.conf.tmproject.dojoandroid2022.domain.model.Node
-import jp.gr.java.conf.tmproject.dojoandroid2022.domain.model.RoadMap
+import jp.gr.java.conf.tmproject.dojoandroid2022.domain.model.Roadmap
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import kotlinx.serialization.decodeFromString
@@ -20,7 +20,7 @@ class RoadmapLocalDataSourceImpl @Inject constructor(
     private val nodeDao: NodeDao
 ) : RoadmapLocalDataSource {
 
-    override fun parseRodeMap(): RoadMap {
+    override fun getRoadmap(): Roadmap {
         val assetManager = context.resources.assets
         val inputStream = assetManager.open("android-developer-roadmap2022.json")
         val bufferedReader = BufferedReader(InputStreamReader(inputStream))

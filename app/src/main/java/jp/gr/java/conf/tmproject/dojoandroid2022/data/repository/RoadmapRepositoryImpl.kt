@@ -4,10 +4,9 @@ import jp.gr.java.conf.tmproject.dojoandroid2022.data.entity.NodeEntity
 import jp.gr.java.conf.tmproject.dojoandroid2022.data.source.local.RoadmapLocalDataSource
 import jp.gr.java.conf.tmproject.dojoandroid2022.data.source.remote.RoadmapRemoteDataSource
 import jp.gr.java.conf.tmproject.dojoandroid2022.domain.model.Node
-import jp.gr.java.conf.tmproject.dojoandroid2022.domain.model.RoadMap
+import jp.gr.java.conf.tmproject.dojoandroid2022.domain.model.Roadmap
 import jp.gr.java.conf.tmproject.dojoandroid2022.domain.repository.RoadmapRepository
 import kotlinx.coroutines.flow.Flow
-import retrofit2.Response
 import javax.inject.Inject
 
 class RoadmapRepositoryImpl @Inject constructor(
@@ -15,9 +14,7 @@ class RoadmapRepositoryImpl @Inject constructor(
     private val roadmapRemoteDataSource: RoadmapRemoteDataSource
 ) : RoadmapRepository {
 
-    override suspend fun getRodeMap(): Response<RoadMap> = roadmapRemoteDataSource.getRoadmap()
-
-    override fun parseRodeMap(): RoadMap = roadmapLocalDataSource.parseRodeMap()
+    override suspend fun getRoadmap(): Roadmap = roadmapRemoteDataSource.getRoadmap()
 
     override suspend fun saveNode(node: Node) = roadmapLocalDataSource.saveNode(node)
 

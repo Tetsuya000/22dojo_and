@@ -36,9 +36,9 @@ class RoadmapNodeFragment : Fragment(R.layout.roadmap_node_fragment) {
         super.onViewCreated(view, savedInstanceState)
 
         _binding = RoadmapNodeFragmentBinding.bind(view)
+        setUpToolbar()
         setUpRecyclerView()
         observeUpdateLevel()
-        setUpToolbar()
     }
 
     private fun setUpToolbar() {
@@ -56,7 +56,7 @@ class RoadmapNodeFragment : Fragment(R.layout.roadmap_node_fragment) {
                 if (childNodes.isEmpty()) return navigateNodeEditOrDetail(selectedNode)
 
                 // ChildNodesが存在する場合、ChildNodesの表示画面に遷移する
-                val action = RoadmapNodeFragmentDirections.navigateNodeToChildNodes(childNodes.toTypedArray())
+                val action = RoadmapNodeFragmentDirections.navigateNodeToChildNodes(childNodes.toTypedArray(), "ChildNode")
                 findNavController().navigate(action)
             }
         })
@@ -66,7 +66,7 @@ class RoadmapNodeFragment : Fragment(R.layout.roadmap_node_fragment) {
             this.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         }
 
-        val screenNodeList = navArgs.nodes?.toList()
+        val screenNodeList = navArgs.nodes.toList()
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.masterNodeList.collect { masterNodeList ->
@@ -92,9 +92,9 @@ class RoadmapNodeFragment : Fragment(R.layout.roadmap_node_fragment) {
             if (!viewModel.isLevelInitialize()) return@collectWhenStarted
 
             if (isLevelUp) {
-                makeSnackbar(requireContext(), binding.root, getString(R.string.text_level_up)).show()
+                makeSnackbar(requireContext(), binding.snackbarSpace, getString(R.string.text_level_up)).show()
             } else {
-                makeSnackbar(requireContext(), binding.root, getString(R.string.text_level_down)).show()
+                makeSnackbar(requireContext(), binding.snackbarSpace, getString(R.string.text_level_down)).show()
             }
         }
     }

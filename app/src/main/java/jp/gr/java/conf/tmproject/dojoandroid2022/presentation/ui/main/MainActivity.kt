@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI.setupWithNavController
+import androidx.navigation.ui.setupWithNavController
 import dagger.hilt.android.AndroidEntryPoint
 import jp.gr.java.conf.tmproject.dojoandroid2022.R
 import jp.gr.java.conf.tmproject.dojoandroid2022.databinding.MainActivityBinding
@@ -26,11 +27,5 @@ class MainActivity : AppCompatActivity() {
 
         val bottomNav = binding.bottomNav
         setupWithNavController(bottomNav, navController)
-
-        // ボトムメニューを再選択したら、トップに遷移する
-        bottomNav.setOnItemReselectedListener { item ->
-            val reselectedDestinationId = item.itemId
-            navController.popBackStack(reselectedDestinationId, inclusive = false)
-        }
     }
 }
