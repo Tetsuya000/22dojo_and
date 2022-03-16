@@ -8,6 +8,7 @@ import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import jp.gr.java.conf.tmproject.dojoandroid2022.R
 import jp.gr.java.conf.tmproject.dojoandroid2022.databinding.SettingFragmentBinding
+import jp.gr.java.conf.tmproject.dojoandroid2022.presentation.util.extension.collectWhenStarted
 
 @AndroidEntryPoint
 class SettingFragment : Fragment(R.layout.setting_fragment) {
@@ -31,6 +32,36 @@ class SettingFragment : Fragment(R.layout.setting_fragment) {
         binding.cardEditCharacter.setOnClickListener {
             val action = SettingFragmentDirections.navigateSettingToEditCharacterDialog()
             findNavController().navigate(action)
+        }
+
+        observeCharacterLevel()
+    }
+
+    private fun observeCharacterLevel() =
+        viewModel.characterLevel.collectWhenStarted(viewLifecycleOwner) { level ->
+            changeCharacterAndBackground(level.toInt())
+        }
+
+    private fun changeCharacterAndBackground(level: Int) {
+        when (20 / 5) {
+            0 -> {
+                binding.imageCharacter.setImageResource(R.drawable.character_01)
+            }
+            1 -> {
+                binding.imageCharacter.setImageResource(R.drawable.character_02)
+            }
+            2 -> {
+                binding.imageCharacter.setImageResource(R.drawable.character_03)
+            }
+            3 -> {
+                binding.imageCharacter.setImageResource(R.drawable.character_04)
+            }
+            4 -> {
+                binding.imageCharacter.setImageResource(R.drawable.character_05)
+            }
+            else -> {
+                binding.imageCharacter.setImageResource(R.drawable.character_05)
+            }
         }
     }
 

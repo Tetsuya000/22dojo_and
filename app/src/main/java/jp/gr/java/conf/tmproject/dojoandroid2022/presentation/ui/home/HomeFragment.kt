@@ -4,14 +4,10 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
 import dagger.hilt.android.AndroidEntryPoint
 import jp.gr.java.conf.tmproject.dojoandroid2022.R
 import jp.gr.java.conf.tmproject.dojoandroid2022.databinding.HomeFragmentBinding
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.launch
+import jp.gr.java.conf.tmproject.dojoandroid2022.presentation.util.extension.collectWhenStarted
 
 @AndroidEntryPoint
 class HomeFragment : Fragment(R.layout.home_fragment) {
@@ -35,13 +31,10 @@ class HomeFragment : Fragment(R.layout.home_fragment) {
         observeCharacterLevel()
     }
 
-    private fun observeCharacterLevel() = lifecycleScope.launch {
-        repeatOnLifecycle(Lifecycle.State.STARTED) {
-            viewModel.characterLevel.collect { level ->
-                changeCharacterAndBackground(level.toInt())
-            }
+    private fun observeCharacterLevel() =
+        viewModel.characterLevel.collectWhenStarted(viewLifecycleOwner) { level ->
+            changeCharacterAndBackground(level.toInt())
         }
-    }
 
     private fun changeCharacterAndBackground(level: Int) {
         when (level / 5) {

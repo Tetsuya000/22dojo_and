@@ -1,4 +1,4 @@
-package jp.gr.java.conf.tmproject.dojoandroid2022.presentation.ui.rodemap.edit
+package jp.gr.java.conf.tmproject.dojoandroid2022.presentation.ui.rodemap.memo.edit
 
 import android.os.Bundle
 import android.view.View
@@ -9,20 +9,21 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import androidx.navigation.ui.setupWithNavController
 import dagger.hilt.android.AndroidEntryPoint
 import jp.gr.java.conf.tmproject.dojoandroid2022.R
-import jp.gr.java.conf.tmproject.dojoandroid2022.databinding.NodeEditFragmentBinding
+import jp.gr.java.conf.tmproject.dojoandroid2022.databinding.MemoEditFragmentBinding
 import jp.gr.java.conf.tmproject.dojoandroid2022.presentation.util.makeSnackbarError
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class NodeEditFragment : Fragment(R.layout.node_edit_fragment) {
+class MemoEditFragment : Fragment(R.layout.memo_edit_fragment) {
 
-    private var _binding: NodeEditFragmentBinding? = null
+    private var _binding: MemoEditFragmentBinding? = null
     private val binding get() = _binding!!
-    private val viewModel: NodeEditViewModel by viewModels()
-    private val navArgs by navArgs<NodeEditFragmentArgs>()
+    private val viewModel: MemoEditViewModel by viewModels()
+    private val navArgs by navArgs<MemoEditFragmentArgs>()
 
     override fun onViewCreated(
         view: View,
@@ -30,7 +31,7 @@ class NodeEditFragment : Fragment(R.layout.node_edit_fragment) {
     ) {
         super.onViewCreated(view, savedInstanceState)
 
-        _binding = NodeEditFragmentBinding.bind(view)
+        _binding = MemoEditFragmentBinding.bind(view)
 
         binding.editMemo.setText(navArgs.node.memo)
 
@@ -40,7 +41,13 @@ class NodeEditFragment : Fragment(R.layout.node_edit_fragment) {
             viewModel.saveNode(node, memo)
         }
 
+        setUpToolbar()
         observe()
+    }
+
+    private fun setUpToolbar() {
+        val toolbar = binding.includeToolbar.toolbar
+        toolbar.setupWithNavController(findNavController())
     }
 
     private fun observe() {

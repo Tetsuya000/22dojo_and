@@ -16,6 +16,8 @@
         <entry key="app/src/main/res/layout/item_skill.xml" value="0.15070921985815602" />
         <entry key="app/src/main/res/layout/main_activity.xml" value="0.25" />
         <entry key="app/src/main/res/layout/main_fragment.xml" value="0.15070921985815602" />
+        <entry key="app/src/main/res/layout/memo_detail_fragment.xml" value="0.15070921985815602" />
+        <entry key="app/src/main/res/layout/memo_edit_fragment.xml" value="0.15070921985815602" />
         <entry key="app/src/main/res/layout/node_detail_fragment.xml" value="0.25" />
         <entry key="app/src/main/res/layout/node_edit_fragment.xml" value="0.15070921985815602" />
         <entry key="app/src/main/res/layout/rename_dialog_fragment.xml" value="0.25" />
@@ -27,6 +29,7 @@
         <entry key="app/src/main/res/layout/setting_fragment.xml" value="0.335" />
         <entry key="app/src/main/res/layout/skill_fragment.xml" value="0.15070921985815602" />
         <entry key="app/src/main/res/layout/update_level_dialog_fragment.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/view_toolbar.xml" value="0.15070921985815602" />
         <entry key="app/src/main/res/menu/bottom_menu.xml" value="0.1" />
       </map>
     </option>

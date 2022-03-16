@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import jp.gr.java.conf.tmproject.dojoandroid2022.R
@@ -28,6 +29,12 @@ class RoadmapSectionFragment : Fragment(R.layout.roadmap_section_fragment) {
 
         _binding = RoadmapSectionFragmentBinding.bind(view)
         setUpRecyclerView()
+        setUpToolbar()
+    }
+
+    private fun setUpToolbar() {
+        val toolbar = binding.includeToolbar.toolbar
+        toolbar.setupWithNavController(findNavController())
     }
 
     private fun setUpRecyclerView() {

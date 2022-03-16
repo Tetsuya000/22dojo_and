@@ -9,6 +9,7 @@ import androidx.fragment.app.activityViewModels
 import dagger.hilt.android.AndroidEntryPoint
 import jp.gr.java.conf.tmproject.dojoandroid2022.R
 import jp.gr.java.conf.tmproject.dojoandroid2022.databinding.EditCharacterDialogFragmentBinding
+import jp.gr.java.conf.tmproject.dojoandroid2022.presentation.util.extension.showKeyboard
 
 @AndroidEntryPoint
 class EditCharacterDialogFragment : DialogFragment() {
@@ -23,6 +24,8 @@ class EditCharacterDialogFragment : DialogFragment() {
             it.viewModel = viewModel
             it.lifecycleOwner = this
         }
+
+        showKeyboard(binding.editCharacterName)
 
         binding.buttonPositive.setOnClickListener {
             val newCharacterName = binding.editCharacterName.text.toString()

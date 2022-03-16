@@ -9,6 +9,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import jp.gr.java.conf.tmproject.dojoandroid2022.R
@@ -37,6 +38,12 @@ class RoadmapNodeFragment : Fragment(R.layout.roadmap_node_fragment) {
         _binding = RoadmapNodeFragmentBinding.bind(view)
         setUpRecyclerView()
         observeUpdateLevel()
+        setUpToolbar()
+    }
+
+    private fun setUpToolbar() {
+        val toolbar = binding.includeToolbar.toolbar
+        toolbar.setupWithNavController(findNavController())
     }
 
     private fun setUpRecyclerView() {

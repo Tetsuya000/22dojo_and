@@ -7,12 +7,22 @@
 
         <variable
             name="viewModel"
-            type="jp.gr.java.conf.tmproject.dojoandroid2022.presentation.ui.rodemap.detail.NodeDetailViewModel" />
+            type="jp.gr.java.conf.tmproject.dojoandroid2022.presentation.ui.rodemap.memo.detail.MemoDetailViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+        <include
+            android:id="@+id/include_toolbar"
+            layout="@layout/view_toolbar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@+id/recycler_view"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/edit_memo"
@@ -23,7 +33,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/include_toolbar"
             tools:text="Memo" />
 
         <Button
