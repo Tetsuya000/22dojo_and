@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/detail_memo"
-        android:name="jp.gr.java.conf.tmproject.dojoandroid2022.presentation.ui.rodemap.memo.detail.DetailMemoFragment"
+        android:name="jp.gr.java.conf.tmproject.dojoandroid2022.presentation.ui.memo.detail.DetailMemoFragment"
         android:label=""
         tools:layout="@layout/detail_memo_fragment">
 

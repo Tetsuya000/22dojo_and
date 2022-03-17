@@ -7,19 +7,26 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import jp.gr.java.conf.tmproject.dojoandroid2022.R
 import jp.gr.java.conf.tmproject.dojoandroid2022.databinding.SearchFragmentBinding
+import jp.gr.java.conf.tmproject.dojoandroid2022.presentation.util.LoadState
 import jp.gr.java.conf.tmproject.dojoandroid2022.presentation.util.extension.collectWhenStarted
+import jp.gr.java.conf.tmproject.dojoandroid2022.presentation.util.extension.gone
+import jp.gr.java.conf.tmproject.dojoandroid2022.presentation.util.extension.hideKeyboard
 import jp.gr.java.conf.tmproject.dojoandroid2022.presentation.util.extension.showKeyboard
+import jp.gr.java.conf.tmproject.dojoandroid2022.presentation.util.extension.visible
+import jp.gr.java.conf.tmproject.dojoandroid2022.presentation.util.makeSnackbarError
 
 @AndroidEntryPoint
 class SearchFragment : Fragment(R.layout.search_fragment) {
 
     private var _binding: SearchFragmentBinding? = null
     private val binding get() = _binding!!
-
     private val viewModel: SearchViewModel by viewModels()
+    private lateinit var searchResponseController: SearchResponseController
 
     override fun onViewCreated(
         view: View,
@@ -30,7 +37,8 @@ class SearchFragment : Fragment(R.layout.search_fragment) {
         initUi()
         setUpAction()
         setUpToolbar()
-        observeSearchResponse()
+        setUpRecyclerView()
+        observe()
     }
 
     private fun initUi() {
@@ -54,19 +62,48 @@ class SearchFragment : Fragment(R.layout.search_fragment) {
         toolbar.setupWithNavController(findNavController())
     }
 
+    private fun setUpRecyclerView() {
+        searchResponseController = SearchResponseController(object : SearchResponseController.SelectListener {
+            override fun onSelected(url: String) {
+                val action = SearchFragmentDirections.navigateSearchToWebView(url)
+                findNavController().navigate(action)
+                hideKeyboard()
+            }
+        })
+
+        val decoration = DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
+        binding.recyclerView.apply {
+            adapter = searchResponseController.adapter
+            layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+            addItemDecoration(decoration)
+        }
+    }
+
+    private fun observe() {
+        observeLoadState()
+        observeSearchResponse()
+    }
+
     private fun observeSearchResponse() =
         viewModel.searchResult.collectWhenStarted(viewLifecycleOwner) { searchResponse ->
             searchResponse?.let { response ->
                 val sortedRepository = response.items.sortedByDescending { it.starCount }
-                sortedRepository.forEach {
-                    println(it.fullName)
-                    println(it.starCount)
-                }
+                searchResponseController.setData(sortedRepository)
             }
         }
 
+    private fun observeLoadState() = viewModel.loadState.collectWhenStarted(viewLifecycleOwner) { state ->
+        when (state) {
+            is LoadState.Nothing -> Unit
+            is LoadState.Loading -> binding.progressBar.visible()
+            is LoadState.Done    -> binding.progressBar.gone()
+            is LoadState.Error   -> binding.progressBar.gone()
+        }
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
+
         _binding = null
     }
 }

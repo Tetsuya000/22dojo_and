@@ -1,4 +1,4 @@
-package jp.gr.java.conf.tmproject.dojoandroid2022.presentation.ui.allmemo
+package jp.gr.java.conf.tmproject.dojoandroid2022.presentation.ui.memo
 
 import android.os.Bundle
 import android.view.View

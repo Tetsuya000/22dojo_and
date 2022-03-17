@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="jp.gr.java.conf.tmproject.dojoandroid2022.presentation.ui.rodemap.memo.detail.DetailMemoViewModel" />
+            type="jp.gr.java.conf.tmproject.dojoandroid2022.presentation.ui.memo.detail.DetailMemoViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

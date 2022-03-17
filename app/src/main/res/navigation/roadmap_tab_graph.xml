@@ -107,5 +107,21 @@
         android:id="@+id/search"
         android:name="jp.gr.java.conf.tmproject.dojoandroid2022.presentation.ui.search.SearchFragment"
         android:label=""
-        tools:layout="@layout/search_fragment" />
+        tools:layout="@layout/search_fragment" >
+
+        <action
+            android:id="@+id/navigate_search_to_web_view"
+            app:destination="@id/web_view" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/web_view"
+        android:name="jp.gr.java.conf.tmproject.dojoandroid2022.presentation.ui.web.WebViewFragment"
+        android:label=""
+        tools:layout="@layout/web_view_fragment" >
+
+        <argument
+            android:name="url"
+            app:argType="string" />
+    </fragment>
 </navigation>

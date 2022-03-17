@@ -21,7 +21,6 @@ class RoadmapNodeFragment : Fragment(R.layout.roadmap_node_fragment) {
 
     private var _binding: RoadmapNodeFragmentBinding? = null
     private val binding get() = _binding!!
-
     private val viewModel: RoadmapNodeViewModel by hiltNavGraphViewModels(R.id.section)
     private val navArgs by navArgs<RoadmapNodeFragmentArgs>()
 

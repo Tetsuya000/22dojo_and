@@ -1,4 +1,4 @@
-package jp.gr.java.conf.tmproject.dojoandroid2022.presentation.ui.allmemo
+package jp.gr.java.conf.tmproject.dojoandroid2022.presentation.ui.memo
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

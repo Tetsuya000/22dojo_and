@@ -21,7 +21,7 @@
 
     <fragment
         android:id="@+id/memo"
-        android:name="jp.gr.java.conf.tmproject.dojoandroid2022.presentation.ui.allmemo.AllMemoFragment"
+        android:name="jp.gr.java.conf.tmproject.dojoandroid2022.presentation.ui.memo.AllMemoFragment"
         android:label=""
         tools:layout="@layout/roadmap_tab_fragment">
 

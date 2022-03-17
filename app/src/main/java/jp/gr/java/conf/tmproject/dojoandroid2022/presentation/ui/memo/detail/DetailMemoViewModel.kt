@@ -1,4 +1,4 @@
-package jp.gr.java.conf.tmproject.dojoandroid2022.presentation.ui.rodemap.memo.detail
+package jp.gr.java.conf.tmproject.dojoandroid2022.presentation.ui.memo.detail
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
