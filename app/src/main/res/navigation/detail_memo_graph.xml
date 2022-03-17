@@ -30,7 +30,7 @@
 
     <dialog
         android:id="@+id/edit_memo_dialog"
-        android:name="jp.gr.java.conf.tmproject.dojoandroid2022.presentation.ui.dialog.edit.EditMemoDialogFragment"
+        android:name="jp.gr.java.conf.tmproject.dojoandroid2022.presentation.ui.memo.edit.EditMemoDialogFragment"
         android:label="">
 
         <argument

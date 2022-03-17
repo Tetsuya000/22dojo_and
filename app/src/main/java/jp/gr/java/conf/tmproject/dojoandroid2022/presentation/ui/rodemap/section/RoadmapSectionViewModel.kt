@@ -1,4 +1,4 @@
-package jp.gr.java.conf.tmproject.dojoandroid2022.presentation.ui.rodemap.node
+package jp.gr.java.conf.tmproject.dojoandroid2022.presentation.ui.rodemap.section
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -17,7 +17,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class RoadmapNodeViewModel @Inject constructor(
+class RoadmapSectionViewModel @Inject constructor(
     private val roadmapRepository: RoadmapRepository,
     private val memoRepository: MemoRepository,
     private val getCharacterLevelUseCase: GetCharacterLevelUseCase) : ViewModel() {

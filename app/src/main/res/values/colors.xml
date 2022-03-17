@@ -9,6 +9,7 @@
     <color name="white">#eeeeee</color>
 
     <!-- RoadmapItem -->
+    <color name="section_header">#FF000000</color>
     <color name="roadmap_text">#FF000000</color>
     <color name="node_is_master">#26a69a</color>
     <color name="node_is_not_master">#eeeeee</color>
@@ -20,8 +21,8 @@
     <color name="warning_delete">#e91e63</color>
 
     <!-- Snackbar -->
-    <color name="snackbar_text">#eeeeee</color>
-    <color name="snackbar_background">#FF018786</color>
+    <color name="snackbar_text">#FF000000</color>
+    <color name="snackbar_background">#bdbdbd</color>
     <color name="snackbar_error_text">#eeeeee</color>
     <color name="snackbar_error_background">#e91e63</color>
 

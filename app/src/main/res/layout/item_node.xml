@@ -30,7 +30,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:padding="10dp">
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
@@ -49,7 +50,7 @@
             tools:cardBackgroundColor="@color/node_is_not_master">
 
             <TextView
-                android:id="@+id/text_path"
+                android:id="@+id/text_header_section"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
@@ -64,9 +65,9 @@
                 android:layout_height="20dp"
                 android:layout_gravity="center|end"
                 android:layout_marginEnd="10dp"
-                android:visibility="@{isEndNode? View.INVISIBLE :View.VISIBLE}"
+                android:visibility="@{isMaster? View.VISIBLE :View.GONE}"
                 app:srcCompat="@drawable/ic_arrow_right"
-                app:tint="@android:color/darker_gray" />
+                app:tint="@android:color/white" />
         </androidx.cardview.widget.CardView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

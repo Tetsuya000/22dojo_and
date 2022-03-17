@@ -4,7 +4,7 @@ import android.view.View
 import com.airbnb.epoxy.TypedEpoxyController
 import jp.gr.java.conf.tmproject.dojoandroid2022.domain.model.Path
 import jp.gr.java.conf.tmproject.dojoandroid2022.domain.model.Section
-import jp.gr.java.conf.tmproject.dojoandroid2022.itemRoadmap
+import jp.gr.java.conf.tmproject.dojoandroid2022.itemNode
 
 class RoadmapPathController(
     private val selectListener: SelectListener) : TypedEpoxyController<List<Path>>() {
@@ -13,7 +13,7 @@ class RoadmapPathController(
         paths: List<Path>) {
 
         paths.forEach { path ->
-            itemRoadmap {
+            itemNode {
                 id(path.id)
                 title(path.title)
                 onClickListener(View.OnClickListener {

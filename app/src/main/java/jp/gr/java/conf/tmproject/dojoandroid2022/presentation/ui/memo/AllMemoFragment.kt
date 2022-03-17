@@ -15,6 +15,7 @@ import jp.gr.java.conf.tmproject.dojoandroid2022.presentation.util.extension.col
 
 @AndroidEntryPoint
 class AllMemoFragment : Fragment(R.layout.all_memo_fragment) {
+
     private var _binding: AllMemoFragmentBinding? = null
     private val binding get() = _binding!!
     private val viewModel: AllMemoViewModel by viewModels()

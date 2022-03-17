@@ -19,9 +19,13 @@
         <entry key="app/src/main/res/layout/edit_character_dialog.xml" value="0.25" />
         <entry key="app/src/main/res/layout/edit_character_dialog_fragment.xml" value="0.15070921985815602" />
         <entry key="app/src/main/res/layout/home_fragment.xml" value="0.165" />
+        <entry key="app/src/main/res/layout/item_header_node.xml" value="0.15070921985815602" />
+        <entry key="app/src/main/res/layout/item_header_section.xml" value="0.15070921985815602" />
         <entry key="app/src/main/res/layout/item_memo.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/item_node.xml" value="0.4401244167962675" />
         <entry key="app/src/main/res/layout/item_path.xml" value="0.15070921985815602" />
         <entry key="app/src/main/res/layout/item_roadmap.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/item_roadmap_header.xml" value="0.15070921985815602" />
         <entry key="app/src/main/res/layout/item_search_response.xml" value="0.15070921985815602" />
         <entry key="app/src/main/res/layout/item_section.xml" value="0.15070921985815602" />
         <entry key="app/src/main/res/layout/item_skill.xml" value="0.15070921985815602" />
