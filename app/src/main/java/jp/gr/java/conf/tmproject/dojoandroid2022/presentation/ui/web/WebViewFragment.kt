@@ -18,7 +18,6 @@ import jp.gr.java.conf.tmproject.dojoandroid2022.presentation.util.extension.col
 import jp.gr.java.conf.tmproject.dojoandroid2022.presentation.util.extension.gone
 import jp.gr.java.conf.tmproject.dojoandroid2022.presentation.util.extension.visible
 
-
 @AndroidEntryPoint
 class WebViewFragment : Fragment(R.layout.web_view_fragment) {
 
@@ -35,8 +34,18 @@ class WebViewFragment : Fragment(R.layout.web_view_fragment) {
         _binding = WebViewFragmentBinding.bind(view)
         setUpToolbar()
         setUpWebView()
+        setUpSwipeRefresh()
         setUpBackPressedDispatcher()
         observeLoadState()
+    }
+
+    private fun setUpSwipeRefresh() {
+        binding.swipeRefresh.isRefreshing = false
+
+        binding.swipeRefresh.setOnRefreshListener {
+            binding.swipeRefresh.isRefreshing = true
+            binding.webView.reload()
+        }
     }
 
     private fun setUpToolbar() {
@@ -47,7 +56,7 @@ class WebViewFragment : Fragment(R.layout.web_view_fragment) {
     private fun setUpBackPressedDispatcher() =
         requireActivity().onBackPressedDispatcher.addCallback(this@WebViewFragment) {
             if (binding.webView.canGoBack()) {
-                binding.webView.goBack();
+                binding.webView.goBack()
             }
             else {
                 findNavController().popBackStack()
@@ -60,6 +69,7 @@ class WebViewFragment : Fragment(R.layout.web_view_fragment) {
                 view: WebView?,
                 url: String?) {
 
+                binding.swipeRefresh.isRefreshing = false
                 viewModel.changeLoadState(LoadState.Done)
             }
         }

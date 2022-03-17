@@ -21,16 +21,22 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <WebView
-            android:id="@+id/web_view"
-            android:layout_width="0dp"
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/swipe_refresh"
+            android:layout_width="match_parent"
             android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/include_toolbar" >
+            app:layout_constraintTop_toBottomOf="@+id/include_toolbar">
 
-        </WebView>
+            <WebView
+                android:id="@+id/web_view"
+                android:layout_width="0dp"
+                android:layout_height="0dp">
+
+            </WebView>
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
         <ProgressBar
             android:id="@+id/progress_bar"

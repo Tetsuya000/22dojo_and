@@ -12,6 +12,6 @@ data class SearchItem(
     @SerialName("full_name")
     val fullName: String,
     @SerialName("html_url")
-    val url:String,
+    val url: String,
     @SerialName("stargazers_count")
     val starCount: Int)

@@ -18,7 +18,6 @@ import jp.gr.java.conf.tmproject.dojoandroid2022.presentation.util.extension.gon
 import jp.gr.java.conf.tmproject.dojoandroid2022.presentation.util.extension.hideKeyboard
 import jp.gr.java.conf.tmproject.dojoandroid2022.presentation.util.extension.showKeyboard
 import jp.gr.java.conf.tmproject.dojoandroid2022.presentation.util.extension.visible
-import jp.gr.java.conf.tmproject.dojoandroid2022.presentation.util.makeSnackbarError
 
 @AndroidEntryPoint
 class SearchFragment : Fragment(R.layout.search_fragment) {
