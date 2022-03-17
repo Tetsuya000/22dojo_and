@@ -2,8 +2,8 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/item_search"
-        android:icon="@drawable/ic_search"
-        android:title="Search"
+        android:id="@+id/item_edit_memo"
+        android:icon="@drawable/ic_edit_note"
+        android:title="Edit"
         app:showAsAction="always" />
 </menu>

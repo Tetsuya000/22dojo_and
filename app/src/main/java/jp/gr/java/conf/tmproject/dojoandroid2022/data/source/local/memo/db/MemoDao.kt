@@ -5,6 +5,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import jp.gr.java.conf.tmproject.dojoandroid2022.data.entity.MemoEntity
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface MemoDao {
@@ -15,8 +16,8 @@ interface MemoDao {
     suspend fun delete(id: Int)
 
     @Query("SELECT * FROM memo_table")
-    suspend fun loadAllMemo(): List<MemoEntity>
+    fun loadAllMemo(): Flow<List<MemoEntity>>
 
     @Query("SELECT * FROM memo_table WHERE id == :id")
-    suspend fun loadMemoById(id: Int): List<MemoEntity>
+    fun loadMemoById(id: Int): Flow<List<MemoEntity>>
 }

@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="jp.gr.java.conf.tmproject.dojoandroid2022.presentation.ui.dialog.character.EditCharacterDialogViewModel" />
+            type="jp.gr.java.conf.tmproject.dojoandroid2022.presentation.ui.dialog.edit.EditCharacterDialogViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -61,10 +61,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/background_edit_text_rounded_top"
-                        android:text="@{viewModel.characterName}"
-                        android:textColor="@color/edit_text"
                         android:inputType="text"
                         android:maxLines="1"
+                        android:text="@{viewModel.characterName}"
+                        android:textColor="@color/edit_text"
                         tools:text="@string/character_name" />
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -75,7 +75,7 @@
                     android:layout_marginTop="20dp"
                     android:text="OK"
                     android:textAllCaps="false"
-                    android:textColor="@color/white"
+                    android:textColor="@color/text_button"
                     app:cornerRadius="20dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"

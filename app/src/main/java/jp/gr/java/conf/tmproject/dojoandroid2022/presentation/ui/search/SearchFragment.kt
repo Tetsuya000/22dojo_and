@@ -23,7 +23,8 @@ class SearchFragment : Fragment(R.layout.search_fragment) {
 
     override fun onViewCreated(
         view: View,
-        savedInstanceState: Bundle?) {
+        savedInstanceState: Bundle?
+    ) {
         super.onViewCreated(view, savedInstanceState)
         _binding = SearchFragmentBinding.bind(view)
 

@@ -10,9 +10,11 @@
         <entry key="../../../../layout/compose-model-1647418889270.xml" value="0.29444444444444445" />
         <entry key="../../../../layout/compose-model-1647436186048.xml" value="0.45" />
         <entry key="app/src/main/res/drawable/background_edit_text_rounded_top.xml" value="0.2611111111111111" />
+        <entry key="app/src/main/res/drawable/border_top_bottom.xml" value="0.111" />
         <entry key="app/src/main/res/drawable/ic_close.xml" value="0.23333333333333334" />
         <entry key="app/src/main/res/drawable/ic_home.xml" value="0.25462962962962965" />
         <entry key="app/src/main/res/layout/character_edit_dialog.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/detail_memo_fragment.xml" value="0.165" />
         <entry key="app/src/main/res/layout/edit_character_dialog.xml" value="0.25" />
         <entry key="app/src/main/res/layout/edit_character_dialog_fragment.xml" value="0.15070921985815602" />
         <entry key="app/src/main/res/layout/home_fragment.xml" value="0.2630782687730333" />
@@ -39,6 +41,7 @@
         <entry key="app/src/main/res/layout/view_toolbar.xml" value="0.15070921985815602" />
         <entry key="app/src/main/res/menu/bottom_menu.xml" value="0.1" />
         <entry key="app/src/main/res/menu/search_menu.xml" value="0.22314814814814815" />
+        <entry key="app/src/main/res/menu/toolbar_menu.xml" value="0.22314814814814815" />
       </map>
     </option>
   </component>

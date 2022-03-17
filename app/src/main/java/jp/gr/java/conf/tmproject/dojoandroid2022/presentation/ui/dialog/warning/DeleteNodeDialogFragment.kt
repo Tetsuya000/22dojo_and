@@ -1,4 +1,4 @@
-package jp.gr.java.conf.tmproject.dojoandroid2022.presentation.ui.dialog.master
+package jp.gr.java.conf.tmproject.dojoandroid2022.presentation.ui.dialog.warning
 
 import android.app.Dialog
 import android.os.Bundle
@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material.Button
+import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Card
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
@@ -28,6 +29,7 @@ import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -39,15 +41,16 @@ import jp.gr.java.conf.tmproject.dojoandroid2022.domain.model.Node
 import jp.gr.java.conf.tmproject.dojoandroid2022.presentation.util.extension.collectWhenStarted
 
 @AndroidEntryPoint
-class NodeMasterDialogFragment : DialogFragment() {
+class DeleteNodeDialogFragment : DialogFragment() {
 
-    private val viewModel: NodeMasterDialogViewModel by viewModels()
+    private val viewModelNode: DeleteNodeDialogViewModel by viewModels()
     private var node: Node? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?): View {
+        savedInstanceState: Bundle?
+    ): View {
 
         node = arguments!!.getParcelable("node")
         observeSaveSuccess()
@@ -66,7 +69,7 @@ class NodeMasterDialogFragment : DialogFragment() {
     }
 
     private fun observeSaveSuccess() {
-        viewModel.isSaveSuccess.collectWhenStarted(viewLifecycleOwner) { isSuccess ->
+        viewModelNode.isDeleteSuccess.collectWhenStarted(viewLifecycleOwner) { isSuccess ->
             if (isSuccess) {
                 dismiss()
             }
@@ -79,7 +82,8 @@ class NodeMasterDialogFragment : DialogFragment() {
         Card(
             modifier = Modifier
                 .padding(16.dp)
-                .wrapContentSize()) {
+                .wrapContentSize()
+        ) {
             CardContent()
         }
     }
@@ -87,59 +91,71 @@ class NodeMasterDialogFragment : DialogFragment() {
     @Composable
     fun CardContent() {
         Column {
-            Row(
-                Modifier
-                    .padding(end = 10.dp)
-                    .fillMaxWidth(),
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.End) {
-
-                Image(
-                    modifier = Modifier
-                        .padding(start = 16.dp, top = 16.dp)
-                        .clickable(onClick = {
-                            dismiss()
-                        }),
-                    painter = painterResource(id = R.drawable.ic_close),
-                    colorFilter = ColorFilter.tint(colorResource(R.color.black)),
-                    contentDescription = "close")
-            }
-
+            ImageClose()
             Column(
                 Modifier.padding(5.dp),
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally,
-                  ) {
+            ) {
                 CardTitle()
-                SaveButton()
+                DeleteButton()
             }
+        }
+    }
+
+    @Composable
+    fun ImageClose() {
+        Row(
+            Modifier
+                .padding(end = 10.dp)
+                .fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.End
+        ) {
+
+            Image(
+                modifier = Modifier
+                    .padding(start = 16.dp, top = 16.dp)
+                    .clickable(onClick = {
+                        dismiss()
+                    }),
+                painter = painterResource(id = R.drawable.ic_close),
+                colorFilter = ColorFilter.tint(colorResource(R.color.black)),
+                contentDescription = "close"
+            )
         }
     }
 
     @Composable
     fun CardTitle() {
         Text(
-            getString(R.string.text_acquire),
+            text = node?.title!!,
+            color = colorResource(R.color.text_dialog),
             fontSize = 19.sp,
             style = MaterialTheme.typography.subtitle1,
-            modifier = Modifier.padding(5.dp))
+            modifier = Modifier.padding(5.dp)
+        )
     }
 
     @Composable
-    fun SaveButton() {
+    fun DeleteButton() {
         var enabled by remember { mutableStateOf(true) }
 
         Button(
             modifier = Modifier
                 .padding(16.dp)
                 .fillMaxWidth(),
+            colors = ButtonDefaults.textButtonColors(backgroundColor = colorResource(R.color.warning_delete)),
             enabled = enabled,
             onClick = {
                 enabled = false
-                viewModel.saveNode(node)
+                viewModelNode.deleteNode(node)
             },
-              ) {
-            Text("OK")
+        ) {
+            Text(
+                text = stringResource(R.string.text_delete),
+                color = colorResource(R.color.text_button),
+            )
         }
     }
 }

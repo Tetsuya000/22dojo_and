@@ -1,4 +1,4 @@
-package jp.gr.java.conf.tmproject.dojoandroid2022.presentation.ui.dialog.character
+package jp.gr.java.conf.tmproject.dojoandroid2022.presentation.ui.dialog.edit
 
 import android.app.AlertDialog
 import android.app.Dialog

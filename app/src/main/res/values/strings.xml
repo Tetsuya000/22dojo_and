@@ -14,8 +14,8 @@
     <string name="hint_search">Search</string>
 
     <!-- Dialog -->
-    <string name="text_note">Leave a note</string>
-    <string name="text_acquire">Do you want to acquire?</string>
+    <string name="text_ok">OK</string>
+    <string name="text_delete">Delete</string>
 
     <!-- Setting -->
     <string name="header_edit_character">-Edit Character-</string>

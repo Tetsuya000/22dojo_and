@@ -2,8 +2,6 @@ package jp.gr.java.conf.tmproject.dojoandroid2022.data.source.local.roadmap
 
 import android.content.Context
 import dagger.hilt.android.qualifiers.ApplicationContext
-import java.io.BufferedReader
-import java.io.InputStreamReader
 import jp.gr.java.conf.tmproject.dojoandroid2022.data.entity.NodeEntity
 import jp.gr.java.conf.tmproject.dojoandroid2022.data.source.local.roadmap.db.NodeDao
 import jp.gr.java.conf.tmproject.dojoandroid2022.domain.model.Node
@@ -12,12 +10,15 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
+import java.io.BufferedReader
+import java.io.InputStreamReader
 import javax.inject.Inject
 
 class RoadmapLocalDataSourceImpl @Inject constructor(
     @ApplicationContext
     private val context: Context,
-    private val nodeDao: NodeDao) : RoadmapLocalDataSource {
+    private val nodeDao: NodeDao
+) : RoadmapLocalDataSource {
 
     override fun getRoadmap(): Roadmap {
         val assetManager = context.resources.assets

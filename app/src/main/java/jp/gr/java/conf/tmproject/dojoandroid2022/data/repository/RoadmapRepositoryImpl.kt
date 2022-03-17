@@ -11,7 +11,8 @@ import javax.inject.Inject
 
 class RoadmapRepositoryImpl @Inject constructor(
     private val roadmapLocalDataSource: RoadmapLocalDataSource,
-    private val roadmapRemoteDataSource: RoadmapRemoteDataSource) : RoadmapRepository {
+    private val roadmapRemoteDataSource: RoadmapRemoteDataSource
+) : RoadmapRepository {
 
     override suspend fun getRoadmap(): Roadmap = roadmapRemoteDataSource.getRoadmap()
 

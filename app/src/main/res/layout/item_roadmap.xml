@@ -22,6 +22,10 @@
         <variable
             name="onClickListener"
             type="View.OnClickListener" />
+
+        <variable
+            name="onLongClickListener"
+            type="View.OnLongClickListener" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -40,7 +44,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:setOnClickListener="@{onClickListener}">
+            app:setOnClickListener="@{onClickListener}"
+            app:setOnLongClickListener="@{onLongClickListener}">
 
             <TextView
                 android:id="@+id/text_path"

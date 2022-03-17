@@ -4,9 +4,6 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.navigation.ui.setupWithNavController
@@ -15,11 +12,9 @@ import dagger.hilt.android.AndroidEntryPoint
 import jp.gr.java.conf.tmproject.dojoandroid2022.R
 import jp.gr.java.conf.tmproject.dojoandroid2022.databinding.RoadmapNodeFragmentBinding
 import jp.gr.java.conf.tmproject.dojoandroid2022.domain.model.Node
-import jp.gr.java.conf.tmproject.dojoandroid2022.presentation.ui.dialog.master.NodeMasterDialogFragment
+import jp.gr.java.conf.tmproject.dojoandroid2022.presentation.ui.dialog.warning.DeleteNodeDialogFragment
 import jp.gr.java.conf.tmproject.dojoandroid2022.presentation.util.extension.collectWhenStarted
 import jp.gr.java.conf.tmproject.dojoandroid2022.presentation.util.makeSnackbar
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class RoadmapNodeFragment : Fragment(R.layout.roadmap_node_fragment) {
@@ -32,7 +27,8 @@ class RoadmapNodeFragment : Fragment(R.layout.roadmap_node_fragment) {
 
     override fun onViewCreated(
         view: View,
-        savedInstanceState: Bundle?) {
+        savedInstanceState: Bundle?
+    ) {
         super.onViewCreated(view, savedInstanceState)
 
         _binding = RoadmapNodeFragmentBinding.bind(view)
@@ -48,16 +44,22 @@ class RoadmapNodeFragment : Fragment(R.layout.roadmap_node_fragment) {
 
     private fun setUpRecyclerView() {
         val roadmapNodeController = RoadmapNodeController(object : RoadmapNodeController.SelectListener {
-            override fun onSelected(
+            override fun onClick(
                 selectedNode: Node,
-                childNodes: List<Node>) {
+                childNodes: List<Node>
+            ) {
                 // ChildNodesが存在しなければ、末端であると判定して、習得状態に応じて編集画面か詳細画面に遷移する
-                if (childNodes.isEmpty()) return navigateNodeEditOrDetail(selectedNode)
+                if (childNodes.isEmpty()) return saveNodeOrNavigateDetailMemo(selectedNode)
 
                 // ChildNodesが存在する場合、ChildNodesの表示画面に遷移する
                 val action = RoadmapNodeFragmentDirections.navigateNodeToChildNodes(
-                    childNodes.toTypedArray(), "ChildNode")
+                    childNodes.toTypedArray(), "ChildNode"
+                )
                 findNavController().navigate(action)
+            }
+
+            override fun onLongClick(selectedNode: Node) {
+                showWarningDeleteNodeDialog(selectedNode)
             }
         })
 
@@ -67,32 +69,27 @@ class RoadmapNodeFragment : Fragment(R.layout.roadmap_node_fragment) {
         }
 
         val screenNodeList = navArgs.nodes.toList()
-        lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.masterNodeList.collect { masterNodeList ->
-                    roadmapNodeController.setData(screenNodeList, masterNodeList.map { it.id })
-                }
-            }
+        viewModel.masterNodeList.collectWhenStarted(viewLifecycleOwner) { masterNodeList ->
+            roadmapNodeController.setData(screenNodeList, masterNodeList)
         }
     }
 
-    private fun navigateNodeEditOrDetail(selectedNode: Node) {
+    private fun saveNodeOrNavigateDetailMemo(selectedNode: Node) {
         val isMaster = viewModel.isMaster(selectedNode.id)
         if (isMaster) {
-            val action = RoadmapNodeFragmentDirections.navigateChildNodesToDetail(selectedNode)
+            val action = RoadmapNodeFragmentDirections.navigateChildNodesToDetailMemo(selectedNode)
             findNavController().navigate(action)
+        } else {
+            viewModel.saveNode(selectedNode)
         }
-        else {
-//            val action = RoadmapNodeFragmentDirections.navigateChildNodesToEdit(selectedNode)
-//            findNavController().navigate(action)
+    }
 
-//    マスターするダイアログ
-            val dialogFragment = NodeMasterDialogFragment()
-            val args = Bundle()
-            args.putParcelable("node", selectedNode)
-            dialogFragment.arguments = args
-            dialogFragment.show(parentFragmentManager, "my_dialog")
-        }
+    private fun showWarningDeleteNodeDialog(node: Node) {
+        val dialogFragment = DeleteNodeDialogFragment()
+        val args = Bundle()
+        args.putParcelable("node", node)
+        dialogFragment.arguments = args
+        dialogFragment.show(parentFragmentManager, "DeleteNodeDialog")
     }
 
     private fun observeUpdateLevel() {
@@ -101,11 +98,12 @@ class RoadmapNodeFragment : Fragment(R.layout.roadmap_node_fragment) {
 
             if (isLevelUp) {
                 makeSnackbar(
-                    requireContext(), binding.snackbarSpace, getString(R.string.snackbar_text_level_up)).show()
-            }
-            else {
+                    requireContext(), binding.snackbarSpace, getString(R.string.snackbar_text_level_up)
+                ).show()
+            } else {
                 makeSnackbar(
-                    requireContext(), binding.snackbarSpace, getString(R.string.snackbar_text_level_down)).show()
+                    requireContext(), binding.snackbarSpace, getString(R.string.snackbar_text_level_down)
+                ).show()
             }
 
             viewModel.clearLevel()

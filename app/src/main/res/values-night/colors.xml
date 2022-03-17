@@ -8,10 +8,19 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
+    <!-- Border -->
+    <color name="border">#FFFFFFFF</color>
+
+    <!-- Warning -->
+    <color name="warning_delete">#e91e63</color>
+
     <!-- Snackbar -->
     <color name="snackbar_error_text">#eeeeee</color>
     <color name="snackbar_error_background">#e91e63</color>
 
+    <color name="text">#FF000000</color>
     <color name="edit_text">#FF000000</color>
+    <color name="text_button">#eeeeee</color>
+    <color name="text_dialog">#FF000000</color>
     <color name="background_edit_text">#f5f5f5</color>
 </resources>

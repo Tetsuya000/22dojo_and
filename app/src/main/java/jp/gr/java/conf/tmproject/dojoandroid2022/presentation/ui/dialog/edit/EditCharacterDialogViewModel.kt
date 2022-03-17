@@ -1,4 +1,4 @@
-package jp.gr.java.conf.tmproject.dojoandroid2022.presentation.ui.dialog.character
+package jp.gr.java.conf.tmproject.dojoandroid2022.presentation.ui.dialog.edit
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -11,7 +11,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class EditCharacterDialogViewModel @Inject constructor(
-    private val characterRepository: CharacterRepository) : ViewModel() {
+    private val characterRepository: CharacterRepository
+) : ViewModel() {
 
     val characterName: MutableStateFlow<String> = MutableStateFlow("")
 
