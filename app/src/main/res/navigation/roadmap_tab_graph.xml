@@ -81,13 +81,17 @@
 
         <action
             android:id="@+id/navigate_childNodes_to_detail_memo"
-            app:destination="@id/detail_memo" />
+            app:destination="@id/detail_memo"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
     </fragment>
 
     <fragment
         android:id="@+id/detail_memo"
         android:name="jp.gr.java.conf.tmproject.dojoandroid2022.presentation.ui.rodemap.memo.detail.DetailMemoFragment"
-        android:label="Memo"
+        android:label=""
         tools:layout="@layout/detail_memo_fragment">
 
         <argument

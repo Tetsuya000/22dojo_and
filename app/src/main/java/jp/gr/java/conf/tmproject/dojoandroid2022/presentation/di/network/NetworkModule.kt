@@ -41,8 +41,8 @@ object NetworkModule {
         val format = Json { ignoreUnknownKeys = true }
         val contentType = "application/json".toMediaType()
 
-        return Retrofit.Builder().baseUrl(baseUrl).addConverterFactory(format.asConverterFactory(contentType)).client(client)
-            .build()
+        return Retrofit.Builder().baseUrl(baseUrl).addConverterFactory(format.asConverterFactory(contentType))
+            .client(client).build()
     }
 
     @Provides
@@ -61,8 +61,8 @@ object NetworkModule {
         val format = Json { ignoreUnknownKeys = true }
         val contentType = "application/json".toMediaType()
 
-        return Retrofit.Builder().baseUrl(baseUrl).addConverterFactory(format.asConverterFactory(contentType)).client(client)
-            .build()
+        return Retrofit.Builder().baseUrl(baseUrl).addConverterFactory(format.asConverterFactory(contentType))
+            .client(client).build()
     }
 
     @Provides

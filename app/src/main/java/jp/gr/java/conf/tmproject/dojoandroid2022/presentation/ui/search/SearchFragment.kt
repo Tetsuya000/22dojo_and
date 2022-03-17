@@ -55,15 +55,16 @@ class SearchFragment : Fragment(R.layout.search_fragment) {
         toolbar.setupWithNavController(findNavController())
     }
 
-    private fun observeSearchResponse() = viewModel.searchResult.collectWhenStarted(viewLifecycleOwner) { searchResponse ->
-        searchResponse?.let { response ->
-            val sortedRepository = response.items.sortedByDescending { it.starCount }
-            sortedRepository.forEach {
-                println(it.fullName)
-                println(it.starCount)
+    private fun observeSearchResponse() =
+        viewModel.searchResult.collectWhenStarted(viewLifecycleOwner) { searchResponse ->
+            searchResponse?.let { response ->
+                val sortedRepository = response.items.sortedByDescending { it.starCount }
+                sortedRepository.forEach {
+                    println(it.fullName)
+                    println(it.starCount)
+                }
             }
         }
-    }
 
     override fun onDestroyView() {
         super.onDestroyView()

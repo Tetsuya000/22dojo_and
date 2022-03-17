@@ -9,7 +9,8 @@ class CharacterRepositoryImpl @Inject constructor(
     private val characterLocalDataSource: CharacterLocalDataSource
 ) : CharacterRepository {
 
-    override suspend fun saveCharacterName(characterName: String) = characterLocalDataSource.saveCharacterName(characterName)
+    override suspend fun saveCharacterName(characterName: String) =
+        characterLocalDataSource.saveCharacterName(characterName)
 
     override fun loadCharacterName(): Flow<String> = characterLocalDataSource.loadCharacterName()
 }

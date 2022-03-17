@@ -48,7 +48,7 @@ class RoadmapNodeFragment : Fragment(R.layout.roadmap_node_fragment) {
                 selectedNode: Node,
                 childNodes: List<Node>
             ) {
-                // ChildNodesが存在しなければ、末端であると判定して、習得状態に応じて編集画面か詳細画面に遷移する
+                // ChildNodesが存在しなければ、末端であると判定して、習得状態に応じて保存、または、メモ画面に遷移する
                 if (childNodes.isEmpty()) return saveNodeOrNavigateDetailMemo(selectedNode)
 
                 // ChildNodesが存在する場合、ChildNodesの表示画面に遷移する

@@ -20,7 +20,8 @@ fun makeSnackbar(
     message: String
 ): Snackbar =
     Snackbar.make(view, message, Snackbar.LENGTH_LONG).setAnimationMode(BaseTransientBottomBar.ANIMATION_MODE_SLIDE)
-        .setTextColor(context.getColor(R.color.snackbar_text)).setBackgroundTint(context.getColor(R.color.snackbar_background))
+        .setTextColor(context.getColor(R.color.snackbar_text))
+        .setBackgroundTint(context.getColor(R.color.snackbar_background))
 
 fun makeSnackbarError(
     context: Context,

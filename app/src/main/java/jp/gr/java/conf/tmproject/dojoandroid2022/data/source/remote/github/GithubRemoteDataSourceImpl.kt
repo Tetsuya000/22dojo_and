@@ -9,5 +9,6 @@ class GithubRemoteDataSourceImpl @Inject constructor(
     private val gitHubApiService: GitHubApiService
 ) : GithubRemoteDataSource {
 
-    override suspend fun searchRepository(query: String): Response<SearchResponse> = gitHubApiService.searchRepository(query)
+    override suspend fun searchRepository(query: String): Response<SearchResponse> =
+        gitHubApiService.searchRepository(query)
 }
