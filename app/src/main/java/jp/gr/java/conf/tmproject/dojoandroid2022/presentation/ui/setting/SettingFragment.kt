@@ -8,6 +8,9 @@ import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import jp.gr.java.conf.tmproject.dojoandroid2022.R
 import jp.gr.java.conf.tmproject.dojoandroid2022.databinding.SettingFragmentBinding
+import jp.gr.java.conf.tmproject.dojoandroid2022.domain.model.Node
+import jp.gr.java.conf.tmproject.dojoandroid2022.presentation.ui.dialog.edit.EditCharacterDialogFragment
+import jp.gr.java.conf.tmproject.dojoandroid2022.presentation.ui.dialog.warning.DeleteNodeDialogFragment
 import jp.gr.java.conf.tmproject.dojoandroid2022.presentation.util.extension.collectWhenStarted
 
 @AndroidEntryPoint

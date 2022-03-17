@@ -13,8 +13,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class RoadmapPathViewModel @Inject constructor(
-    private val roadmapRepository: RoadmapRepository
-) : ViewModel() {
+    private val roadmapRepository: RoadmapRepository) : ViewModel() {
 
     private val _loadState: MutableStateFlow<LoadState> = MutableStateFlow(LoadState.Nothing)
     val loadState: MutableStateFlow<LoadState> = _loadState
@@ -25,8 +24,9 @@ class RoadmapPathViewModel @Inject constructor(
     private fun getRodeMap() = viewModelScope.launch {
         runCatching {
             _loadState.value = LoadState.Loading
-            _roadMap.value = roadmapRepository.getRoadmap()
+            roadmapRepository.getRoadmap()
         }.onSuccess {
+            _roadMap.value = it
             _loadState.value = LoadState.Done
         }.onFailure {
             _loadState.value = LoadState.Error

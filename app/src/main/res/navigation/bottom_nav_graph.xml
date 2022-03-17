@@ -5,7 +5,7 @@
     android:id="@+id/bottom_nav_graph"
     app:startDestination="@id/home">
 
-    <include app:graph="@navigation/edit_character_dialog_graph" />
+    <include app:graph="@navigation/detail_memo_graph" />
 
     <fragment
         android:id="@+id/home"
@@ -17,17 +17,50 @@
         android:id="@+id/roadmap_tab"
         android:name="jp.gr.java.conf.tmproject.dojoandroid2022.presentation.ui.rodemap.tab.RoadmapTabFragment"
         android:label=""
-        tools:layout="@layout/roadmap_tab_fragment"/>
+        tools:layout="@layout/roadmap_tab_fragment" />
+
+    <fragment
+        android:id="@+id/memo"
+        android:name="jp.gr.java.conf.tmproject.dojoandroid2022.presentation.ui.allmemo.AllMemoFragment"
+        android:label=""
+        tools:layout="@layout/roadmap_tab_fragment">
+
+        <action
+            android:id="@+id/navigate_allMemo_to_detail_memo"
+            app:destination="@id/detail_memo_graph"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim">
+
+            <argument
+                android:name="nodeId"
+                app:argType="integer" />
+
+            <argument
+                android:name="nodeTitle"
+                app:argType="string" />
+
+            <argument
+                android:name="memo"
+                app:argType="string" />
+        </action>
+    </fragment>
 
     <fragment
         android:id="@+id/setting"
         android:name="jp.gr.java.conf.tmproject.dojoandroid2022.presentation.ui.setting.SettingFragment"
         android:label=""
-        tools:layout="@layout/setting_fragment" >
+        tools:layout="@layout/setting_fragment">
 
         <action
             android:id="@+id/navigate_setting_to_edit_character_dialog"
-            app:destination="@id/edit_character_dialog_graph">
-        </action>
+            app:destination="@id/edit_character_dialog" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/edit_character_dialog"
+        android:name="jp.gr.java.conf.tmproject.dojoandroid2022.presentation.ui.dialog.edit.EditCharacterDialogFragment"
+        android:label="">
     </fragment>
 </navigation>

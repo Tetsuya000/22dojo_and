@@ -23,8 +23,7 @@ class DetailMemoFragment : Fragment(R.layout.detail_memo_fragment) {
 
     override fun onViewCreated(
         view: View,
-        savedInstanceState: Bundle?
-    ) {
+        savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = DetailMemoFragmentBinding.bind(view)
         binding.also {
@@ -33,7 +32,7 @@ class DetailMemoFragment : Fragment(R.layout.detail_memo_fragment) {
         }
 
         setUpToolbar()
-        viewModel.loadMemoById(navArgs.node.id)
+        viewModel.loadMemoById(navArgs.nodeId)
 
         binding.textMemo.setOnClickListener {
             showEditMemoDialog()
@@ -53,14 +52,15 @@ class DetailMemoFragment : Fragment(R.layout.detail_memo_fragment) {
                 showEditMemoDialog()
                 true
             }
-            else -> false
+            else                -> false
         }
     }
 
     private fun showEditMemoDialog() {
         val dialogFragment = EditMemoDialogFragment()
         val args = Bundle()
-        args.putParcelable("node", navArgs.node)
+        args.putInt("nodeId", navArgs.nodeId)
+        args.putString("nodeTitle", navArgs.nodeTitle)
         args.putString("memo", viewModel.memo.value)
         dialogFragment.arguments = args
         dialogFragment.show(parentFragmentManager, "EditMemoDialog")

@@ -43,23 +43,23 @@ import androidx.fragment.app.viewModels
 import dagger.hilt.android.AndroidEntryPoint
 import jp.gr.java.conf.tmproject.dojoandroid2022.R
 import jp.gr.java.conf.tmproject.dojoandroid2022.domain.model.Memo
-import jp.gr.java.conf.tmproject.dojoandroid2022.domain.model.Node
 import jp.gr.java.conf.tmproject.dojoandroid2022.presentation.util.extension.collectWhenStarted
 
 @AndroidEntryPoint
 class EditMemoDialogFragment : DialogFragment() {
 
     private val viewModel: EditMemoDialogViewModel by viewModels()
-    private var node: Node? = null
+    private var nodeId = 0
+    private var nodeTitle = ""
     private var memo = ""
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
+        savedInstanceState: Bundle?): View {
 
-        node = arguments!!.getParcelable("node")
+        nodeId = arguments!!.getInt("nodeId")
+        nodeTitle = arguments!!.getString("nodeTitle")!!
         memo = arguments!!.getString("memo")!!
 
         observeEditSuccess()
@@ -85,8 +85,7 @@ class EditMemoDialogFragment : DialogFragment() {
         Card(
             modifier = Modifier
                 .padding(16.dp)
-                .wrapContentSize()
-        ) {
+                .wrapContentSize()) {
             CardContent()
         }
     }
@@ -99,29 +98,26 @@ class EditMemoDialogFragment : DialogFragment() {
                 Modifier.padding(16.dp),
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally,
-            ) {
+                  ) {
 
                 val focusRequester = remember { FocusRequester() }
                 LaunchedEffect(Unit) {
                     focusRequester.requestFocus()
                 }
                 var text by remember { mutableStateOf(memo) }
-                TextField(
-                    modifier = Modifier
-                        .height(200.dp)
-                        .fillMaxWidth()
-                        .padding(vertical = 4.dp)
-                        .focusRequester(focusRequester),
+                TextField(modifier = Modifier
+                    .height(200.dp)
+                    .fillMaxWidth()
+                    .padding(vertical = 4.dp)
+                    .focusRequester(focusRequester),
                     shape = RoundedCornerShape(8.dp),
                     colors = TextFieldDefaults.textFieldColors(
                         focusedIndicatorColor = Transparent,
                         unfocusedIndicatorColor = Transparent,
-                        disabledIndicatorColor = Transparent
-                    ),
+                        disabledIndicatorColor = Transparent),
                     value = text,
                     onValueChange = { text = it },
-                    label = { Text("Memo") }
-                )
+                    label = { Text("Memo") })
 
                 SaveButton(text)
             }
@@ -135,8 +131,7 @@ class EditMemoDialogFragment : DialogFragment() {
                 .padding(end = 10.dp)
                 .fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.End
-        ) {
+            horizontalArrangement = Arrangement.End) {
 
             Image(
                 modifier = Modifier
@@ -146,8 +141,7 @@ class EditMemoDialogFragment : DialogFragment() {
                     }),
                 painter = painterResource(id = R.drawable.ic_close),
                 colorFilter = ColorFilter.tint(colorResource(R.color.black)),
-                contentDescription = "close"
-            )
+                contentDescription = "close")
         }
     }
 
@@ -158,12 +152,10 @@ class EditMemoDialogFragment : DialogFragment() {
                 .padding(16.dp)
                 .fillMaxWidth(),
             onClick = {
-                node?.let {
-                    val memo = Memo(it.id, it.title, text)
-                    viewModel.saveMemo(memo)
-                }
+                val memo = Memo(nodeId, nodeTitle, text)
+                viewModel.saveMemo(memo)
             },
-        ) {
+              ) {
             Text(stringResource(R.string.text_ok))
         }
     }

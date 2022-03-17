@@ -5,6 +5,8 @@
     android:id="@+id/roadmap_tab_graph"
     app:startDestination="@id/path">
 
+    <include app:graph="@navigation/detail_memo_graph" />
+
     <fragment
         android:id="@+id/path"
         android:name="jp.gr.java.conf.tmproject.dojoandroid2022.presentation.ui.rodemap.path.RoadmapPathFragment"
@@ -81,22 +83,24 @@
 
         <action
             android:id="@+id/navigate_childNodes_to_detail_memo"
-            app:destination="@id/detail_memo"
+            app:destination="@id/detail_memo_graph"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
-    </fragment>
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" >
 
-    <fragment
-        android:id="@+id/detail_memo"
-        android:name="jp.gr.java.conf.tmproject.dojoandroid2022.presentation.ui.rodemap.memo.detail.DetailMemoFragment"
-        android:label=""
-        tools:layout="@layout/detail_memo_fragment">
+            <argument
+                android:name="nodeId"
+                app:argType="integer" />
 
-        <argument
-            android:name="node"
-            app:argType="jp.gr.java.conf.tmproject.dojoandroid2022.domain.model.Node" />
+            <argument
+                android:name="nodeTitle"
+                app:argType="string" />
+
+            <argument
+                android:name="memo"
+                app:argType="string" />
+        </action>
     </fragment>
 
     <fragment

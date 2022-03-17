@@ -11,6 +11,11 @@
         android:title="Roadmap" />
 
     <item
+        android:id="@+id/memo"
+        android:icon="@drawable/ic_notes"
+        android:title="Memo" />
+
+    <item
         android:id="@+id/setting"
         android:icon="@drawable/ic_settings"
         android:title="Setting" />

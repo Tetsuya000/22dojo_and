@@ -45,6 +45,7 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import jp.gr.java.conf.tmproject.dojoandroid2022.R
 import jp.gr.java.conf.tmproject.dojoandroid2022.presentation.util.extension.collectWhenStarted
@@ -98,8 +99,9 @@ class EditCharacterDialogFragment : DialogFragment() {
                     focusRequester.requestFocus()
                 }
                 var text by remember { mutableStateOf(viewModel.characterName.value) }
+                val isError = text.length > 10 || text.isEmpty()
 
-                val isError = MaxLengthErrorTextField(value = text,
+                MaxLengthErrorTextField(value = text,
                     onValueChange = {
                         text = it
                     },
@@ -113,6 +115,7 @@ class EditCharacterDialogFragment : DialogFragment() {
                         unfocusedIndicatorColor = Color.Transparent,
                         disabledIndicatorColor = Color.Transparent),
                     shape = RoundedCornerShape(8.dp),
+                    isError = isError,
                     label = {
                         Text(stringResource(id = R.string.hint_character_name))
                     })
@@ -130,22 +133,19 @@ class EditCharacterDialogFragment : DialogFragment() {
         modifier: Modifier = Modifier,
         colors: TextFieldColors,
         shape: RoundedCornerShape,
-        label: @Composable (() -> Unit)? = null): Boolean {
-
-        var isError by remember { mutableStateOf(false) }
-        isError = value.length > maxLength || value.isEmpty()
+        isError:Boolean,
+        label: @Composable (() -> Unit)? = null) {
 
         TextField(
             value = value,
             onValueChange = onValueChange,
+            singleLine = true,
             visualTransformation = MaxLengthErrorTransformation(maxLength),
             modifier = modifier,
             colors = colors,
             shape = shape,
-            label = label,
-            isError = isError)
-
-        return isError
+            isError = isError,
+            label = label)
     }
 
     class MaxLengthErrorTransformation(
@@ -187,7 +187,7 @@ class EditCharacterDialogFragment : DialogFragment() {
                 modifier = Modifier
                     .padding(start = 16.dp, top = 16.dp)
                     .clickable(onClick = {
-                        dismiss()
+                        findNavController().popBackStack()
                     }),
                 painter = painterResource(id = R.drawable.ic_close),
                 colorFilter = ColorFilter.tint(colorResource(R.color.black)),
@@ -214,6 +214,6 @@ class EditCharacterDialogFragment : DialogFragment() {
     }
 
     private fun observeEditSuccess() = viewModel.isEditSuccess.collectWhenStarted(viewLifecycleOwner) {
-        dismiss()
+        findNavController().popBackStack()
     }
 }

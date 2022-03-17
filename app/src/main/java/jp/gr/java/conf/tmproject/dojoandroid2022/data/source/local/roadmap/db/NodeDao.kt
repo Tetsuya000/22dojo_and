@@ -19,6 +19,6 @@ interface NodeDao {
     @Query("SELECT * FROM node_table")
     fun loadAllNode(): Flow<List<NodeEntity>>
 
-    @Query("SELECT * FROM node_table WHERE id == :id")
+    @Query("SELECT * FROM node_table WHERE nodeId == :id")
     fun loadNodeById(id: Int): NodeEntity
 }

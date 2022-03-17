@@ -38,5 +38,5 @@ data class Node(
     val childNodes: List<Node> = emptyList()
 ) : Parcelable {
 
-    fun toEntity(): NodeEntity = NodeEntity(id = id, title = title, isJetpack = isJetpack, priority = priority)
+    fun toEntity(): NodeEntity = NodeEntity(nodeId = id, title = title, isJetpack = isJetpack, priority = priority)
 }

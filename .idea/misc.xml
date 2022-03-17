@@ -13,11 +13,13 @@
         <entry key="app/src/main/res/drawable/border_top_bottom.xml" value="0.111" />
         <entry key="app/src/main/res/drawable/ic_close.xml" value="0.23333333333333334" />
         <entry key="app/src/main/res/drawable/ic_home.xml" value="0.25462962962962965" />
+        <entry key="app/src/main/res/layout/all_memo_fragment.xml" value="0.15070921985815602" />
         <entry key="app/src/main/res/layout/character_edit_dialog.xml" value="0.335" />
         <entry key="app/src/main/res/layout/detail_memo_fragment.xml" value="0.165" />
         <entry key="app/src/main/res/layout/edit_character_dialog.xml" value="0.25" />
         <entry key="app/src/main/res/layout/edit_character_dialog_fragment.xml" value="0.15070921985815602" />
         <entry key="app/src/main/res/layout/home_fragment.xml" value="0.2630782687730333" />
+        <entry key="app/src/main/res/layout/item_memo.xml" value="0.335" />
         <entry key="app/src/main/res/layout/item_path.xml" value="0.15070921985815602" />
         <entry key="app/src/main/res/layout/item_roadmap.xml" value="0.25" />
         <entry key="app/src/main/res/layout/item_section.xml" value="0.15070921985815602" />

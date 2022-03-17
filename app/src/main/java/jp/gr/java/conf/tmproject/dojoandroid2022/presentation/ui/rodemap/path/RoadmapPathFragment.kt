@@ -67,8 +67,8 @@ class RoadmapPathFragment : Fragment(R.layout.roadmap_path_fragment) {
         })
 
         binding.recyclerView.apply {
-            this.adapter = roadmapPathController.adapter
-            this.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+            adapter = roadmapPathController.adapter
+            layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         }
     }
 
@@ -78,7 +78,9 @@ class RoadmapPathFragment : Fragment(R.layout.roadmap_path_fragment) {
     }
 
     private fun fetchRoadmap() = viewModel.roadMap.collectWhenStarted(viewLifecycleOwner) { roadmap ->
-        if (roadmap != null) roadmapPathController.setData(roadmap.paths)
+        if (roadmap != null) {
+            roadmapPathController.setData(roadmap.paths)
+        }
     }
 
     private fun observeLoadState() = viewModel.loadState.collectWhenStarted(viewLifecycleOwner) { state ->

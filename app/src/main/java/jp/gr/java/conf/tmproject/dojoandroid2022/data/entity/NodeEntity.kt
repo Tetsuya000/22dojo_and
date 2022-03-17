@@ -8,7 +8,7 @@ import jp.gr.java.conf.tmproject.dojoandroid2022.domain.model.Node
 @Entity(tableName = "node_table")
 data class NodeEntity(
     @PrimaryKey
-    val id: Int,
+    val nodeId: Int,
     val title: String,
     @ColumnInfo(name = "is_jetpack")
     val isJetpack: Boolean,
@@ -16,5 +16,5 @@ data class NodeEntity(
 ) {
 
     fun toDomain(): Node =
-        Node(id = id, title = title, isJetpack = isJetpack, priority = priority, childNodes = emptyList())
+        Node(id= nodeId, title = title, isJetpack = isJetpack, priority = priority, childNodes = emptyList())
 }

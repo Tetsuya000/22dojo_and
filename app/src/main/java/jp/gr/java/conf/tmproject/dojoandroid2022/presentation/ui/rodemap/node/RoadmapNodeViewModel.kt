@@ -40,7 +40,7 @@ class RoadmapNodeViewModel @Inject constructor(
     /**
      * 「選択したノード」が「習得済みノードリスト」に存在するか
      */
-    fun isMaster(selectedNodeId: Int): Boolean = masterNodeList.value.any { node -> node.id == selectedNodeId }
+    fun isMaster(selectedNodeId: Int): Boolean = masterNodeList.value.map { it.id }.contains(selectedNodeId)
 
     private fun loadAllNode() = viewModelScope.launch {
         roadmapRepository.loadAllNode().collect { list ->

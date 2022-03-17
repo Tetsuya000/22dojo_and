@@ -12,12 +12,12 @@ interface MemoDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(memoEntity: MemoEntity)
 
-    @Query("DELETE FROM memo_table WHERE id = :id")
+    @Query("DELETE FROM memo_table WHERE nodeId = :id")
     suspend fun delete(id: Int)
 
     @Query("SELECT * FROM memo_table")
     fun loadAllMemo(): Flow<List<MemoEntity>>
 
-    @Query("SELECT * FROM memo_table WHERE id == :id")
+    @Query("SELECT * FROM memo_table WHERE nodeId == :id")
     fun loadMemoById(id: Int): Flow<List<MemoEntity>>
 }

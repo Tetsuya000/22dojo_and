@@ -64,8 +64,8 @@ class RoadmapNodeFragment : Fragment(R.layout.roadmap_node_fragment) {
         })
 
         binding.recyclerView.apply {
-            this.adapter = roadmapNodeController.adapter
-            this.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+            adapter = roadmapNodeController.adapter
+            layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         }
 
         val screenNodeList = navArgs.nodes.toList()
@@ -77,7 +77,7 @@ class RoadmapNodeFragment : Fragment(R.layout.roadmap_node_fragment) {
     private fun saveNodeOrNavigateDetailMemo(selectedNode: Node) {
         val isMaster = viewModel.isMaster(selectedNode.id)
         if (isMaster) {
-            val action = RoadmapNodeFragmentDirections.navigateChildNodesToDetailMemo(selectedNode)
+            val action = RoadmapNodeFragmentDirections.navigateChildNodesToDetailMemo(selectedNode.id,selectedNode.title,"")
             findNavController().navigate(action)
         } else {
             viewModel.saveNode(selectedNode)

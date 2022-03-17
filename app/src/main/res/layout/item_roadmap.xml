@@ -45,9 +45,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:setOnClickListener="@{onClickListener}"
-            app:setOnLongClickListener="@{onLongClickListener}"
-            tools:cardBackgroundColor = "@color/node_is_not_master">
-
+            app:setOnLongClickListener="@{isMaster? onLongClickListener : null}"
+            tools:cardBackgroundColor="@color/node_is_not_master">
 
             <TextView
                 android:id="@+id/text_path"
@@ -65,9 +64,9 @@
                 android:layout_height="20dp"
                 android:layout_gravity="center|end"
                 android:layout_marginEnd="10dp"
-                android:tint="@android:color/darker_gray"
                 android:visibility="@{isEndNode? View.INVISIBLE :View.VISIBLE}"
-                app:srcCompat="@drawable/ic_arrow_right" />
+                app:srcCompat="@drawable/ic_arrow_right"
+                app:tint="@android:color/darker_gray" />
         </androidx.cardview.widget.CardView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
