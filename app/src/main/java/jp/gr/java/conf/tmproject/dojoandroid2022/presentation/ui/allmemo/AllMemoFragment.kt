@@ -14,7 +14,7 @@ import jp.gr.java.conf.tmproject.dojoandroid2022.domain.model.Memo
 import jp.gr.java.conf.tmproject.dojoandroid2022.presentation.util.extension.collectWhenStarted
 
 @AndroidEntryPoint
-class AllMemoFragment : Fragment(R.layout.roadmap_tab_fragment) {
+class AllMemoFragment : Fragment(R.layout.all_memo_fragment) {
     private var _binding: AllMemoFragmentBinding? = null
     private val binding get() = _binding!!
     private val viewModel: AllMemoViewModel by viewModels()
@@ -26,8 +26,14 @@ class AllMemoFragment : Fragment(R.layout.roadmap_tab_fragment) {
         super.onViewCreated(view, savedInstanceState)
 
         _binding = AllMemoFragmentBinding.bind(view)
+        setUpToolbar()
         setUpRecyclerView()
         loadAllMemo()
+    }
+
+    private fun setUpToolbar() {
+        val toolbar = binding.includeToolbar.toolbar
+        toolbar.title = "Memo"
     }
 
     private fun setUpRecyclerView() {

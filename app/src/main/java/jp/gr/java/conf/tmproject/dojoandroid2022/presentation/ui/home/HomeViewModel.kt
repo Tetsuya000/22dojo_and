@@ -13,17 +13,10 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     private val characterRepository: CharacterRepository,
-    private val getCharacterLevelUseCase: GetCharacterLevelUseCase
-) : ViewModel() {
+    private val getCharacterLevelUseCase: GetCharacterLevelUseCase) : ViewModel() {
 
-    val characterName: MutableStateFlow<String> = MutableStateFlow("")
     val characterLevel: MutableStateFlow<String> = MutableStateFlow("1")
-
-    private fun loadCharacterName() = viewModelScope.launch {
-        characterRepository.loadCharacterName().collect { name ->
-            characterName.value = name
-        }
-    }
+    val characterName: MutableStateFlow<String> = MutableStateFlow("")
 
     private fun setCharacterLevel() = viewModelScope.launch {
         getCharacterLevelUseCase.getCharacterLevel().collect { level ->
@@ -31,8 +24,14 @@ class HomeViewModel @Inject constructor(
         }
     }
 
+    private fun loadCharacterName() = viewModelScope.launch {
+        characterRepository.loadCharacterName().collect { name ->
+            characterName.value = name
+        }
+    }
+
     init {
-        loadCharacterName()
         setCharacterLevel()
+        loadCharacterName()
     }
 }

@@ -58,9 +58,8 @@
             app:destination="@id/edit_character_dialog" />
     </fragment>
 
-    <fragment
+    <dialog
         android:id="@+id/edit_character_dialog"
         android:name="jp.gr.java.conf.tmproject.dojoandroid2022.presentation.ui.dialog.edit.EditCharacterDialogFragment"
-        android:label="">
-    </fragment>
+        android:label=""/>
 </navigation>

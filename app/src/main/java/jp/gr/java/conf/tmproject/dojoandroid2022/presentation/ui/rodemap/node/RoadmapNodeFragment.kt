@@ -27,8 +27,7 @@ class RoadmapNodeFragment : Fragment(R.layout.roadmap_node_fragment) {
 
     override fun onViewCreated(
         view: View,
-        savedInstanceState: Bundle?
-    ) {
+        savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         _binding = RoadmapNodeFragmentBinding.bind(view)
@@ -46,15 +45,13 @@ class RoadmapNodeFragment : Fragment(R.layout.roadmap_node_fragment) {
         val roadmapNodeController = RoadmapNodeController(object : RoadmapNodeController.SelectListener {
             override fun onClick(
                 selectedNode: Node,
-                childNodes: List<Node>
-            ) {
+                childNodes: List<Node>) {
                 // ChildNodesが存在しなければ、末端であると判定して、習得状態に応じて保存、または、メモ画面に遷移する
                 if (childNodes.isEmpty()) return saveNodeOrNavigateDetailMemo(selectedNode)
 
                 // ChildNodesが存在する場合、ChildNodesの表示画面に遷移する
                 val action = RoadmapNodeFragmentDirections.navigateNodeToChildNodes(
-                    childNodes.toTypedArray(), "ChildNode"
-                )
+                    childNodes.toTypedArray(), "ChildNode")
                 findNavController().navigate(action)
             }
 
@@ -77,9 +74,11 @@ class RoadmapNodeFragment : Fragment(R.layout.roadmap_node_fragment) {
     private fun saveNodeOrNavigateDetailMemo(selectedNode: Node) {
         val isMaster = viewModel.isMaster(selectedNode.id)
         if (isMaster) {
-            val action = RoadmapNodeFragmentDirections.navigateChildNodesToDetailMemo(selectedNode.id,selectedNode.title,"")
+            val action =
+                RoadmapNodeFragmentDirections.navigateChildNodesToDetailMemo(selectedNode.id, selectedNode.title, "")
             findNavController().navigate(action)
-        } else {
+        }
+        else {
             viewModel.saveNode(selectedNode)
         }
     }
@@ -98,12 +97,11 @@ class RoadmapNodeFragment : Fragment(R.layout.roadmap_node_fragment) {
 
             if (isLevelUp) {
                 makeSnackbar(
-                    requireContext(), binding.snackbarSpace, getString(R.string.snackbar_text_level_up)
-                ).show()
-            } else {
+                    requireContext(), binding.snackbarSpace, getString(R.string.snackbar_text_level_up)).show()
+            }
+            else {
                 makeSnackbar(
-                    requireContext(), binding.snackbarSpace, getString(R.string.snackbar_text_level_down)
-                ).show()
+                    requireContext(), binding.snackbarSpace, getString(R.string.snackbar_text_level_down)).show()
             }
 
             viewModel.clearLevel()

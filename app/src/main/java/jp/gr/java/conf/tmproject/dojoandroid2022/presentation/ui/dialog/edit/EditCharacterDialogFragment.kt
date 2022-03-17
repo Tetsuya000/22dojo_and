@@ -99,13 +99,13 @@ class EditCharacterDialogFragment : DialogFragment() {
                     focusRequester.requestFocus()
                 }
                 var text by remember { mutableStateOf(viewModel.characterName.value) }
-                val isError = text.length > 10 || text.isEmpty()
+                val isError = text.length > 15 || text.isEmpty()
 
                 MaxLengthErrorTextField(value = text,
                     onValueChange = {
                         text = it
                     },
-                    maxLength = 10,
+                    maxLength = 15,
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(vertical = 4.dp)
@@ -133,7 +133,7 @@ class EditCharacterDialogFragment : DialogFragment() {
         modifier: Modifier = Modifier,
         colors: TextFieldColors,
         shape: RoundedCornerShape,
-        isError:Boolean,
+        isError: Boolean,
         label: @Composable (() -> Unit)? = null) {
 
         TextField(

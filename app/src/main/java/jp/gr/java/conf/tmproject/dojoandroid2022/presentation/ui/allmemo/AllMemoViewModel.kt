@@ -19,8 +19,15 @@ class AllMemoViewModel @Inject constructor(
     val memoList: StateFlow<List<Memo>> = _memoList
 
     private fun loadAllMemo() = viewModelScope.launch {
+        val filterMemoList = mutableListOf<Memo>()
+
         memoRepository.loadAllMemo().collect {
-            _memoList.value = it
+            // 保持されているため初期化する
+            filterMemoList.clear()
+            it.forEach { memo ->
+                if (memo.memo != "") filterMemoList.add(memo)
+            }
+            _memoList.value = filterMemoList
         }
     }
 

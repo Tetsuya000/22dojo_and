@@ -8,9 +8,6 @@ import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import jp.gr.java.conf.tmproject.dojoandroid2022.R
 import jp.gr.java.conf.tmproject.dojoandroid2022.databinding.SettingFragmentBinding
-import jp.gr.java.conf.tmproject.dojoandroid2022.domain.model.Node
-import jp.gr.java.conf.tmproject.dojoandroid2022.presentation.ui.dialog.edit.EditCharacterDialogFragment
-import jp.gr.java.conf.tmproject.dojoandroid2022.presentation.ui.dialog.warning.DeleteNodeDialogFragment
 import jp.gr.java.conf.tmproject.dojoandroid2022.presentation.util.extension.collectWhenStarted
 
 @AndroidEntryPoint
@@ -22,8 +19,7 @@ class SettingFragment : Fragment(R.layout.setting_fragment) {
 
     override fun onViewCreated(
         view: View,
-        savedInstanceState: Bundle?
-    ) {
+        savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         _binding = SettingFragmentBinding.bind(view)
@@ -46,19 +42,19 @@ class SettingFragment : Fragment(R.layout.setting_fragment) {
 
     private fun changeCharacterAndBackground(level: Int) {
         when (level / 5) {
-            0 -> {
+            0    -> {
                 binding.imageCharacter.setImageResource(R.drawable.character_01)
             }
-            1 -> {
+            1    -> {
                 binding.imageCharacter.setImageResource(R.drawable.character_02)
             }
-            2 -> {
+            2    -> {
                 binding.imageCharacter.setImageResource(R.drawable.character_03)
             }
-            3 -> {
+            3    -> {
                 binding.imageCharacter.setImageResource(R.drawable.character_04)
             }
-            4 -> {
+            4    -> {
                 binding.imageCharacter.setImageResource(R.drawable.character_05)
             }
             else -> {

@@ -22,5 +22,27 @@
         <argument
             android:name="memo"
             app:argType="string" />
+
+        <action
+            android:id="@+id/navigate_detail_memo_to_edit_memo_dialog"
+            app:destination="@id/edit_memo_dialog" />
     </fragment>
+
+    <dialog
+        android:id="@+id/edit_memo_dialog"
+        android:name="jp.gr.java.conf.tmproject.dojoandroid2022.presentation.ui.dialog.edit.EditMemoDialogFragment"
+        android:label="">
+
+        <argument
+            android:name="nodeId"
+            app:argType="integer" />
+
+        <argument
+            android:name="nodeTitle"
+            app:argType="string" />
+
+        <argument
+            android:name="memo"
+            app:argType="string" />
+    </dialog>
 </navigation>

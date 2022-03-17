@@ -8,6 +8,5 @@ interface GitHubApiService {
     @GET("/search/repositories")
     suspend fun searchRepository(
         @Query("q")
-        query: String
-    ): Response<SearchResponse>
+        query: String): Response<SearchResponse>
 }

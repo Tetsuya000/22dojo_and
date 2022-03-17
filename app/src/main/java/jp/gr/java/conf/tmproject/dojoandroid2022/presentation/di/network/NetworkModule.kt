@@ -5,6 +5,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import java.util.concurrent.TimeUnit
 import jp.gr.java.conf.tmproject.dojoandroid2022.data.source.remote.github.api.GitHubApiService
 import jp.gr.java.conf.tmproject.dojoandroid2022.data.source.remote.roadmap.api.RoadmapApiService
 import kotlinx.serialization.ExperimentalSerializationApi
@@ -13,7 +14,6 @@ import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
-import java.util.concurrent.TimeUnit
 import javax.inject.Named
 import javax.inject.Singleton
 
@@ -25,11 +25,9 @@ object NetworkModule {
     @Singleton
     fun provideOkhttpClient(): OkHttpClient {
         return OkHttpClient.Builder().connectTimeout(120, TimeUnit.SECONDS).readTimeout(120, TimeUnit.SECONDS)
-            .addInterceptor(
-                HttpLoggingInterceptor().apply {
-                    level = HttpLoggingInterceptor.Level.BODY
-                }
-            ).build()
+            .addInterceptor(HttpLoggingInterceptor().apply {
+                level = HttpLoggingInterceptor.Level.BODY
+            }).build()
     }
 
     @ExperimentalSerializationApi
@@ -49,8 +47,7 @@ object NetworkModule {
     @Singleton
     fun provideRoadmapApiService(
         @Named("roadmap")
-        retrofit: Retrofit
-    ): RoadmapApiService = retrofit.create(RoadmapApiService::class.java)
+        retrofit: Retrofit): RoadmapApiService = retrofit.create(RoadmapApiService::class.java)
 
     @ExperimentalSerializationApi
     @Provides
@@ -69,6 +66,5 @@ object NetworkModule {
     @Singleton
     fun provideGithubApiService(
         @Named("github")
-        retrofit: Retrofit
-    ): GitHubApiService = retrofit.create(GitHubApiService::class.java)
+        retrofit: Retrofit): GitHubApiService = retrofit.create(GitHubApiService::class.java)
 }

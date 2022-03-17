@@ -14,8 +14,7 @@ import javax.inject.Inject
 @HiltViewModel
 class DeleteNodeDialogViewModel @Inject constructor(
     private val roadmapRepository: RoadmapRepository,
-    private val memoRepository: MemoRepository
-) : ViewModel() {
+    private val memoRepository: MemoRepository) : ViewModel() {
 
     private val _isDeleteSuccess: MutableSharedFlow<Boolean> = MutableSharedFlow()
     val isDeleteSuccess: SharedFlow<Boolean> = _isDeleteSuccess

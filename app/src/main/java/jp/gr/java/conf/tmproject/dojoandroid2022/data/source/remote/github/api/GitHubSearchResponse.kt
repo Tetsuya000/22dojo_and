@@ -12,5 +12,4 @@ data class SearchItem(
     @SerialName("full_name")
     val fullName: String,
     @SerialName("stargazers_count")
-    val starCount: Int
-)
+    val starCount: Int)

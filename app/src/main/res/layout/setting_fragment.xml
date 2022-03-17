@@ -18,14 +18,14 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.2" />
+            app:layout_constraintGuide_percent="0.15" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline_horizontal_30"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.6" />
+            app:layout_constraintGuide_percent="0.5" />
 
         <TextView
             android:id="@+id/header_character_edit"
@@ -33,7 +33,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
-            android:text="@string/header_edit_character"
+            android:text="@string/header_character"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/card_edit_character"
             app:layout_constraintEnd_toEndOf="parent"
@@ -62,13 +62,13 @@
                     android:layout_width="100dp"
                     android:layout_height="0dp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/text_character_name"
+                    app:layout_constraintEnd_toStartOf="@+id/character_name"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:srcCompat="@drawable/character_05" />
 
                 <TextView
-                    android:id="@+id/text_character_name"
+                    android:id="@+id/character_name"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="20dp"

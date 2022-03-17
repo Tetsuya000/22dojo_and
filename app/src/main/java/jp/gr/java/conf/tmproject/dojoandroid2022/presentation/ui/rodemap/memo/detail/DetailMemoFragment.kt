@@ -11,7 +11,6 @@ import com.google.android.material.appbar.MaterialToolbar
 import dagger.hilt.android.AndroidEntryPoint
 import jp.gr.java.conf.tmproject.dojoandroid2022.R
 import jp.gr.java.conf.tmproject.dojoandroid2022.databinding.DetailMemoFragmentBinding
-import jp.gr.java.conf.tmproject.dojoandroid2022.presentation.ui.dialog.edit.EditMemoDialogFragment
 
 @AndroidEntryPoint
 class DetailMemoFragment : Fragment(R.layout.detail_memo_fragment) {
@@ -33,10 +32,6 @@ class DetailMemoFragment : Fragment(R.layout.detail_memo_fragment) {
 
         setUpToolbar()
         viewModel.loadMemoById(navArgs.nodeId)
-
-        binding.textMemo.setOnClickListener {
-            showEditMemoDialog()
-        }
     }
 
     private fun setUpToolbar() {
@@ -57,13 +52,9 @@ class DetailMemoFragment : Fragment(R.layout.detail_memo_fragment) {
     }
 
     private fun showEditMemoDialog() {
-        val dialogFragment = EditMemoDialogFragment()
-        val args = Bundle()
-        args.putInt("nodeId", navArgs.nodeId)
-        args.putString("nodeTitle", navArgs.nodeTitle)
-        args.putString("memo", viewModel.memo.value)
-        dialogFragment.arguments = args
-        dialogFragment.show(parentFragmentManager, "EditMemoDialog")
+        val action = DetailMemoFragmentDirections.navigateDetailMemoToEditMemoDialog(
+            navArgs.nodeId, navArgs.nodeTitle, viewModel.memo.value)
+        findNavController().navigate(action)
     }
 
     override fun onDestroyView() {

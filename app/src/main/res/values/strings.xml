@@ -18,7 +18,7 @@
     <string name="text_delete">Delete</string>
 
     <!-- Setting -->
-    <string name="header_edit_character">-Edit Character-</string>
+    <string name="header_character">-Character-</string>
     <string name="header_license">-License-</string>
 
     <!-- License -->
