@@ -12,7 +12,6 @@ import dagger.hilt.android.AndroidEntryPoint
 import jp.gr.java.conf.tmproject.dojoandroid2022.R
 import jp.gr.java.conf.tmproject.dojoandroid2022.databinding.RoadmapSectionFragmentBinding
 import jp.gr.java.conf.tmproject.dojoandroid2022.domain.model.Node
-import jp.gr.java.conf.tmproject.dojoandroid2022.presentation.ui.dialog.warning.DeleteNodeDialogFragment
 import jp.gr.java.conf.tmproject.dojoandroid2022.presentation.util.extension.collectWhenStarted
 import jp.gr.java.conf.tmproject.dojoandroid2022.presentation.util.makeSnackbar
 
@@ -44,17 +43,12 @@ class RoadmapSectionFragment : Fragment(R.layout.roadmap_section_fragment) {
     private fun setUpRecyclerView() {
         roadmapSectionController = RoadmapSectionController(object : RoadmapSectionController.SelectListener {
             override fun onClick(node: Node) {
-                // ChildNodesが存在しなければ、末端であると判定して、習得状態に応じて保存、または、メモ画面に遷移する
                 saveNodeOrNavigateDetailMemo(node)
-
-                // ChildNodesが存在する場合、ChildNodesの表示画面に遷移する
-//                val action = RoadmapNodeFragmentDirections.navigateNodeToChildNodes(
-//                    childNodes.toTypedArray(), "ChildNode")
-//                findNavController().navigate(action)
             }
 
             override fun onLongClick(selectedNode: Node) {
-                showWarningDeleteNodeDialog(selectedNode)
+                val action = RoadmapSectionFragmentDirections.navigateDeleteNodeDialog(selectedNode)
+                findNavController().navigate(action)
             }
         })
 
@@ -67,20 +61,13 @@ class RoadmapSectionFragment : Fragment(R.layout.roadmap_section_fragment) {
     private fun saveNodeOrNavigateDetailMemo(selectedNode: Node) {
         val isMaster = viewModel.isMaster(selectedNode.id)
         if (isMaster) {
-            val action = RoadmapSectionFragmentDirections.navigateNodeToDetailMemo(selectedNode.id, selectedNode.title, "")
+            val action =
+                RoadmapSectionFragmentDirections.navigateNodeToDetailMemo(selectedNode.id, selectedNode.title, "")
             findNavController().navigate(action)
         }
         else {
             viewModel.saveNode(selectedNode)
         }
-    }
-
-    private fun showWarningDeleteNodeDialog(node: Node) {
-        val dialogFragment = DeleteNodeDialogFragment()
-        val args = Bundle()
-        args.putParcelable("node", node)
-        dialogFragment.arguments = args
-        dialogFragment.show(parentFragmentManager, "DeleteNodeDialog")
     }
 
     private fun observe() {
@@ -103,7 +90,8 @@ class RoadmapSectionFragment : Fragment(R.layout.roadmap_section_fragment) {
                 makeSnackbar(requireContext(), binding.snackbarSpace, getString(R.string.snackbar_text_level_up)).show()
             }
             else {
-                makeSnackbar(requireContext(), binding.snackbarSpace, getString(R.string.snackbar_text_level_down)).show()
+                makeSnackbar(
+                    requireContext(), binding.snackbarSpace, getString(R.string.snackbar_text_level_down)).show()
             }
 
             viewModel.clearLevel()

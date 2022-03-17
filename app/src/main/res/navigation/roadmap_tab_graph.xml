@@ -44,10 +44,10 @@
         <action
             android:id="@+id/navigate_node_to_detail_memo"
             app:destination="@id/detail_memo_graph"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" >
+            app:enterAnim="@anim/nav_slide_enter"
+            app:exitAnim="@anim/nav_slide_exit"
+            app:popEnterAnim="@anim/nav_slide_pop_enter"
+            app:popExitAnim="@anim/nav_slide_pop_exit">
 
             <argument
                 android:name="nodeId"
@@ -61,13 +61,22 @@
                 android:name="memo"
                 app:argType="string" />
         </action>
+
+        <action
+            android:id="@+id/navigate_delete_node_dialog"
+            app:destination="@id/delete_node_dialog">
+
+            <argument
+                android:name="node"
+                app:argType="jp.gr.java.conf.tmproject.dojoandroid2022.domain.model.Node" />
+        </action>
     </fragment>
 
     <fragment
         android:id="@+id/search"
         android:name="jp.gr.java.conf.tmproject.dojoandroid2022.presentation.ui.search.SearchFragment"
         android:label=""
-        tools:layout="@layout/search_fragment" >
+        tools:layout="@layout/search_fragment">
 
         <action
             android:id="@+id/navigate_search_to_web_view"
@@ -78,10 +87,20 @@
         android:id="@+id/web_view"
         android:name="jp.gr.java.conf.tmproject.dojoandroid2022.presentation.ui.web.WebViewFragment"
         android:label=""
-        tools:layout="@layout/web_view_fragment" >
+        tools:layout="@layout/web_view_fragment">
 
         <argument
             android:name="url"
             app:argType="string" />
     </fragment>
+
+    <dialog
+        android:id="@+id/delete_node_dialog"
+        android:name="jp.gr.java.conf.tmproject.dojoandroid2022.presentation.ui.dialog.warning.DeleteNodeDialogFragment"
+        android:label="">
+
+        <argument
+            android:name="node"
+            app:argType="jp.gr.java.conf.tmproject.dojoandroid2022.domain.model.Node" />
+    </dialog>
 </navigation>

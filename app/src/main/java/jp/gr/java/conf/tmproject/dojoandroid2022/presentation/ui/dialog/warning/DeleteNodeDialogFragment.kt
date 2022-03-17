@@ -35,6 +35,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.navArgs
 import dagger.hilt.android.AndroidEntryPoint
 import jp.gr.java.conf.tmproject.dojoandroid2022.R
 import jp.gr.java.conf.tmproject.dojoandroid2022.domain.model.Node
@@ -44,6 +45,7 @@ import jp.gr.java.conf.tmproject.dojoandroid2022.presentation.util.extension.col
 class DeleteNodeDialogFragment : DialogFragment() {
 
     private val viewModelNode: DeleteNodeDialogViewModel by viewModels()
+    private val navArgs by navArgs<DeleteNodeDialogFragmentArgs>()
     private var node: Node? = null
 
     override fun onCreateView(
@@ -51,7 +53,7 @@ class DeleteNodeDialogFragment : DialogFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?): View {
 
-        node = arguments!!.getParcelable("node")
+        node = navArgs.node
         observeSaveSuccess()
 
         return ComposeView(requireContext()).apply {
