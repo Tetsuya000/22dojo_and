@@ -5,13 +5,17 @@
     android:id="@+id/bottom_nav_graph"
     app:startDestination="@id/home">
 
-<!--    <include app:graph="@navigation/memo_tab_graph" />-->
-
     <fragment
         android:id="@+id/home"
         android:name="jp.gr.java.conf.tmproject.dojoandroid2022.presentation.ui.home.HomeFragment"
         android:label=""
         tools:layout="@layout/home_fragment" />
+
+    <fragment
+        android:id="@+id/search_tab"
+        android:name="jp.gr.java.conf.tmproject.dojoandroid2022.presentation.ui.search.tab.SearchTabFragment"
+        android:label=""
+        tools:layout="@layout/search_tab_fragment" />
 
     <fragment
         android:id="@+id/roadmap_tab"

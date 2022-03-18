@@ -8,8 +8,8 @@ import javax.inject.Inject
 class RoadmapRemoteDataSourceImpl @Inject constructor(
     private val roadmapApiService: RoadmapApiService) : RoadmapRemoteDataSource {
 
-    override suspend fun getRoadmap(): Roadmap {
-        val response = roadmapApiService.getRoadmap()
+    override suspend fun fetchRoadmap(): Roadmap {
+        val response = roadmapApiService.fetchRoadmap()
         if (response.isSuccessful) {
             return response.body()!!
         }

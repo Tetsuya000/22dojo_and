@@ -40,21 +40,7 @@ class RoadmapPathFragment : Fragment(R.layout.roadmap_path_fragment) {
 
     private fun setUpToolbar() {
         val toolbar = binding.includeToolbar.toolbar
-        toolbar.inflateMenu(R.menu.search_menu)
-        setUpMenuItemClickListener(toolbar)
         toolbar.setupWithNavController(findNavController())
-    }
-
-    private fun setUpMenuItemClickListener(toolbar: MaterialToolbar) = toolbar.setOnMenuItemClickListener {
-        when (it.itemId) {
-            R.id.item_search -> {
-                val action = RoadmapPathFragmentDirections.navigatePathToSearch()
-                findNavController().navigate(action)
-                true
-            }
-
-            else             -> false
-        }
     }
 
     private fun setUpRecyclerView() {
@@ -72,13 +58,13 @@ class RoadmapPathFragment : Fragment(R.layout.roadmap_path_fragment) {
     }
 
     private fun observe() {
-        fetchRoadmap()
+        observeFetchRoadmap()
         observeLoadState()
     }
 
-    private fun fetchRoadmap() = viewModel.roadMap.collectWhenStarted(viewLifecycleOwner) { roadmap ->
+    private fun observeFetchRoadmap() = viewModel.roadMap.collectWhenStarted(viewLifecycleOwner) { roadmap ->
         if (roadmap != null) {
-            roadmapPathController.setData(roadmap.paths)
+            roadmapPathController.setData(roadmap.paths, listOf())
         }
     }
 

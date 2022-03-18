@@ -43,6 +43,7 @@
         <entry key="app/src/main/res/layout/roadmap_section_fragment.xml" value="0.15070921985815602" />
         <entry key="app/src/main/res/layout/roadmap_tab_fragment.xml" value="0.15070921985815602" />
         <entry key="app/src/main/res/layout/search_fragment.xml" value="0.15070921985815602" />
+        <entry key="app/src/main/res/layout/search_tab_fragment.xml" value="0.15070921985815602" />
         <entry key="app/src/main/res/layout/setting_fragment.xml" value="0.335" />
         <entry key="app/src/main/res/layout/skill_fragment.xml" value="0.15070921985815602" />
         <entry key="app/src/main/res/layout/update_level_dialog_fragment.xml" value="0.25" />
@@ -50,6 +51,7 @@
         <entry key="app/src/main/res/layout/web_page_fragment.xml" value="0.15070921985815602" />
         <entry key="app/src/main/res/layout/web_view_fragment.xml" value="0.15070921985815602" />
         <entry key="app/src/main/res/menu/bottom_menu.xml" value="0.1" />
+        <entry key="app/src/main/res/menu/edit_menu.xml" value="0.1787037037037037" />
         <entry key="app/src/main/res/menu/search_menu.xml" value="0.22314814814814815" />
         <entry key="app/src/main/res/menu/toolbar_menu.xml" value="0.22314814814814815" />
       </map>
