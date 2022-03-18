@@ -16,6 +16,15 @@
         <item name="boxBackgroundMode">none</item>
     </style>
 
+    <!-- BottomNavigationView -->
+    <style name="BottomNavigationView" parent="@style/TextAppearance.AppCompat.Caption">
+        <item name="android:textSize">9sp</item>
+    </style>
+
+    <style name="BottomNavigationView.Active" parent="@style/TextAppearance.AppCompat.Caption">
+        <item name="android:textSize">11sp</item>
+    </style>
+
     <!-- カーソルの色 -->
     <style name="ThemeOverlay.AppTheme.TextInputEditText.Outlined" parent="">
         <item name="colorControlActivated">@color/white</item>
