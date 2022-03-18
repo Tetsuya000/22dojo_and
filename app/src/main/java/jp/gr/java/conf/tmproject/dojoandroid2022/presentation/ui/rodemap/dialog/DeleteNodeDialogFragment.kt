@@ -1,4 +1,4 @@
-package jp.gr.java.conf.tmproject.dojoandroid2022.presentation.ui.dialog.warning
+package jp.gr.java.conf.tmproject.dojoandroid2022.presentation.ui.rodemap.dialog
 
 import android.app.Dialog
 import android.os.Bundle

@@ -7,7 +7,8 @@ import retrofit2.Response
 import javax.inject.Inject
 
 class GithubRepositoryImpl @Inject constructor(
-    private val githubRemoteDataSource: GithubRemoteDataSource) : GithubRepository {
+    private val githubRemoteDataSource: GithubRemoteDataSource
+) : GithubRepository {
 
     override suspend fun searchRepository(query: String): Response<SearchResponse> =
         githubRemoteDataSource.searchRepository(query)

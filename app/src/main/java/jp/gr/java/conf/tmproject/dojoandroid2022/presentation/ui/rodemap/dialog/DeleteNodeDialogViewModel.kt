@@ -1,4 +1,4 @@
-package jp.gr.java.conf.tmproject.dojoandroid2022.presentation.ui.dialog.warning
+package jp.gr.java.conf.tmproject.dojoandroid2022.presentation.ui.rodemap.dialog
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -14,7 +14,8 @@ import javax.inject.Inject
 @HiltViewModel
 class DeleteNodeDialogViewModel @Inject constructor(
     private val roadmapRepository: RoadmapRepository,
-    private val memoRepository: MemoRepository) : ViewModel() {
+    private val memoRepository: MemoRepository
+) : ViewModel() {
 
     private val _isDeleteSuccess: MutableSharedFlow<Boolean> = MutableSharedFlow()
     val isDeleteSuccess: SharedFlow<Boolean> = _isDeleteSuccess

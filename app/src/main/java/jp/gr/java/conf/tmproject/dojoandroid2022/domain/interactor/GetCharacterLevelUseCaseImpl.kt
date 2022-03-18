@@ -6,7 +6,8 @@ import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 class GetCharacterLevelUseCaseImpl @Inject constructor(
-    private val roadmapRepository: RoadmapRepository) : GetCharacterLevelUseCase {
+    private val roadmapRepository: RoadmapRepository
+) : GetCharacterLevelUseCase {
 
     override fun getCharacterLevel(): Flow<Int> {
         val specificationNumber = 2

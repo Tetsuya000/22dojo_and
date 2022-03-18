@@ -22,7 +22,8 @@ class DetailMemoFragment : Fragment(R.layout.detail_memo_fragment) {
 
     override fun onViewCreated(
         view: View,
-        savedInstanceState: Bundle?) {
+        savedInstanceState: Bundle?
+    ) {
         super.onViewCreated(view, savedInstanceState)
         _binding = DetailMemoFragmentBinding.bind(view)
         binding.also {
@@ -47,13 +48,14 @@ class DetailMemoFragment : Fragment(R.layout.detail_memo_fragment) {
                 showEditMemoDialog()
                 true
             }
-            else                -> false
+            else -> false
         }
     }
 
     private fun showEditMemoDialog() {
         val action = DetailMemoFragmentDirections.navigateDetailMemoToEditMemoDialog(
-            navArgs.nodeId, navArgs.nodeTitle, viewModel.memo.value)
+            navArgs.nodeId, navArgs.nodeTitle, viewModel.memo.value
+        )
         findNavController().navigate(action)
     }
 

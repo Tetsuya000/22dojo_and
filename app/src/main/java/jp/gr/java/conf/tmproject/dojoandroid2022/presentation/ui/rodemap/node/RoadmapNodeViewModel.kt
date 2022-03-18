@@ -1,4 +1,4 @@
-package jp.gr.java.conf.tmproject.dojoandroid2022.presentation.ui.rodemap.section
+package jp.gr.java.conf.tmproject.dojoandroid2022.presentation.ui.rodemap.node
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -17,10 +17,11 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class RoadmapSectionViewModel @Inject constructor(
+class RoadmapNodeViewModel @Inject constructor(
     private val roadmapRepository: RoadmapRepository,
     private val memoRepository: MemoRepository,
-    private val getCharacterLevelUseCase: GetCharacterLevelUseCase) : ViewModel() {
+    private val getCharacterLevelUseCase: GetCharacterLevelUseCase
+) : ViewModel() {
 
     private val _masterNodeList: MutableStateFlow<List<Node>> = MutableStateFlow(emptyList())
     val masterNodeList: StateFlow<List<Node>> = _masterNodeList
@@ -48,7 +49,8 @@ class RoadmapSectionViewModel @Inject constructor(
     }
 
     fun saveNode(
-        node: Node?) = viewModelScope.launch {
+        node: Node?
+    ) = viewModelScope.launch {
         if (node == null) return@launch
 
         runCatching {

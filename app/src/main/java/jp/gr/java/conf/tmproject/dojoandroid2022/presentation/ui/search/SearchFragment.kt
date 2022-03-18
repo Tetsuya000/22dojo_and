@@ -29,7 +29,8 @@ class SearchFragment : Fragment(R.layout.search_fragment) {
 
     override fun onViewCreated(
         view: View,
-        savedInstanceState: Bundle?) {
+        savedInstanceState: Bundle?
+    ) {
         super.onViewCreated(view, savedInstanceState)
         _binding = SearchFragmentBinding.bind(view)
 
@@ -95,8 +96,8 @@ class SearchFragment : Fragment(R.layout.search_fragment) {
         when (state) {
             is LoadState.Nothing -> Unit
             is LoadState.Loading -> binding.progressBar.visible()
-            is LoadState.Done    -> binding.progressBar.gone()
-            is LoadState.Error   -> binding.progressBar.gone()
+            is LoadState.Done -> binding.progressBar.gone()
+            is LoadState.Error -> binding.progressBar.gone()
         }
     }
 

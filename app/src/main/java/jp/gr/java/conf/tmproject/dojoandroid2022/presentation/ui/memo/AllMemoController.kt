@@ -6,18 +6,22 @@ import jp.gr.java.conf.tmproject.dojoandroid2022.domain.model.Memo
 import jp.gr.java.conf.tmproject.dojoandroid2022.itemMemo
 
 class AllMemoController(
-    private val selectListener: SelectListener) : TypedEpoxyController<List<Memo>>() {
+    private val selectListener: SelectListener
+) : TypedEpoxyController<List<Memo>>() {
 
     override fun buildModels(
-        memoList: List<Memo>) {
+        memoList: List<Memo>
+    ) {
 
         memoList.forEach { memo ->
             itemMemo {
                 id(memo.nodeId)
                 title(memo.title)
-                onClickListener(View.OnClickListener {
-                    this@AllMemoController.selectListener.onSelected(memo)
-                })
+                onClickListener(
+                    View.OnClickListener {
+                        this@AllMemoController.selectListener.onSelected(memo)
+                    }
+                )
             }
         }
     }

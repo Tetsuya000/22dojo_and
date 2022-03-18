@@ -9,7 +9,8 @@ data class MemoEntity(
     @PrimaryKey
     val nodeId: Int,
     val title: String,
-    val memo: String) {
+    val memo: String
+) {
 
     fun toDomain(): Memo = Memo(nodeId = nodeId, title = title, memo = memo)
 }

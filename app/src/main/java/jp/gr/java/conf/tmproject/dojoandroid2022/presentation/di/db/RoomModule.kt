@@ -21,9 +21,11 @@ object RoomModule {
     @Singleton
     fun provideNodeDatabase(
         @ApplicationContext
-        context: Context): NodeDatabase = synchronized(this) {
+        context: Context
+    ): NodeDatabase = synchronized(this) {
         Room.databaseBuilder(
-            context.applicationContext, NodeDatabase::class.java, "node.db").build()
+            context.applicationContext, NodeDatabase::class.java, "node.db"
+        ).build()
     }
 
     @Provides
@@ -34,9 +36,11 @@ object RoomModule {
     @Singleton
     fun provideMemoDatabase(
         @ApplicationContext
-        context: Context): MemoDatabase = synchronized(this) {
+        context: Context
+    ): MemoDatabase = synchronized(this) {
         Room.databaseBuilder(
-            context.applicationContext, MemoDatabase::class.java, "memo.db").build()
+            context.applicationContext, MemoDatabase::class.java, "memo.db"
+        ).build()
     }
 
     @Provides

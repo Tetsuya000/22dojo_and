@@ -15,7 +15,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SearchViewModel @Inject constructor(
-    private val githubRepository: GithubRepository) : ViewModel() {
+    private val githubRepository: GithubRepository
+) : ViewModel() {
 
     private val _loadState: MutableStateFlow<LoadState> = MutableStateFlow(LoadState.Nothing)
     val loadState: MutableStateFlow<LoadState> = _loadState

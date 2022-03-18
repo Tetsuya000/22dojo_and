@@ -6,7 +6,8 @@ import jp.gr.java.conf.tmproject.dojoandroid2022.data.source.remote.github.api.S
 import jp.gr.java.conf.tmproject.dojoandroid2022.itemSearchResponse
 
 class SearchResponseController(
-    private val selectListener: SelectListener) : TypedEpoxyController<List<SearchItem>>() {
+    private val selectListener: SelectListener
+) : TypedEpoxyController<List<SearchItem>>() {
 
     override fun buildModels(responseList: List<SearchItem>) {
 
@@ -14,9 +15,11 @@ class SearchResponseController(
             itemSearchResponse {
                 id(response.id)
                 title(response.fullName)
-                onClickListener(View.OnClickListener {
-                    this@SearchResponseController.selectListener.onSelected(response.url)
-                })
+                onClickListener(
+                    View.OnClickListener {
+                        this@SearchResponseController.selectListener.onSelected(response.url)
+                    }
+                )
             }
         }
     }

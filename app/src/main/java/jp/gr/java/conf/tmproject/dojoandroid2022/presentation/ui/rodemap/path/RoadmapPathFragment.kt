@@ -7,7 +7,6 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.android.material.appbar.MaterialToolbar
 import dagger.hilt.android.AndroidEntryPoint
 import jp.gr.java.conf.tmproject.dojoandroid2022.R
 import jp.gr.java.conf.tmproject.dojoandroid2022.databinding.RoadmapPathFragmentBinding
@@ -28,7 +27,8 @@ class RoadmapPathFragment : Fragment(R.layout.roadmap_path_fragment) {
 
     override fun onViewCreated(
         view: View,
-        savedInstanceState: Bundle?) {
+        savedInstanceState: Bundle?
+    ) {
         super.onViewCreated(view, savedInstanceState)
 
         _binding = RoadmapPathFragmentBinding.bind(view)
@@ -63,17 +63,16 @@ class RoadmapPathFragment : Fragment(R.layout.roadmap_path_fragment) {
     }
 
     private fun observeFetchRoadmap() = viewModel.roadMap.collectWhenStarted(viewLifecycleOwner) { roadmap ->
-        if (roadmap != null) {
-            roadmapPathController.setData(roadmap.paths, listOf())
-        }
+        if (roadmap == null) return@collectWhenStarted
+        roadmapPathController.setData(roadmap.paths, listOf())
     }
 
     private fun observeLoadState() = viewModel.loadState.collectWhenStarted(viewLifecycleOwner) { state ->
         when (state) {
             is LoadState.Nothing -> Unit
             is LoadState.Loading -> binding.progressBar.visible()
-            is LoadState.Done    -> binding.progressBar.gone()
-            is LoadState.Error   -> {
+            is LoadState.Done -> binding.progressBar.gone()
+            is LoadState.Error -> {
                 binding.progressBar.gone()
                 makeSnackbarError(requireContext(), binding.root, "エラー")
             }

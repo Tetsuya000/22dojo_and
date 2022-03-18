@@ -33,8 +33,8 @@
 
     <fragment
         android:id="@+id/section"
-        android:name="jp.gr.java.conf.tmproject.dojoandroid2022.presentation.ui.rodemap.section.RoadmapSectionFragment"
-        android:label="Section"
+        android:name="jp.gr.java.conf.tmproject.dojoandroid2022.presentation.ui.rodemap.node.RoadmapNodeFragment"
+        android:label="Node"
         tools:layout="@layout/roadmap_section_fragment">
 
         <argument
@@ -74,7 +74,7 @@
 
     <dialog
         android:id="@+id/delete_node_dialog"
-        android:name="jp.gr.java.conf.tmproject.dojoandroid2022.presentation.ui.dialog.warning.DeleteNodeDialogFragment"
+        android:name="jp.gr.java.conf.tmproject.dojoandroid2022.presentation.ui.rodemap.dialog.DeleteNodeDialogFragment"
         android:label="">
 
         <argument

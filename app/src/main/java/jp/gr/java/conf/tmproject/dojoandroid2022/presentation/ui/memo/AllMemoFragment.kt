@@ -23,7 +23,8 @@ class AllMemoFragment : Fragment(R.layout.all_memo_fragment) {
 
     override fun onViewCreated(
         view: View,
-        savedInstanceState: Bundle?) {
+        savedInstanceState: Bundle?
+    ) {
         super.onViewCreated(view, savedInstanceState)
 
         _binding = AllMemoFragmentBinding.bind(view)

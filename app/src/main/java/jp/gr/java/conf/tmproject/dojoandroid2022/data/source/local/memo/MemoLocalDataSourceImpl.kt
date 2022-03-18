@@ -7,7 +7,8 @@ import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 class MemoLocalDataSourceImpl @Inject constructor(
-    private val memoDao: MemoDao) : MemoLocalDataSource {
+    private val memoDao: MemoDao
+) : MemoLocalDataSource {
 
     override suspend fun saveMemo(memo: Memo) = memoDao.insert(memo.toEntity())
 

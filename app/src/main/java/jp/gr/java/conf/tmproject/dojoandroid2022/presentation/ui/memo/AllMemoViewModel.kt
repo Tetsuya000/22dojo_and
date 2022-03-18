@@ -13,7 +13,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class AllMemoViewModel @Inject constructor(
-    private val memoRepository: MemoRepository) : ViewModel() {
+    private val memoRepository: MemoRepository
+) : ViewModel() {
 
     private val _memoList: MutableStateFlow<List<Memo>> = MutableStateFlow(emptyList())
     val memoList: StateFlow<List<Memo>> = _memoList

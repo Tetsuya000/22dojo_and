@@ -13,10 +13,10 @@ class RoadmapRepositoryImpl @Inject constructor(
     private val roadmapLocalDataSource: RoadmapLocalDataSource,
     private val roadmapRemoteDataSource: RoadmapRemoteDataSource) : RoadmapRepository {
 
-    private var roadmapCash:Roadmap? = null
+    private var roadmapCash: Roadmap? = null
 
     override suspend fun getRoadmap(): Roadmap {
-        if(roadmapCash == null) {
+        if (roadmapCash == null) {
             roadmapCash = roadmapRemoteDataSource.fetchRoadmap()
         }
         return roadmapCash!!

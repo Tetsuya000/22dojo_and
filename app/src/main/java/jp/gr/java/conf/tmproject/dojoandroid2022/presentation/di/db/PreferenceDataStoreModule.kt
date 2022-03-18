@@ -20,7 +20,8 @@ object PreferenceDataStoreModule {
     @Provides
     fun providePreferenceDataStore(
         @ApplicationContext
-        context: Context): DataStore<Preferences> = PreferenceDataStoreFactory.create(produceFile = {
+        context: Context
+    ): DataStore<Preferences> = PreferenceDataStoreFactory.create(produceFile = {
         context.preferencesDataStoreFile("settings")
     })
 }

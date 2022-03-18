@@ -1,4 +1,4 @@
-package jp.gr.java.conf.tmproject.dojoandroid2022.presentation.ui.rodemap.section
+package jp.gr.java.conf.tmproject.dojoandroid2022.presentation.ui.rodemap.node
 
 import android.os.Bundle
 import android.view.View
@@ -17,18 +17,17 @@ import jp.gr.java.conf.tmproject.dojoandroid2022.domain.model.Node
 import jp.gr.java.conf.tmproject.dojoandroid2022.presentation.util.extension.collectWhenStarted
 
 @AndroidEntryPoint
-class RoadmapSectionFragment : Fragment(R.layout.roadmap_section_fragment) {
+class RoadmapNodeFragment : Fragment(R.layout.roadmap_section_fragment) {
 
     private var _binding: RoadmapSectionFragmentBinding? = null
     private val binding get() = _binding!!
-    private val viewModel: RoadmapSectionViewModel by hiltNavGraphViewModels(R.id.section)
-    private val navArgs by navArgs<RoadmapSectionFragmentArgs>()
-    private lateinit var roadmapSectionController: RoadmapSectionController
+    private val viewModel: RoadmapNodeViewModel by hiltNavGraphViewModels(R.id.section)
+    private val navArgs by navArgs<RoadmapNodeFragmentArgs>()
+    private lateinit var roadmapNodeController: RoadmapNodeController
 
     override fun onViewCreated(
         view: View,
-        savedInstanceState: Bundle?
-    ) {
+        savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         _binding = RoadmapSectionFragmentBinding.bind(view)
@@ -43,19 +42,19 @@ class RoadmapSectionFragment : Fragment(R.layout.roadmap_section_fragment) {
     }
 
     private fun setUpRecyclerView() {
-        roadmapSectionController = RoadmapSectionController(object : RoadmapSectionController.SelectListener {
+        roadmapNodeController = RoadmapNodeController(object : RoadmapNodeController.SelectListener {
             override fun onClick(node: Node) {
                 saveNodeOrNavigateDetailMemo(node)
             }
 
             override fun onLongClick(selectedNode: Node) {
-                val action = RoadmapSectionFragmentDirections.navigateDeleteNodeDialog(selectedNode)
+                val action = RoadmapNodeFragmentDirections.navigateDeleteNodeDialog(selectedNode)
                 findNavController().navigate(action)
             }
         })
 
         binding.recyclerView.apply {
-            this.adapter = roadmapSectionController.adapter
+            this.adapter = roadmapNodeController.adapter
             this.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         }
     }
@@ -63,10 +62,10 @@ class RoadmapSectionFragment : Fragment(R.layout.roadmap_section_fragment) {
     private fun saveNodeOrNavigateDetailMemo(selectedNode: Node) {
         val isMaster = viewModel.isMaster(selectedNode.id)
         if (isMaster) {
-            val action =
-                RoadmapSectionFragmentDirections.navigateNodeToDetailMemo(selectedNode.id, selectedNode.title, "")
+            val action = RoadmapNodeFragmentDirections.navigateNodeToDetailMemo(selectedNode.id, selectedNode.title, "")
             findNavController().navigate(action)
-        } else {
+        }
+        else {
             viewModel.saveNode(selectedNode)
         }
     }
@@ -79,7 +78,7 @@ class RoadmapSectionFragment : Fragment(R.layout.roadmap_section_fragment) {
     private fun observeMasterNode() {
         val sections = navArgs.sections.toList()
         viewModel.masterNodeList.collectWhenStarted(viewLifecycleOwner) { masterNodeList ->
-            roadmapSectionController.setData(sections, masterNodeList)
+            roadmapNodeController.setData(sections, masterNodeList)
         }
     }
 
@@ -92,7 +91,8 @@ class RoadmapSectionFragment : Fragment(R.layout.roadmap_section_fragment) {
                     .setAnimationMode(BaseTransientBottomBar.ANIMATION_MODE_SLIDE)
                     .setTextColor(requireContext().getColor(R.color.snackbar_text_level_change))
                     .setBackgroundTint(requireContext().getColor(R.color.snackbar_background_level_up)).show()
-            } else {
+            }
+            else {
                 Snackbar
                     .make(binding.snackbarSpace, getString(R.string.snackbar_text_level_down), Snackbar.LENGTH_SHORT)
                     .setAnimationMode(BaseTransientBottomBar.ANIMATION_MODE_SLIDE)

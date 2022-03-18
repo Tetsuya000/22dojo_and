@@ -42,6 +42,6 @@
 
     <dialog
         android:id="@+id/edit_character_dialog"
-        android:name="jp.gr.java.conf.tmproject.dojoandroid2022.presentation.ui.dialog.edit.EditCharacterDialogFragment"
+        android:name="jp.gr.java.conf.tmproject.dojoandroid2022.presentation.ui.setting.dialog.EditCharacterDialogFragment"
         android:label="" />
 </navigation>
