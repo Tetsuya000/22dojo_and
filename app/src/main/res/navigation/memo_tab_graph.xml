@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/memo_tab_graph"
+    app:startDestination="@id/memo">
+
+    <include app:graph="@navigation/detail_memo_graph" />
+
+    <fragment
+        android:id="@+id/memo"
+        android:name="jp.gr.java.conf.tmproject.dojoandroid2022.presentation.ui.memo.AllMemoFragment"
+        android:label=""
+        tools:layout="@layout/all_memo_fragment">
+
+        <action
+            android:id="@+id/navigate_allMemo_to_detail_memo"
+            app:destination="@id/detail_memo_graph"
+            app:enterAnim="@anim/nav_slide_enter"
+            app:exitAnim="@anim/nav_slide_exit"
+            app:popEnterAnim="@anim/nav_slide_pop_enter"
+            app:popExitAnim="@anim/nav_slide_pop_exit">
+
+            <argument
+                android:name="nodeId"
+                app:argType="integer" />
+
+            <argument
+                android:name="nodeTitle"
+                app:argType="string" />
+
+            <argument
+                android:name="memo"
+                app:argType="string" />
+        </action>
+    </fragment>
+</navigation>

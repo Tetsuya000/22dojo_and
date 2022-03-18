@@ -8,11 +8,12 @@
     <color name="black">#FF000000</color>
     <color name="white">#eeeeee</color>
 
-    <!-- RoadmapItem -->
+    <!-- Roadmap -->
     <color name="section_header">#FF000000</color>
-    <color name="roadmap_text">#FF000000</color>
-    <color name="node_is_master">#26a69a</color>
-    <color name="node_is_not_master">#eeeeee</color>
+    <color name="roadmap_text_is_master">#eeeeee</color>
+    <color name="roadmap_text_is_not_master">#424242</color>
+    <color name="roadmap_background_is_master">#26a69a</color>
+    <color name="roadmap_background_is_not_master">#eeeeee</color>
 
     <!-- Border -->
     <color name="border">#FF000000</color>
@@ -25,6 +26,9 @@
     <color name="snackbar_background">#bdbdbd</color>
     <color name="snackbar_error_text">#eeeeee</color>
     <color name="snackbar_error_background">#e91e63</color>
+    <color name="snackbar_text_level_change">#eeeeee</color>
+    <color name="snackbar_background_level_up">#0288d1</color>
+    <color name="snackbar_background_level_down">#e91e63</color>
 
     <color name="text">#eeeeee</color>
     <color name="edit_text">#FF000000</color>

@@ -30,6 +30,14 @@ class HomeViewModel @Inject constructor(
         }
     }
 
+    private fun ex() {
+        viewModelScope.launch {
+            characterRepository.loadCharacterName().collect { name ->
+                characterName.value = name
+            }
+        }
+    }
+
     init {
         setCharacterLevel()
         loadCharacterName()

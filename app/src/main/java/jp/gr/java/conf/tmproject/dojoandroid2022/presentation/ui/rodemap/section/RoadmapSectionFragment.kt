@@ -8,12 +8,13 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.snackbar.BaseTransientBottomBar
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import jp.gr.java.conf.tmproject.dojoandroid2022.R
 import jp.gr.java.conf.tmproject.dojoandroid2022.databinding.RoadmapSectionFragmentBinding
 import jp.gr.java.conf.tmproject.dojoandroid2022.domain.model.Node
 import jp.gr.java.conf.tmproject.dojoandroid2022.presentation.util.extension.collectWhenStarted
-import jp.gr.java.conf.tmproject.dojoandroid2022.presentation.util.makeSnackbar
 
 @AndroidEntryPoint
 class RoadmapSectionFragment : Fragment(R.layout.roadmap_section_fragment) {
@@ -26,7 +27,8 @@ class RoadmapSectionFragment : Fragment(R.layout.roadmap_section_fragment) {
 
     override fun onViewCreated(
         view: View,
-        savedInstanceState: Bundle?) {
+        savedInstanceState: Bundle?
+    ) {
         super.onViewCreated(view, savedInstanceState)
 
         _binding = RoadmapSectionFragmentBinding.bind(view)
@@ -64,8 +66,7 @@ class RoadmapSectionFragment : Fragment(R.layout.roadmap_section_fragment) {
             val action =
                 RoadmapSectionFragmentDirections.navigateNodeToDetailMemo(selectedNode.id, selectedNode.title, "")
             findNavController().navigate(action)
-        }
-        else {
+        } else {
             viewModel.saveNode(selectedNode)
         }
     }
@@ -87,13 +88,17 @@ class RoadmapSectionFragment : Fragment(R.layout.roadmap_section_fragment) {
             if (isLevelUp == null) return@collectWhenStarted
 
             if (isLevelUp) {
-                makeSnackbar(requireContext(), binding.snackbarSpace, getString(R.string.snackbar_text_level_up)).show()
+                Snackbar.make(binding.snackbarSpace, getString(R.string.snackbar_text_level_up), Snackbar.LENGTH_SHORT)
+                    .setAnimationMode(BaseTransientBottomBar.ANIMATION_MODE_SLIDE)
+                    .setTextColor(requireContext().getColor(R.color.snackbar_text_level_change))
+                    .setBackgroundTint(requireContext().getColor(R.color.snackbar_background_level_up)).show()
+            } else {
+                Snackbar
+                    .make(binding.snackbarSpace, getString(R.string.snackbar_text_level_down), Snackbar.LENGTH_SHORT)
+                    .setAnimationMode(BaseTransientBottomBar.ANIMATION_MODE_SLIDE)
+                    .setTextColor(requireContext().getColor(R.color.snackbar_text_level_change))
+                    .setBackgroundTint(requireContext().getColor(R.color.snackbar_background_level_down)).show()
             }
-            else {
-                makeSnackbar(
-                    requireContext(), binding.snackbarSpace, getString(R.string.snackbar_text_level_down)).show()
-            }
-
             viewModel.clearLevel()
         }
     }

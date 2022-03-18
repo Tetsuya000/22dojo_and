@@ -5,7 +5,7 @@
     android:id="@+id/bottom_nav_graph"
     app:startDestination="@id/home">
 
-    <include app:graph="@navigation/detail_memo_graph" />
+<!--    <include app:graph="@navigation/memo_tab_graph" />-->
 
     <fragment
         android:id="@+id/home"
@@ -20,32 +20,10 @@
         tools:layout="@layout/roadmap_tab_fragment" />
 
     <fragment
-        android:id="@+id/memo"
-        android:name="jp.gr.java.conf.tmproject.dojoandroid2022.presentation.ui.memo.AllMemoFragment"
+        android:id="@+id/memo_tab"
+        android:name="jp.gr.java.conf.tmproject.dojoandroid2022.presentation.ui.memo.tab.MemoTabFragment"
         android:label=""
-        tools:layout="@layout/roadmap_tab_fragment">
-
-        <action
-            android:id="@+id/navigate_allMemo_to_detail_memo"
-            app:destination="@id/detail_memo_graph"
-            app:enterAnim="@anim/nav_slide_enter"
-            app:exitAnim="@anim/nav_slide_exit"
-            app:popEnterAnim="@anim/nav_slide_pop_enter"
-            app:popExitAnim="@anim/nav_slide_pop_exit">
-
-            <argument
-                android:name="nodeId"
-                app:argType="integer" />
-
-            <argument
-                android:name="nodeTitle"
-                app:argType="string" />
-
-            <argument
-                android:name="memo"
-                app:argType="string" />
-        </action>
-    </fragment>
+        tools:layout="@layout/memo_tab_fragment" />
 
     <fragment
         android:id="@+id/setting"

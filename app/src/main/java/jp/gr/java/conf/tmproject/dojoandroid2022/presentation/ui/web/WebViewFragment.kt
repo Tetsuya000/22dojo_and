@@ -1,5 +1,6 @@
 package jp.gr.java.conf.tmproject.dojoandroid2022.presentation.ui.web
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
 import android.webkit.WebView
@@ -28,7 +29,8 @@ class WebViewFragment : Fragment(R.layout.web_view_fragment) {
 
     override fun onViewCreated(
         view: View,
-        savedInstanceState: Bundle?) {
+        savedInstanceState: Bundle?
+    ) {
         super.onViewCreated(view, savedInstanceState)
 
         _binding = WebViewFragmentBinding.bind(view)
@@ -57,23 +59,25 @@ class WebViewFragment : Fragment(R.layout.web_view_fragment) {
         requireActivity().onBackPressedDispatcher.addCallback(this@WebViewFragment) {
             if (binding.webView.canGoBack()) {
                 binding.webView.goBack()
-            }
-            else {
+            } else {
                 findNavController().popBackStack()
             }
         }
 
+    @SuppressLint("SetJavaScriptEnabled")
     private fun setUpWebView() {
         binding.webView.webViewClient = object : WebViewClient() {
             override fun onPageFinished(
                 view: WebView?,
-                url: String?) {
+                url: String?
+            ) {
 
                 binding.swipeRefresh.isRefreshing = false
                 viewModel.changeLoadState(LoadState.Done)
             }
         }
 
+        binding.webView.settings.javaScriptEnabled = true
         binding.webView.loadUrl(navArgs.url)
     }
 
@@ -81,8 +85,8 @@ class WebViewFragment : Fragment(R.layout.web_view_fragment) {
         when (state) {
             is LoadState.Nothing -> Unit
             is LoadState.Loading -> binding.progressBar.visible()
-            is LoadState.Done    -> binding.progressBar.gone()
-            is LoadState.Error   -> binding.progressBar.gone()
+            is LoadState.Done -> binding.progressBar.gone()
+            is LoadState.Error -> binding.progressBar.gone()
         }
     }
 
