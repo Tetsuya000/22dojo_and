@@ -31,18 +31,18 @@ class DetailMemoFragment : Fragment(R.layout.detail_memo_fragment) {
             it.lifecycleOwner = this
         }
 
-        setUpToolbar()
+        setupToolbar()
         viewModel.loadMemoById(navArgs.nodeId)
     }
 
-    private fun setUpToolbar() {
+    private fun setupToolbar() {
         val toolbar = binding.includeToolbar.toolbar
         toolbar.inflateMenu(R.menu.edit_menu)
         toolbar.setupWithNavController(findNavController())
-        setUpMenuItemClickListener(toolbar)
+        setupMenuItemClickListener(toolbar)
     }
 
-    private fun setUpMenuItemClickListener(toolbar: MaterialToolbar) = toolbar.setOnMenuItemClickListener {
+    private fun setupMenuItemClickListener(toolbar: MaterialToolbar) = toolbar.setOnMenuItemClickListener {
         when (it.itemId) {
             R.id.item_edit_memo -> {
                 showEditMemoDialog()

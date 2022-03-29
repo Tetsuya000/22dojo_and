@@ -33,17 +33,17 @@ class RoadmapPathFragment : Fragment(R.layout.roadmap_path_fragment) {
 
         _binding = RoadmapPathFragmentBinding.bind(view)
 
-        setUpRecyclerView()
-        setUpToolbar()
+        setupRecyclerView()
+        setupToolbar()
         observe()
     }
 
-    private fun setUpToolbar() {
+    private fun setupToolbar() {
         val toolbar = binding.includeToolbar.toolbar
         toolbar.setupWithNavController(findNavController())
     }
 
-    private fun setUpRecyclerView() {
+    private fun setupRecyclerView() {
         roadmapPathController = RoadmapPathController(object : RoadmapPathController.SelectListener {
             override fun onSelected(sections: List<Section>) {
                 val action = RoadmapPathFragmentDirections.navigatePathToSection(sections.toTypedArray())

@@ -9,12 +9,12 @@
 
     <fragment
         android:id="@+id/memo"
-        android:name="jp.gr.java.conf.tmproject.dojoandroid2022.presentation.ui.memo.AllMemoFragment"
+        android:name="jp.gr.java.conf.tmproject.dojoandroid2022.presentation.ui.memo.MemoListFragment"
         android:label=""
-        tools:layout="@layout/all_memo_fragment">
+        tools:layout="@layout/memo_list_fragment">
 
         <action
-            android:id="@+id/navigate_allMemo_to_detail_memo"
+            android:id="@+id/navigate_memo_list_to_detail_memo"
             app:destination="@id/detail_memo_graph"
             app:enterAnim="@anim/nav_slide_enter"
             app:exitAnim="@anim/nav_slide_exit"

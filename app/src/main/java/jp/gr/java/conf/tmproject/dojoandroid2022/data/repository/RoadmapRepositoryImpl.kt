@@ -11,15 +11,15 @@ import javax.inject.Inject
 
 class RoadmapRepositoryImpl @Inject constructor(
     private val roadmapLocalDataSource: RoadmapLocalDataSource,
-    private val roadmapRemoteDataSource: RoadmapRemoteDataSource) : RoadmapRepository {
+    private val roadmapRemoteDataSource: RoadmapRemoteDataSource
+) : RoadmapRepository {
 
     private var roadmapCash: Roadmap? = null
 
     override suspend fun getRoadmap(): Roadmap {
-        if (roadmapCash == null) {
-            roadmapCash = roadmapRemoteDataSource.fetchRoadmap()
-        }
-        return roadmapCash!!
+        // roadmapを取得するApiが使用できなくなったため、ローカルから取得する
+        return roadmapLocalDataSource.getRoadmap()
+//      return roadmapCash ?: roadmapRemoteDataSource.fetchRoadmap()
     }
 
     override suspend fun saveNode(node: Node) = roadmapLocalDataSource.saveNode(node)

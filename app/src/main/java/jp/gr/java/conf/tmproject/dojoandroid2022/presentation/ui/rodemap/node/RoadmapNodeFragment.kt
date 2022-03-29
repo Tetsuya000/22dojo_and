@@ -27,21 +27,22 @@ class RoadmapNodeFragment : Fragment(R.layout.roadmap_section_fragment) {
 
     override fun onViewCreated(
         view: View,
-        savedInstanceState: Bundle?) {
+        savedInstanceState: Bundle?
+    ) {
         super.onViewCreated(view, savedInstanceState)
 
         _binding = RoadmapSectionFragmentBinding.bind(view)
-        setUpRecyclerView()
-        setUpToolbar()
+        setupRecyclerView()
+        setupToolbar()
         observe()
     }
 
-    private fun setUpToolbar() {
+    private fun setupToolbar() {
         val toolbar = binding.includeToolbar.toolbar
         toolbar.setupWithNavController(findNavController())
     }
 
-    private fun setUpRecyclerView() {
+    private fun setupRecyclerView() {
         roadmapNodeController = RoadmapNodeController(object : RoadmapNodeController.SelectListener {
             override fun onClick(node: Node) {
                 saveNodeOrNavigateDetailMemo(node)
@@ -64,8 +65,7 @@ class RoadmapNodeFragment : Fragment(R.layout.roadmap_section_fragment) {
         if (isMaster) {
             val action = RoadmapNodeFragmentDirections.navigateNodeToDetailMemo(selectedNode.id, selectedNode.title, "")
             findNavController().navigate(action)
-        }
-        else {
+        } else {
             viewModel.saveNode(selectedNode)
         }
     }
@@ -91,8 +91,7 @@ class RoadmapNodeFragment : Fragment(R.layout.roadmap_section_fragment) {
                     .setAnimationMode(BaseTransientBottomBar.ANIMATION_MODE_SLIDE)
                     .setTextColor(requireContext().getColor(R.color.snackbar_text_level_change))
                     .setBackgroundTint(requireContext().getColor(R.color.snackbar_background_level_up)).show()
-            }
-            else {
+            } else {
                 Snackbar
                     .make(binding.snackbarSpace, getString(R.string.snackbar_text_level_down), Snackbar.LENGTH_SHORT)
                     .setAnimationMode(BaseTransientBottomBar.ANIMATION_MODE_SLIDE)

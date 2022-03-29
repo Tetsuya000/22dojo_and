@@ -58,7 +58,8 @@ class EditCharacterDialogFragment : DialogFragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?): View {
+        savedInstanceState: Bundle?
+    ): View {
 
         observeEditSuccess()
 
@@ -79,7 +80,8 @@ class EditCharacterDialogFragment : DialogFragment() {
         Card(
             modifier = Modifier
                 .padding(16.dp)
-                .wrapContentSize()) {
+                .wrapContentSize()
+        ) {
             CardContent()
         }
     }
@@ -92,7 +94,7 @@ class EditCharacterDialogFragment : DialogFragment() {
                 Modifier.padding(16.dp),
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally,
-                  ) {
+            ) {
 
                 val focusRequester = remember { FocusRequester() }
                 LaunchedEffect(Unit) {
@@ -101,7 +103,8 @@ class EditCharacterDialogFragment : DialogFragment() {
                 var text by remember { mutableStateOf(viewModel.characterName.value) }
                 val isError = text.length > 15 || text.isEmpty()
 
-                MaxLengthErrorTextField(value = text,
+                MaxLengthErrorTextField(
+                    value = text,
                     onValueChange = {
                         text = it
                     },
@@ -113,12 +116,14 @@ class EditCharacterDialogFragment : DialogFragment() {
                     colors = TextFieldDefaults.textFieldColors(
                         focusedIndicatorColor = Color.Transparent,
                         unfocusedIndicatorColor = Color.Transparent,
-                        disabledIndicatorColor = Color.Transparent),
+                        disabledIndicatorColor = Color.Transparent
+                    ),
                     shape = RoundedCornerShape(8.dp),
                     isError = isError,
                     label = {
                         Text(stringResource(id = R.string.hint_character_name))
-                    })
+                    }
+                )
 
                 SaveButton(text, isError)
             }
@@ -134,7 +139,8 @@ class EditCharacterDialogFragment : DialogFragment() {
         colors: TextFieldColors,
         shape: RoundedCornerShape,
         isError: Boolean,
-        label: @Composable (() -> Unit)? = null) {
+        label: @Composable (() -> Unit)? = null
+    ) {
 
         TextField(
             value = value,
@@ -145,21 +151,26 @@ class EditCharacterDialogFragment : DialogFragment() {
             colors = colors,
             shape = shape,
             isError = isError,
-            label = label)
+            label = label
+        )
     }
 
     class MaxLengthErrorTransformation(
         private val maxLength: Int,
-        private val errorStyle: SpanStyle = SpanStyle(color = Color.Red)) : VisualTransformation {
+        private val errorStyle: SpanStyle = SpanStyle(color = Color.Red)
+    ) : VisualTransformation {
         override fun filter(text: AnnotatedString): TransformedText {
             return TransformedText(
                 AnnotatedString(
-                    text = text.text, spanStyles = if (text.length > maxLength) {
+                    text = text.text,
+                    spanStyles = if (text.length > maxLength) {
                         listOf(AnnotatedString.Range(errorStyle, maxLength, text.length))
-                    }
-                    else {
+                    } else {
                         emptyList()
-                    }), OffsetMapping.Identity)
+                    }
+                ),
+                OffsetMapping.Identity
+            )
         }
 
         override fun equals(other: Any?): Boolean {
@@ -181,7 +192,8 @@ class EditCharacterDialogFragment : DialogFragment() {
                 .padding(end = 10.dp)
                 .fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.End) {
+            horizontalArrangement = Arrangement.End
+        ) {
 
             Image(
                 modifier = Modifier
@@ -191,14 +203,16 @@ class EditCharacterDialogFragment : DialogFragment() {
                     }),
                 painter = painterResource(id = R.drawable.ic_close),
                 colorFilter = ColorFilter.tint(colorResource(R.color.black)),
-                contentDescription = "close")
+                contentDescription = "close"
+            )
         }
     }
 
     @Composable
     fun SaveButton(
         text: String,
-        isError: Boolean) {
+        isError: Boolean
+    ) {
         Button(
             modifier = Modifier
                 .padding(16.dp)
@@ -208,7 +222,7 @@ class EditCharacterDialogFragment : DialogFragment() {
                 if (isError) return@Button
                 viewModel.saveCharacterName(text)
             },
-              ) {
+        ) {
             Text(stringResource(R.string.text_ok))
         }
     }

@@ -5,6 +5,7 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import coil.load
 import dagger.hilt.android.AndroidEntryPoint
 import jp.gr.java.conf.tmproject.dojoandroid2022.R
 import jp.gr.java.conf.tmproject.dojoandroid2022.databinding.SettingFragmentBinding
@@ -38,28 +39,25 @@ class SettingFragment : Fragment(R.layout.setting_fragment) {
     }
 
     private fun observeCharacterLevel() = viewModel.characterLevel.collectWhenStarted(viewLifecycleOwner) { level ->
-        changeCharacterAndBackground(level.toInt())
+        changeCharacter(level.toInt())
     }
 
-    private fun changeCharacterAndBackground(level: Int) {
+    private fun changeCharacter(level: Int) {
         when (level / 5) {
             0 -> {
-                binding.imageCharacter.setImageResource(R.drawable.character_01)
+                binding.imageCharacter.load(R.drawable.character_01)
             }
             1 -> {
-                binding.imageCharacter.setImageResource(R.drawable.character_02)
+                binding.imageCharacter.load(R.drawable.character_02)
             }
             2 -> {
-                binding.imageCharacter.setImageResource(R.drawable.character_03)
+                binding.imageCharacter.load(R.drawable.character_03)
             }
             3 -> {
-                binding.imageCharacter.setImageResource(R.drawable.character_04)
-            }
-            4 -> {
-                binding.imageCharacter.setImageResource(R.drawable.character_05)
+                binding.imageCharacter.load(R.drawable.character_04)
             }
             else -> {
-                binding.imageCharacter.setImageResource(R.drawable.character_05)
+                binding.imageCharacter.load(R.drawable.character_05)
             }
         }
     }

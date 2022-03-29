@@ -29,47 +29,30 @@ class WebViewFragment : Fragment(R.layout.web_view_fragment) {
 
     override fun onViewCreated(
         view: View,
-        savedInstanceState: Bundle?) {
+        savedInstanceState: Bundle?
+    ) {
         super.onViewCreated(view, savedInstanceState)
 
         _binding = WebViewFragmentBinding.bind(view)
-        setUpToolbar()
-        setUpWebView()
-        setUpSwipeRefresh()
-        setUpBackPressedDispatcher()
+        setupToolbar()
+        setupWebView()
+        setupSwipeRefresh()
+        setupBackPressedDispatcher()
         observeLoadState()
     }
 
-    private fun setUpSwipeRefresh() {
-        binding.swipeRefresh.isRefreshing = false
-
-        binding.swipeRefresh.setOnRefreshListener {
-            binding.swipeRefresh.isRefreshing = true
-            binding.webView.reload()
-        }
-    }
-
-    private fun setUpToolbar() {
+    private fun setupToolbar() {
         val toolbar = binding.includeToolbar.toolbar
         toolbar.setupWithNavController(findNavController())
     }
 
-    private fun setUpBackPressedDispatcher() =
-        requireActivity().onBackPressedDispatcher.addCallback(this@WebViewFragment) {
-            if (binding.webView.canGoBack()) {
-                binding.webView.goBack()
-            }
-            else {
-                findNavController().popBackStack()
-            }
-        }
-
     @SuppressLint("SetJavaScriptEnabled")
-    private fun setUpWebView() {
+    private fun setupWebView() {
         binding.webView.webViewClient = object : WebViewClient() {
             override fun onPageFinished(
                 view: WebView?,
-                url: String?) {
+                url: String?
+            ) {
 
                 binding.swipeRefresh.isRefreshing = false
                 viewModel.changeLoadState(LoadState.Done)
@@ -80,12 +63,30 @@ class WebViewFragment : Fragment(R.layout.web_view_fragment) {
         binding.webView.loadUrl(navArgs.url)
     }
 
+    private fun setupSwipeRefresh() {
+        binding.swipeRefresh.isRefreshing = false
+
+        binding.swipeRefresh.setOnRefreshListener {
+            binding.swipeRefresh.isRefreshing = true
+            binding.webView.reload()
+        }
+    }
+
+    private fun setupBackPressedDispatcher() =
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
+            if (binding.webView.canGoBack()) {
+                binding.webView.goBack()
+            } else {
+                findNavController().popBackStack()
+            }
+        }
+
     private fun observeLoadState() = viewModel.loadState.collectWhenStarted(viewLifecycleOwner) { state ->
         when (state) {
             is LoadState.Nothing -> Unit
             is LoadState.Loading -> binding.progressBar.visible()
-            is LoadState.Done    -> binding.progressBar.gone()
-            is LoadState.Error   -> binding.progressBar.gone()
+            is LoadState.Done -> binding.progressBar.gone()
+            is LoadState.Error -> binding.progressBar.gone()
         }
     }
 

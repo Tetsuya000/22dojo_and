@@ -12,7 +12,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class AllMemoViewModel @Inject constructor(
+class MemoListViewModel @Inject constructor(
     private val memoRepository: MemoRepository
 ) : ViewModel() {
 

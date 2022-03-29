@@ -56,7 +56,8 @@ class EditMemoDialogFragment : DialogFragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?): View {
+        savedInstanceState: Bundle?
+    ): View {
 
         nodeId = arguments!!.getInt("nodeId")
         nodeTitle = arguments!!.getString("nodeTitle")!!
@@ -85,7 +86,8 @@ class EditMemoDialogFragment : DialogFragment() {
         Card(
             modifier = Modifier
                 .padding(16.dp)
-                .wrapContentSize()) {
+                .wrapContentSize()
+        ) {
             CardContent()
         }
     }
@@ -98,26 +100,29 @@ class EditMemoDialogFragment : DialogFragment() {
                 Modifier.padding(16.dp),
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally,
-                  ) {
+            ) {
 
                 val focusRequester = remember { FocusRequester() }
                 LaunchedEffect(Unit) {
                     focusRequester.requestFocus()
                 }
                 var text by remember { mutableStateOf(memo) }
-                TextField(modifier = Modifier
-                    .height(200.dp)
-                    .fillMaxWidth()
-                    .padding(vertical = 4.dp)
-                    .focusRequester(focusRequester),
+                TextField(
+                    modifier = Modifier
+                        .height(200.dp)
+                        .fillMaxWidth()
+                        .padding(vertical = 4.dp)
+                        .focusRequester(focusRequester),
                     shape = RoundedCornerShape(8.dp),
                     colors = TextFieldDefaults.textFieldColors(
                         focusedIndicatorColor = Transparent,
                         unfocusedIndicatorColor = Transparent,
-                        disabledIndicatorColor = Transparent),
+                        disabledIndicatorColor = Transparent
+                    ),
                     value = text,
                     onValueChange = { text = it },
-                    label = { Text("Memo") })
+                    label = { Text("Memo") }
+                )
 
                 SaveButton(text)
             }
@@ -131,7 +136,8 @@ class EditMemoDialogFragment : DialogFragment() {
                 .padding(end = 10.dp)
                 .fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.End) {
+            horizontalArrangement = Arrangement.End
+        ) {
 
             Image(
                 modifier = Modifier
@@ -141,7 +147,8 @@ class EditMemoDialogFragment : DialogFragment() {
                     }),
                 painter = painterResource(id = R.drawable.ic_close),
                 colorFilter = ColorFilter.tint(colorResource(R.color.black)),
-                contentDescription = "close")
+                contentDescription = "close"
+            )
         }
     }
 
@@ -155,7 +162,7 @@ class EditMemoDialogFragment : DialogFragment() {
                 val memo = Memo(nodeId, nodeTitle, text)
                 viewModel.saveMemo(memo)
             },
-              ) {
+        ) {
             Text(stringResource(R.string.text_ok))
         }
     }

@@ -5,7 +5,7 @@ import com.airbnb.epoxy.TypedEpoxyController
 import jp.gr.java.conf.tmproject.dojoandroid2022.domain.model.Memo
 import jp.gr.java.conf.tmproject.dojoandroid2022.itemMemo
 
-class AllMemoController(
+class MemoListController(
     private val selectListener: SelectListener
 ) : TypedEpoxyController<List<Memo>>() {
 
@@ -19,7 +19,7 @@ class AllMemoController(
                 title(memo.title)
                 onClickListener(
                     View.OnClickListener {
-                        this@AllMemoController.selectListener.onSelected(memo)
+                        this@MemoListController.selectListener.onSelected(memo)
                     }
                 )
             }

@@ -35,9 +35,9 @@ class SearchFragment : Fragment(R.layout.search_fragment) {
         _binding = SearchFragmentBinding.bind(view)
 
         initUi()
-        setUpAction()
-        setUpToolbar()
-        setUpRecyclerView()
+        setupToolbar()
+        setupSearchAction()
+        setupRecyclerView()
         observe()
     }
 
@@ -46,7 +46,12 @@ class SearchFragment : Fragment(R.layout.search_fragment) {
         binding.searchText.setText("Android/Kotlin")
     }
 
-    private fun setUpAction() {
+    private fun setupToolbar() {
+        val toolbar = binding.searchToolbar
+        toolbar.setupWithNavController(findNavController())
+    }
+
+    private fun setupSearchAction() {
         binding.searchText.setOnEditorActionListener { editText, action, _ ->
             if (action == EditorInfo.IME_ACTION_SEARCH) {
                 val searchText = editText.text.toString()
@@ -57,12 +62,7 @@ class SearchFragment : Fragment(R.layout.search_fragment) {
         }
     }
 
-    private fun setUpToolbar() {
-        val toolbar = binding.searchToolbar
-        toolbar.setupWithNavController(findNavController())
-    }
-
-    private fun setUpRecyclerView() {
+    private fun setupRecyclerView() {
         searchResponseController = SearchResponseController(object : SearchResponseController.SelectListener {
             override fun onSelected(url: String) {
                 val action = SearchFragmentDirections.navigateSearchToWebView(url)

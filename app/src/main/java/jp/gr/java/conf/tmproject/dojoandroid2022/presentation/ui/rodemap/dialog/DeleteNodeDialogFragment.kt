@@ -51,7 +51,8 @@ class DeleteNodeDialogFragment : DialogFragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?): View {
+        savedInstanceState: Bundle?
+    ): View {
 
         node = navArgs.node
         observeSaveSuccess()
@@ -83,7 +84,8 @@ class DeleteNodeDialogFragment : DialogFragment() {
         Card(
             modifier = Modifier
                 .padding(16.dp)
-                .wrapContentSize()) {
+                .wrapContentSize()
+        ) {
             CardContent()
         }
     }
@@ -96,7 +98,7 @@ class DeleteNodeDialogFragment : DialogFragment() {
                 Modifier.padding(5.dp),
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally,
-                  ) {
+            ) {
                 CardTitle()
                 DeleteButton()
             }
@@ -110,7 +112,8 @@ class DeleteNodeDialogFragment : DialogFragment() {
                 .padding(end = 10.dp)
                 .fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.End) {
+            horizontalArrangement = Arrangement.End
+        ) {
 
             Image(
                 modifier = Modifier
@@ -120,7 +123,8 @@ class DeleteNodeDialogFragment : DialogFragment() {
                     }),
                 painter = painterResource(id = R.drawable.ic_close),
                 colorFilter = ColorFilter.tint(colorResource(R.color.black)),
-                contentDescription = "close")
+                contentDescription = "close"
+            )
         }
     }
 
@@ -131,7 +135,8 @@ class DeleteNodeDialogFragment : DialogFragment() {
             color = colorResource(R.color.text_dialog),
             fontSize = 19.sp,
             style = MaterialTheme.typography.subtitle1,
-            modifier = Modifier.padding(5.dp))
+            modifier = Modifier.padding(5.dp)
+        )
     }
 
     @Composable
@@ -148,11 +153,11 @@ class DeleteNodeDialogFragment : DialogFragment() {
                 enabled = false
                 viewModelNode.deleteNode(node)
             },
-              ) {
+        ) {
             Text(
                 text = stringResource(R.string.text_delete),
                 color = colorResource(R.color.text_button),
-                )
+            )
         }
     }
 }

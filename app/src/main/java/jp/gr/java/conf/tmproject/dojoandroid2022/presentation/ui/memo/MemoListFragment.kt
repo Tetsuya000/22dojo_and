@@ -9,17 +9,17 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import jp.gr.java.conf.tmproject.dojoandroid2022.R
-import jp.gr.java.conf.tmproject.dojoandroid2022.databinding.AllMemoFragmentBinding
+import jp.gr.java.conf.tmproject.dojoandroid2022.databinding.MemoListFragmentBinding
 import jp.gr.java.conf.tmproject.dojoandroid2022.domain.model.Memo
 import jp.gr.java.conf.tmproject.dojoandroid2022.presentation.util.extension.collectWhenStarted
 
 @AndroidEntryPoint
-class AllMemoFragment : Fragment(R.layout.all_memo_fragment) {
+class MemoListFragment : Fragment(R.layout.memo_list_fragment) {
 
-    private var _binding: AllMemoFragmentBinding? = null
+    private var _binding: MemoListFragmentBinding? = null
     private val binding get() = _binding!!
-    private val viewModel: AllMemoViewModel by viewModels()
-    private lateinit var allMemoController: AllMemoController
+    private val listViewModel: MemoListViewModel by viewModels()
+    private lateinit var memoListController: MemoListController
 
     override fun onViewCreated(
         view: View,
@@ -27,35 +27,35 @@ class AllMemoFragment : Fragment(R.layout.all_memo_fragment) {
     ) {
         super.onViewCreated(view, savedInstanceState)
 
-        _binding = AllMemoFragmentBinding.bind(view)
-        setUpToolbar()
-        setUpRecyclerView()
+        _binding = MemoListFragmentBinding.bind(view)
+        setupToolbar()
+        setupRecyclerView()
         loadAllMemo()
     }
 
-    private fun setUpToolbar() {
+    private fun setupToolbar() {
         val toolbar = binding.includeToolbar.toolbar
         toolbar.title = "Memo"
     }
 
-    private fun setUpRecyclerView() {
-        allMemoController = AllMemoController(object : AllMemoController.SelectListener {
+    private fun setupRecyclerView() {
+        memoListController = MemoListController(object : MemoListController.SelectListener {
             override fun onSelected(memo: Memo) {
-                val action = AllMemoFragmentDirections.navigateAllMemoToDetailMemo(memo.nodeId, memo.title, memo.memo)
+                val action = MemoListFragmentDirections.navigateMemoListToDetailMemo(memo.nodeId, memo.title, memo.memo)
                 findNavController().navigate(action)
             }
         })
 
         val decoration = DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
         binding.recyclerView.apply {
-            adapter = allMemoController.adapter
+            adapter = memoListController.adapter
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
             addItemDecoration(decoration)
         }
     }
 
-    private fun loadAllMemo() = viewModel.memoList.collectWhenStarted(viewLifecycleOwner) { memoList ->
-        allMemoController.setData(memoList)
+    private fun loadAllMemo() = listViewModel.memoList.collectWhenStarted(viewLifecycleOwner) { memoList ->
+        memoListController.setData(memoList)
     }
 
     override fun onDestroy() {
