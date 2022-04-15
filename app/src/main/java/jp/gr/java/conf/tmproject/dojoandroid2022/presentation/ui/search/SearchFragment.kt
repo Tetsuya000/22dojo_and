@@ -13,11 +13,11 @@ import dagger.hilt.android.AndroidEntryPoint
 import jp.gr.java.conf.tmproject.dojoandroid2022.R
 import jp.gr.java.conf.tmproject.dojoandroid2022.databinding.SearchFragmentBinding
 import jp.gr.java.conf.tmproject.dojoandroid2022.presentation.util.LoadState
-import jp.gr.java.conf.tmproject.dojoandroid2022.presentation.util.extension.collectWhenStarted
-import jp.gr.java.conf.tmproject.dojoandroid2022.presentation.util.extension.gone
-import jp.gr.java.conf.tmproject.dojoandroid2022.presentation.util.extension.hideKeyboard
-import jp.gr.java.conf.tmproject.dojoandroid2022.presentation.util.extension.showKeyboard
-import jp.gr.java.conf.tmproject.dojoandroid2022.presentation.util.extension.visible
+import jp.gr.java.conf.tmproject.dojoandroid2022.presentation.util.extensions.collectWhenStarted
+import jp.gr.java.conf.tmproject.dojoandroid2022.presentation.util.extensions.gone
+import jp.gr.java.conf.tmproject.dojoandroid2022.presentation.util.extensions.hideKeyboard
+import jp.gr.java.conf.tmproject.dojoandroid2022.presentation.util.extensions.showKeyboard
+import jp.gr.java.conf.tmproject.dojoandroid2022.presentation.util.extensions.visible
 
 @AndroidEntryPoint
 class SearchFragment : Fragment(R.layout.search_fragment) {
@@ -103,7 +103,6 @@ class SearchFragment : Fragment(R.layout.search_fragment) {
 
     override fun onDestroyView() {
         super.onDestroyView()
-
         _binding = null
     }
 }

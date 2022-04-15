@@ -1,4 +1,4 @@
-package jp.gr.java.conf.tmproject.dojoandroid2022.presentation.util.extension
+package jp.gr.java.conf.tmproject.dojoandroid2022.presentation.util.extensions
 
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner

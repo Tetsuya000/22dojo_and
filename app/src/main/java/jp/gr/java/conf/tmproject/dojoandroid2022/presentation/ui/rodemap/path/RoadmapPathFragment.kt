@@ -12,9 +12,9 @@ import jp.gr.java.conf.tmproject.dojoandroid2022.R
 import jp.gr.java.conf.tmproject.dojoandroid2022.databinding.RoadmapPathFragmentBinding
 import jp.gr.java.conf.tmproject.dojoandroid2022.domain.model.Section
 import jp.gr.java.conf.tmproject.dojoandroid2022.presentation.util.LoadState
-import jp.gr.java.conf.tmproject.dojoandroid2022.presentation.util.extension.collectWhenStarted
-import jp.gr.java.conf.tmproject.dojoandroid2022.presentation.util.extension.gone
-import jp.gr.java.conf.tmproject.dojoandroid2022.presentation.util.extension.visible
+import jp.gr.java.conf.tmproject.dojoandroid2022.presentation.util.extensions.collectWhenStarted
+import jp.gr.java.conf.tmproject.dojoandroid2022.presentation.util.extensions.gone
+import jp.gr.java.conf.tmproject.dojoandroid2022.presentation.util.extensions.visible
 import jp.gr.java.conf.tmproject.dojoandroid2022.presentation.util.makeSnackbarError
 
 @AndroidEntryPoint
@@ -81,7 +81,6 @@ class RoadmapPathFragment : Fragment(R.layout.roadmap_path_fragment) {
 
     override fun onDestroyView() {
         super.onDestroyView()
-
         _binding = null
     }
 }

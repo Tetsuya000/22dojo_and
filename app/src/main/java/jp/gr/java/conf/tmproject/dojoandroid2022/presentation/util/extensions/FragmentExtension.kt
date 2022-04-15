@@ -1,4 +1,4 @@
-package jp.gr.java.conf.tmproject.dojoandroid2022.presentation.util.extension
+package jp.gr.java.conf.tmproject.dojoandroid2022.presentation.util.extensions
 
 import android.content.Context
 import android.view.View

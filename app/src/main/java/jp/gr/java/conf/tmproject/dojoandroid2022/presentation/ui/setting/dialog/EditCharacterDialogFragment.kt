@@ -48,7 +48,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import jp.gr.java.conf.tmproject.dojoandroid2022.R
-import jp.gr.java.conf.tmproject.dojoandroid2022.presentation.util.extension.collectWhenStarted
+import jp.gr.java.conf.tmproject.dojoandroid2022.presentation.util.extensions.collectWhenStarted
 
 @AndroidEntryPoint
 class EditCharacterDialogFragment : DialogFragment() {
