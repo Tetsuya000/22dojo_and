@@ -11,7 +11,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import jp.gr.java.conf.tmproject.dojoandroid2022.R
 import jp.gr.java.conf.tmproject.dojoandroid2022.databinding.MemoListFragmentBinding
 import jp.gr.java.conf.tmproject.dojoandroid2022.domain.model.Memo
-import jp.gr.java.conf.tmproject.dojoandroid2022.presentation.util.extension.collectWhenStarted
+import jp.gr.java.conf.tmproject.dojoandroid2022.presentation.util.extensions.collectWhenStarted
 
 @AndroidEntryPoint
 class MemoListFragment : Fragment(R.layout.memo_list_fragment) {
@@ -58,9 +58,8 @@ class MemoListFragment : Fragment(R.layout.memo_list_fragment) {
         memoListController.setData(memoList)
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-
+    override fun onDestroyView() {
+        super.onDestroyView()
         _binding = null
     }
 }

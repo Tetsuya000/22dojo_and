@@ -8,7 +8,9 @@ import coil.load
 import dagger.hilt.android.AndroidEntryPoint
 import jp.gr.java.conf.tmproject.dojoandroid2022.R
 import jp.gr.java.conf.tmproject.dojoandroid2022.databinding.HomeFragmentBinding
-import jp.gr.java.conf.tmproject.dojoandroid2022.presentation.util.extension.collectWhenStarted
+import jp.gr.java.conf.tmproject.dojoandroid2022.presentation.util.constants.CharacterSpecification
+import jp.gr.java.conf.tmproject.dojoandroid2022.presentation.util.constants.CharacterSpecification.CHANGE_IMAGE_NUMBER
+import jp.gr.java.conf.tmproject.dojoandroid2022.presentation.util.extensions.collectWhenStarted
 
 @AndroidEntryPoint
 class HomeFragment : Fragment(R.layout.home_fragment) {
@@ -19,8 +21,7 @@ class HomeFragment : Fragment(R.layout.home_fragment) {
 
     override fun onViewCreated(
         view: View,
-        savedInstanceState: Bundle?
-    ) {
+        savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         _binding = HomeFragmentBinding.bind(view)
@@ -32,28 +33,26 @@ class HomeFragment : Fragment(R.layout.home_fragment) {
         observeCharacterLevel()
     }
 
-    private fun observeCharacterLevel() = viewModel.characterLevel.collectWhenStarted(viewLifecycleOwner) { level ->
-        changeBackgroundAndCharacter(level.toInt())
-    }
+    private fun observeCharacterLevel() =
+        viewModel.characterLevel.collectWhenStarted(viewLifecycleOwner) { level ->
+            changeBackgroundAndCharacter(level.toInt())
+        }
 
-    /**
-     * backgroundでCoilを使用すると余白ができるため、「setBackgroundResource」を使用する
-     */
-    private fun changeBackgroundAndCharacter(level: Int) {
-        when (level / 5) {
-            0 -> {
+    private fun changeBackgroundAndCharacter(level: Int) =
+        when (level / CHANGE_IMAGE_NUMBER) {
+            0    -> {
                 binding.background.setBackgroundResource(R.drawable.bg_01)
                 binding.imageCharacter.load(R.drawable.character_01)
             }
-            1 -> {
+            1    -> {
                 binding.background.setBackgroundResource(R.drawable.bg_02)
                 binding.imageCharacter.load(R.drawable.character_02)
             }
-            2 -> {
+            2    -> {
                 binding.background.setBackgroundResource(R.drawable.bg_03)
                 binding.imageCharacter.load(R.drawable.character_03)
             }
-            3 -> {
+            3    -> {
                 binding.background.setBackgroundResource(R.drawable.bg_04)
                 binding.imageCharacter.load(R.drawable.character_04)
             }
@@ -62,11 +61,9 @@ class HomeFragment : Fragment(R.layout.home_fragment) {
                 binding.imageCharacter.load(R.drawable.character_05)
             }
         }
-    }
 
     override fun onDestroyView() {
         super.onDestroyView()
-
         _binding = null
     }
 }

@@ -9,7 +9,8 @@ import coil.load
 import dagger.hilt.android.AndroidEntryPoint
 import jp.gr.java.conf.tmproject.dojoandroid2022.R
 import jp.gr.java.conf.tmproject.dojoandroid2022.databinding.SettingFragmentBinding
-import jp.gr.java.conf.tmproject.dojoandroid2022.presentation.util.extension.collectWhenStarted
+import jp.gr.java.conf.tmproject.dojoandroid2022.presentation.util.constants.CharacterSpecification.CHANGE_IMAGE_NUMBER
+import jp.gr.java.conf.tmproject.dojoandroid2022.presentation.util.extensions.collectWhenStarted
 
 @AndroidEntryPoint
 class SettingFragment : Fragment(R.layout.setting_fragment) {
@@ -20,8 +21,7 @@ class SettingFragment : Fragment(R.layout.setting_fragment) {
 
     override fun onViewCreated(
         view: View,
-        savedInstanceState: Bundle?
-    ) {
+        savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         _binding = SettingFragmentBinding.bind(view)
@@ -38,33 +38,21 @@ class SettingFragment : Fragment(R.layout.setting_fragment) {
         observeCharacterLevel()
     }
 
-    private fun observeCharacterLevel() = viewModel.characterLevel.collectWhenStarted(viewLifecycleOwner) { level ->
-        changeCharacter(level.toInt())
-    }
-
-    private fun changeCharacter(level: Int) {
-        when (level / 5) {
-            0 -> {
-                binding.imageCharacter.load(R.drawable.character_01)
-            }
-            1 -> {
-                binding.imageCharacter.load(R.drawable.character_02)
-            }
-            2 -> {
-                binding.imageCharacter.load(R.drawable.character_03)
-            }
-            3 -> {
-                binding.imageCharacter.load(R.drawable.character_04)
-            }
-            else -> {
-                binding.imageCharacter.load(R.drawable.character_05)
-            }
+    private fun observeCharacterLevel() =
+        viewModel.characterLevel.collectWhenStarted(viewLifecycleOwner) { level ->
+            changeCharacter(level.toInt())
         }
+
+    private fun changeCharacter(level: Int) = when (level / CHANGE_IMAGE_NUMBER) {
+        0    -> binding.imageCharacter.load(R.drawable.character_01)
+        1    -> binding.imageCharacter.load(R.drawable.character_02)
+        2    -> binding.imageCharacter.load(R.drawable.character_03)
+        3    -> binding.imageCharacter.load(R.drawable.character_04)
+        else -> binding.imageCharacter.load(R.drawable.character_05)
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
-
         _binding = null
     }
 }

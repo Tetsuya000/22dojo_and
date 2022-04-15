@@ -61,7 +61,6 @@ class DetailMemoFragment : Fragment(R.layout.detail_memo_fragment) {
 
     override fun onDestroyView() {
         super.onDestroyView()
-
         _binding = null
     }
 }

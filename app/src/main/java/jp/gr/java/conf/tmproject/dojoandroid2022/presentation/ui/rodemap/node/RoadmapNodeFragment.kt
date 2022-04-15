@@ -14,7 +14,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import jp.gr.java.conf.tmproject.dojoandroid2022.R
 import jp.gr.java.conf.tmproject.dojoandroid2022.databinding.RoadmapSectionFragmentBinding
 import jp.gr.java.conf.tmproject.dojoandroid2022.domain.model.Node
-import jp.gr.java.conf.tmproject.dojoandroid2022.presentation.util.extension.collectWhenStarted
+import jp.gr.java.conf.tmproject.dojoandroid2022.presentation.util.extensions.collectWhenStarted
 
 @AndroidEntryPoint
 class RoadmapNodeFragment : Fragment(R.layout.roadmap_section_fragment) {
@@ -104,7 +104,6 @@ class RoadmapNodeFragment : Fragment(R.layout.roadmap_section_fragment) {
 
     override fun onDestroyView() {
         super.onDestroyView()
-
         _binding = null
     }
 }

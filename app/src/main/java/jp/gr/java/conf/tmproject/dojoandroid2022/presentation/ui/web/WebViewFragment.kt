@@ -15,9 +15,9 @@ import dagger.hilt.android.AndroidEntryPoint
 import jp.gr.java.conf.tmproject.dojoandroid2022.R
 import jp.gr.java.conf.tmproject.dojoandroid2022.databinding.WebViewFragmentBinding
 import jp.gr.java.conf.tmproject.dojoandroid2022.presentation.util.LoadState
-import jp.gr.java.conf.tmproject.dojoandroid2022.presentation.util.extension.collectWhenStarted
-import jp.gr.java.conf.tmproject.dojoandroid2022.presentation.util.extension.gone
-import jp.gr.java.conf.tmproject.dojoandroid2022.presentation.util.extension.visible
+import jp.gr.java.conf.tmproject.dojoandroid2022.presentation.util.extensions.collectWhenStarted
+import jp.gr.java.conf.tmproject.dojoandroid2022.presentation.util.extensions.gone
+import jp.gr.java.conf.tmproject.dojoandroid2022.presentation.util.extensions.visible
 
 @AndroidEntryPoint
 class WebViewFragment : Fragment(R.layout.web_view_fragment) {
@@ -92,7 +92,6 @@ class WebViewFragment : Fragment(R.layout.web_view_fragment) {
 
     override fun onDestroyView() {
         super.onDestroyView()
-
         _binding = null
     }
 }
