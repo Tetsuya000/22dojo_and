@@ -32,7 +32,6 @@ class RoadmapPathFragment : Fragment(R.layout.roadmap_path_fragment) {
         super.onViewCreated(view, savedInstanceState)
 
         _binding = RoadmapPathFragmentBinding.bind(view)
-
         setupRecyclerView()
         setupToolbar()
         observe()

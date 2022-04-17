@@ -28,7 +28,7 @@ class DetailMemoFragment : Fragment(R.layout.detail_memo_fragment) {
         _binding = DetailMemoFragmentBinding.bind(view)
         binding.also {
             it.viewModel = viewModel
-            it.lifecycleOwner = this
+            it.lifecycleOwner = viewLifecycleOwner
         }
 
         setupToolbar()

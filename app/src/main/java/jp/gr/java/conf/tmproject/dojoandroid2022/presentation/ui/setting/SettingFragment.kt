@@ -9,7 +9,7 @@ import coil.load
 import dagger.hilt.android.AndroidEntryPoint
 import jp.gr.java.conf.tmproject.dojoandroid2022.R
 import jp.gr.java.conf.tmproject.dojoandroid2022.databinding.SettingFragmentBinding
-import jp.gr.java.conf.tmproject.dojoandroid2022.presentation.util.constants.CharacterSpecification.CHANGE_IMAGE_NUMBER
+import jp.gr.java.conf.tmproject.dojoandroid2022.presentation.util.constants.CharacterConstants.CHANGE_IMAGE_NUMBER
 import jp.gr.java.conf.tmproject.dojoandroid2022.presentation.util.extensions.collectWhenStarted
 
 @AndroidEntryPoint
@@ -27,7 +27,7 @@ class SettingFragment : Fragment(R.layout.setting_fragment) {
         _binding = SettingFragmentBinding.bind(view)
         binding.also {
             it.viewModel = viewModel
-            it.lifecycleOwner = this
+            it.lifecycleOwner = viewLifecycleOwner
         }
 
         binding.cardEditCharacter.setOnClickListener {
